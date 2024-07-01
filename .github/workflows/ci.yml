@@ -51,13 +51,13 @@ jobs:
           bundler-cache: true
 
       - name: Lint code for consistent style
-        run: bin/rubocop -f github
+        run: bin/standardrb
 
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable <%= dockerfile_base_packages.join(" ") %>
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable
 
       - name: Checkout code
         uses: actions/checkout@v4
