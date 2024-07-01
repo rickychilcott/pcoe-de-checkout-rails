@@ -9,11 +9,12 @@ gem "importmap-rails"
 gem "puma", ">= 5.0"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 gem "sprockets-rails"
-gem "sqlite3", "~> 2"
+gem "sqlite3", "~> 1.4"
 gem "stimulus-rails"
 gem "turbo-rails"
 
 group :development, :test do
+  gem "brakeman", "~> 6.1"
   gem "debug", platforms: %i[mri windows]
   gem "rspec-rails", "~> 6.1.0"
 end
