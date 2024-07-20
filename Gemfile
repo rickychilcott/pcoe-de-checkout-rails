@@ -2,12 +2,16 @@ source "https://rubygems.org"
 
 ruby file: ".ruby-version"
 
+gem "avo", ">= 3.2"
 gem "bootsnap", require: false
 gem "cssbundling-rails"
+gem "devise", "~> 4.9"
 gem "image_processing", "~> 1.2"
 gem "importmap-rails"
+gem "pagy", "~> 8.0"
 gem "puma", ">= 5.0"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
+gem "rqrcode", "~> 2.0"
 gem "sprockets-rails"
 gem "sqlite3", "~> 1.4"
 gem "stimulus-rails"
@@ -27,7 +31,7 @@ end
 
 group :test do
   gem "capybara"
+  gem "cuprite"
   gem "factory_bot_rails"
   gem "faker"
-  gem "selenium-webdriver"
 end
