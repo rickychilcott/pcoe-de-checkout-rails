@@ -55,6 +55,10 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+
+    env:
+       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+
     steps:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable
