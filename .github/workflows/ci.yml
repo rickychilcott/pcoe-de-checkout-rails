@@ -67,11 +67,17 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-      - name: Run tests
-        env:
-          RAILS_ENV: test
+
+      - name: Setup db
         run: |
           bin/rails db:test:prepare
+
+      - name: Compile assets
+        run: |
+          bin/rails assets:precompile
+
+      - name: Run tests
+        run: |
           bin/rspec
 
       - name: Keep screenshots from failed system tests
