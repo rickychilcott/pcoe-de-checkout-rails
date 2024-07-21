@@ -28,4 +28,26 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  avo:
+    resource_translations:
+      admin_user_group:
+        zero: Permitted Admin Groups
+        one: Permitted Admin Group
+        other: Permitted Admin Groups
+      admin_user:
+        zero: Admins
+        one: Admin
+        other: Admins
+      group:
+        zero: Equipment Groups
+        one: Equipment Group
+        other: Equipment Groups
+      location:
+        zero: Equipment Locations
+        one: Equipment Location
+        other: Equipment Locations
+      item:
+        zero: Equipment Items
+        one: Equipment Item
+        other: Equipment Items
+

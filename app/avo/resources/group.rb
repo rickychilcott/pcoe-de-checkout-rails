@@ -6,9 +6,11 @@ class Avo::Resources::Group < Avo::BaseResource
   # }
 
   def fields
-    field :id, as: :idlo
+    field :id, as: :id
     field :name, as: :text
     field :description, as: :trix, always_show: true
     field :items, as: :has_many
+
+    field :admin_users, as: :has_many
   end
 end

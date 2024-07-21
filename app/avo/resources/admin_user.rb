@@ -17,5 +17,7 @@ class Avo::Resources::AdminUser < Avo::BaseResource
     field :last_sign_in_at, as: :date_time, disabled: true
     field :current_sign_in_ip, as: :text, disabled: true
     field :last_sign_in_ip, as: :text, disabled: true
+
+    field :groups, as: :has_many
   end
 end

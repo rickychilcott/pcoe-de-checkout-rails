@@ -43,7 +43,7 @@ Avo.configure do |config|
   config.authorization_client = nil
 
   ## == Localization ==
-  # config.locale = 'en-US'
+  config.locale = :en
 
   ## == Resource options ==
   # config.resource_controls_placement = :right
