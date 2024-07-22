@@ -19,6 +19,7 @@ gem "stimulus-rails"
 gem "turbo-rails"
 
 group :development, :test do
+  gem "annotate"
   gem "brakeman", "~> 6.1"
   gem "debug", platforms: %i[mri windows]
   gem "rspec-rails", "~> 6.1.0"

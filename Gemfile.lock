@@ -77,6 +77,9 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ancestry (4.3.3)
       activerecord (>= 5.2.6)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     ast (2.4.2)
     avo (3.10.7)
       actionview (>= 6.1)
@@ -390,6 +393,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
+  annotate
   avo (>= 3.2)
   bootsnap
   brakeman (~> 6.1)
