@@ -1,0 +1,6 @@
+<%= field_wrapper **field_wrapper_args do %>
+  <%= @form.text_field @field.id,
+    class: helpers.input_classes("w-full", has_error: @field.model_errors.include?(@field.id)),
+    placeholder: @field.placeholder,
+    disabled: disabled? %>
+<% end %>

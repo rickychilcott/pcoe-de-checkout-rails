@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby file: ".ruby-version"
 
+gem "ancestry"
 gem "avo", ">= 3.2"
 gem "bootsnap", require: false
 gem "cssbundling-rails"

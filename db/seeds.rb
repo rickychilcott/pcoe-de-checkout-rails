@@ -14,3 +14,20 @@ AdminUser
     admin_user.password = "password"
   end
   .save!
+
+location = Location.find_or_create_by(name: "House")
+group = Group.find_or_create_by(name: "Default")
+
+parent_item =
+  Item
+    .find_or_initialize_by(name: "Parent Item") do |item|
+    item.location = location
+    item.group = group
+  end
+
+parent_item.save!
+child_item = Item.find_or_initialize_by(name: "Child Item")
+child_item.location = location
+child_item.group = group
+child_item.parent = parent_item
+child_item.save!

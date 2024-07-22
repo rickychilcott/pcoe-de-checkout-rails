@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_07_21_173517) do
+ActiveRecord::Schema[7.2].define(version: 2024_07_21_232538) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -76,6 +76,22 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_21_173517) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "checkouts", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "checked_out_by_id", null: false
+    t.datetime "checked_out_at"
+    t.datetime "returned_at"
+    t.integer "returned_by_id", null: false
+    t.date "expected_return_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checked_out_by_id"], name: "index_checkouts_on_checked_out_by_id"
+    t.index ["customer_id"], name: "index_checkouts_on_customer_id"
+    t.index ["item_id"], name: "index_checkouts_on_item_id"
+    t.index ["returned_by_id"], name: "index_checkouts_on_returned_by_id"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "name", null: false
     t.string "ohio_id", null: false
@@ -98,6 +114,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_21_173517) do
     t.integer "group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_items_on_ancestry"
     t.index ["group_id"], name: "index_items_on_group_id"
     t.index ["location_id"], name: "index_items_on_location_id"
     t.index ["parent_item_id"], name: "index_items_on_parent_item_id"
@@ -113,6 +131,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_21_173517) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "admin_user_groups", "admin_users"
   add_foreign_key "admin_user_groups", "groups"
+  add_foreign_key "checkouts", "admin_users", column: "checked_out_by_id"
+  add_foreign_key "checkouts", "admin_users", column: "returned_by_id"
+  add_foreign_key "checkouts", "customers"
+  add_foreign_key "checkouts", "items"
   add_foreign_key "items", "groups"
   add_foreign_key "items", "items", column: "parent_item_id"
   add_foreign_key "items", "locations"

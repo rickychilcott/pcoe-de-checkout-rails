@@ -75,6 +75,8 @@ GEM
       tzinfo (~> 2.0, >= 2.0.5)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    ancestry (4.3.3)
+      activerecord (>= 5.2.6)
     ast (2.4.2)
     avo (3.10.7)
       actionview (>= 6.1)
@@ -387,6 +389,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  ancestry
   avo (>= 3.2)
   bootsnap
   brakeman (~> 6.1)

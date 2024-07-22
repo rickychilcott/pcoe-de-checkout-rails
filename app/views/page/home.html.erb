@@ -1,4 +1,12 @@
-<h1>Welcome!</h1>
-<p>Find me in app/views/page/home.html.erb</p>
+<h1>Items Available</h1>
+
+<% locations.each do |location| %>
+  <% location.items.each do |item| %>
+    <p>
+      <b><%= item.name %></b><br />
+      <%= item.available? ? "Available" : "Taken" %>
+    </p>
+  <% end %>
+<% end %>
 
 <%= link_to "Log In", new_admin_user_session_path %>

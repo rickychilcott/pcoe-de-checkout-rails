@@ -1,7 +1,11 @@
 class Item < ApplicationRecord
-  belongs_to :parent_item, optional: true, class_name: "Item"
+  has_ancestry
+
   belongs_to :location
   belongs_to :group
+  has_many :checkouts
+  has_many :current_checkouts, -> { where(returned_at: nil) }, class_name: "Checkout"
+  has_one :current_checkout, -> { where(returned_at: nil) }, class_name: "Checkout"
 
   has_many_attached :images
   has_rich_text :description
@@ -15,5 +19,9 @@ class Item < ApplicationRecord
         shape_rendering: "crispEdges",
         module_size: 4
       )
+  end
+
+  def available?
+    !current_checkout.present?
   end
 end
