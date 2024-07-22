@@ -1,4 +1,4 @@
-class AncestryField < Avo::Fields::BaseField
+class Avo::Fields::AncestryField < Avo::Fields::BaseField
   def initialize(name, **args, &)
     super
 
