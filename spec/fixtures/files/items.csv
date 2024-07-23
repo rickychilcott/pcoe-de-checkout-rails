@@ -1,0 +1,6 @@
+id,name,serial_number,parent_item_id,location_name,qr_code_identifier,group_name
+,Item Without ID,a1111,,House,a1111,Default
+,Another Item Without ID,b1111,," House",b1111,Default
+1,Item With ID,c1111,,House,c1111,Default
+,Parented Item,d1111,1,House,d1111,Default
+,Special Location Item,e1111,,"Another ",e1111,Default

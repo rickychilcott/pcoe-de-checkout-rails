@@ -47,4 +47,20 @@ RSpec.describe Item, type: :model do
       expect(item_parent.parent).to eq(nil)
     end
   end
+
+  describe ".importable_column_names" do
+    it "returns the importable column names" do
+      expect(described_class.importable_column_names).to eq(
+        [
+          "id",
+          "name",
+          "serial_number",
+          "parent_item_id",
+          "location_name",
+          "qr_code_identifier",
+          "group_name"
+        ]
+      )
+    end
+  end
 end

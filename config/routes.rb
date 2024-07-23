@@ -9,3 +9,9 @@ Rails.application.routes.draw do
 
   root "page#home"
 end
+
+if defined? ::Avo
+  Avo::Engine.routes.draw do
+    get "import_items_download_template", to: "tools#import_items_download_template", as: :import_items_download_template
+  end
+end

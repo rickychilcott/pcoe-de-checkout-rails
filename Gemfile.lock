@@ -45,6 +45,13 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+    active_interaction (5.3.0)
+      activemodel (>= 5.2, < 8)
+      activesupport (>= 5.2, < 8)
+    active_interaction-extras (1.1.0)
+      active_interaction (>= 5.0, < 6.0)
+      activemodel (>= 6.0)
+      activesupport (>= 6.0)
     active_link_to (1.0.5)
       actionpack
       addressable
@@ -392,6 +399,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_interaction (~> 5.3)
+  active_interaction-extras
   ancestry
   annotate
   avo (>= 3.2)

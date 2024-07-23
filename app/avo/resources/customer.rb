@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: customers
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  ohio_id    :string           not null
+#
 class Avo::Resources::Customer < Avo::BaseResource
   self.includes = [:rich_text_notes]
   # self.attachments = []

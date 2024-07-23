@@ -1,0 +1,70 @@
+require "rails_helper"
+
+RSpec.describe "Item Import Spec", type: :system do
+  describe "importing" do
+    it "succesfully" do
+      group = FactoryBot.create(:group, name: "Default")
+      location = FactoryBot.create(:location, name: "House")
+      FactoryBot.create(:item, id: 1, name: "Existing Item", group:, location:)
+      admin_user = FactoryBot.create(:admin_user)
+      sign_in admin_user
+
+      visit avo.resources_items_path
+      click_on "Actions"
+      click_on "Import Items"
+
+      expect(page).to have_content "CSV Template"
+
+      within "turbo-frame#actions_show" do
+        within "form" do
+          attach_file "fields_csv_file", Rails.root.join("spec", "fixtures", "files", "items.csv")
+          click_button "Import"
+        end
+      end
+
+      expect(page).to have_content "5 items imported successfully"
+      expect(Item.count).to eq 5
+      expect(Location.count).to eq 2
+      expect(Group.count).to eq 1
+    end
+
+    it "handles errors" do
+      admin_user = FactoryBot.create(:admin_user)
+      sign_in admin_user
+
+      visit avo.resources_items_path
+      click_on "Actions"
+      click_on "Import Items"
+
+      expect(page).to have_content "CSV Template"
+
+      within "turbo-frame#actions_show" do
+        within "form" do
+          attach_file "fields_csv_file", Rails.root.join("spec", "fixtures", "files", "items.csv")
+          click_button "Import"
+        end
+      end
+
+      expect(page).to have_content "Error:"
+      expect(Item.count).to eq 0
+      expect(Location.count).to eq 0
+      expect(Group.count).to eq 0
+    end
+  end
+
+  it "can download template" do
+    admin_user = FactoryBot.create(:admin_user)
+    sign_in admin_user
+
+    visit avo.resources_items_path
+    click_on "Actions"
+    click_on "Import Items"
+
+    expect(page).to have_content "CSV Template"
+
+    click_link "CSV Template"
+
+    wait_for_download
+    expect(downloads).to include(/item-import-template.csv/)
+  end
+end

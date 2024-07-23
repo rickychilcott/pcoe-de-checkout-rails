@@ -26,6 +26,17 @@
 #  location_id     (location_id => locations.id)
 #  parent_item_id  (parent_item_id => items.id)
 #
+
+module InsertBefore
+  refine Array do
+    def insert_before(item, *args)
+      index = index(item)
+      dup.insert(index, *args)
+    end
+  end
+end
+
+using InsertBefore
 class Item < ApplicationRecord
   has_ancestry
 
@@ -37,6 +48,14 @@ class Item < ApplicationRecord
 
   has_many_attached :images
   has_rich_text :description
+
+  def self.importable_column_names
+    column_names
+      .insert_before("group_id", "group_name")
+      .insert_before("location_id", "location_name")
+      .without("group_id", "location_id")
+      .without("created_at", "updated_at", "ancestry")
+  end
 
   def qr_code_as_svg
     RQRCode::QRCode
