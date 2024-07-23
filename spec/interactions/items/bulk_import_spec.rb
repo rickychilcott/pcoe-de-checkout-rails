@@ -1,5 +1,4 @@
 require "rails_helper"
-require "csv"
 
 RSpec.describe Item::BulkImport, type: :model do
   describe "imports" do

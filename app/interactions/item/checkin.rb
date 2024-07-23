@@ -1,4 +1,3 @@
-require "csv"
 class Item::Checkin < ApplicationInteraction
   run_in_transaction!
 

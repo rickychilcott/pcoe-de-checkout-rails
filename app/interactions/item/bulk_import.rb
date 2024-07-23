@@ -1,4 +1,3 @@
-require "csv"
 class Item::BulkImport < ApplicationInteraction
   run_in_transaction!
 
