@@ -11,7 +11,7 @@
 #  checked_out_by_id  :integer          not null
 #  customer_id        :integer          not null
 #  item_id            :integer          not null
-#  returned_by_id     :integer          not null
+#  returned_by_id     :integer
 #
 # Indexes
 #
@@ -32,5 +32,26 @@ class Checkout < ApplicationRecord
   belongs_to :customer
 
   belongs_to :checked_out_by, class_name: "AdminUser"
-  belongs_to :returned_by, class_name: "AdminUser"
+  belongs_to :returned_by, class_name: "AdminUser", optional: true
+
+  validates :checked_out_at, presence: true
+  validates :expected_return_on, presence: true
+  validates :returned_at, presence: {if: :checked_in?}
+  validates :returned_by, presence: {if: :checked_in?}
+
+  scope :past_due, -> { checked_out.where(expected_return_on: ...Date.today) }
+  scope :checked_out, -> { where(returned_at: nil) }
+  scope :checked_in, -> { where.not(returned_at: nil) }
+
+  def past_due?
+    checked_out? && expected_return_on < Date.today
+  end
+
+  def checked_out?
+    returned_at.nil?
+  end
+
+  def checked_in?
+    !checked_out?
+  end
 end

@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :group do
-    name { "MyString" }
+    name { Faker::App.name }
   end
 end

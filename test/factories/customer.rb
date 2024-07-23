@@ -22,10 +22,9 @@
 #  index_admin_users_on_email                 (email) UNIQUE
 #  index_admin_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-require "rails_helper"
-
-RSpec.describe AdminUser, type: :model do
-  it "has a valid factory" do
-    expect(FactoryBot.build(:admin_user)).to be_valid
+FactoryBot.define do
+  factory :customer do
+    name { Faker::Name.name }
+    ohio_id { Faker::Name.initials(number: 2).downcase + Faker::Number.number(digits: 6).to_s }
   end
 end

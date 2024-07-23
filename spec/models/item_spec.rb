@@ -29,6 +29,10 @@
 require "rails_helper"
 
 RSpec.describe Item, type: :model do
+  it "has a valid factory" do
+    expect(FactoryBot.build(:item)).to be_valid
+  end
+
   describe "parented" do
     it "doesn't require a parent" do
       item = FactoryBot.build(:item, parent: nil)

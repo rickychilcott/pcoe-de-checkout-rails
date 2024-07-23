@@ -98,7 +98,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_23_172530) do
     t.integer "checked_out_by_id", null: false
     t.datetime "checked_out_at"
     t.datetime "returned_at"
-    t.integer "returned_by_id", null: false
+    t.integer "returned_by_id"
     t.date "expected_return_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

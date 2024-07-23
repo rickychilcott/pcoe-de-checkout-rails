@@ -11,7 +11,7 @@
 #  checked_out_by_id  :integer          not null
 #  customer_id        :integer          not null
 #  item_id            :integer          not null
-#  returned_by_id     :integer          not null
+#  returned_by_id     :integer
 #
 # Indexes
 #
@@ -37,10 +37,10 @@ class Avo::Resources::Checkout < Avo::BaseResource
   def fields
     field :id, as: :id
     field :checked_out_at, as: :datetime, readonly: true
-    field :checked_out_admin_user, as: :belongs_to, readonly: true
+    field :checked_out_by, as: :belongs_to, readonly: true
 
     field :returned_at, as: :datetime, readonly: true
-    field :returned_admin_user, as: :belongs_to, readonly: true
+    field :returned_by, as: :belongs_to, readonly: true
 
     field :expected_return_on, as: :date, readonly: true
     field :customer, as: :belongs_to, readonly: true

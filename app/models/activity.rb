@@ -35,6 +35,8 @@ class Activity < ApplicationRecord
     item_deleted
     item_viewed
     item_bulk_import
+    item_checked_out
+    item_checked_in
   ].freeze
 
   validates :action, inclusion: {

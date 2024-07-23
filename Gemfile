@@ -8,6 +8,7 @@ gem "ancestry"
 gem "avo", ">= 3.2"
 gem "bootsnap", require: false
 gem "cssbundling-rails"
+gem "csv"
 gem "devise", "~> 4.9"
 gem "image_processing", "~> 1.2"
 gem "importmap-rails"

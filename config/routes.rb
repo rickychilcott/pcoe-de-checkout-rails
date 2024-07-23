@@ -13,5 +13,7 @@ end
 if defined? ::Avo
   Avo::Engine.routes.draw do
     get "import_items_download_template", to: "tools#import_items_download_template", as: :import_items_download_template
+    get "past_due", to: "tools#past_due", as: :past_due
+    get "checked_out", to: "tools#checked_out", as: :checked_out
   end
 end

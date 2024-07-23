@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Item Import Spec", type: :system do
+RSpec.describe "Item Import", type: :system do
   describe "importing" do
     it "succesfully" do
       group = FactoryBot.create(:group, name: "Default")

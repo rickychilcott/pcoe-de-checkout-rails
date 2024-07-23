@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    name { "MyString" }
+    name { Faker::Game.title }
     location
     group
   end

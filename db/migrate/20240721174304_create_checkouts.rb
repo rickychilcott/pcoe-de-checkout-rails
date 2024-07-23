@@ -8,7 +8,7 @@ class CreateCheckouts < ActiveRecord::Migration[7.2]
       t.datetime :checked_out_at
 
       t.datetime :returned_at
-      t.belongs_to :returned_by, null: false, foreign_key: {to_table: :admin_users}
+      t.belongs_to :returned_by, foreign_key: {to_table: :admin_users}
 
       t.date :expected_return_on
 
