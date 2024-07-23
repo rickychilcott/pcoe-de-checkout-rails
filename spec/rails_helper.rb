@@ -40,6 +40,10 @@ RSpec.configure do |config|
     })
   end
 
+  config.before(:each) do
+    Current.reset
+  end
+
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   config.filter_gems_from_backtrace("capybara", "cuprite", "ferrum")

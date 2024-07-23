@@ -25,6 +25,7 @@ group :development, :test do
   gem "brakeman", "~> 6.1"
   gem "debug", platforms: %i[mri windows]
   gem "rspec-rails", "~> 6.1.0"
+  gem "i18n-tasks"
 end
 
 group :development do

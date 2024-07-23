@@ -22,6 +22,7 @@ class Avo::Actions::ImportItems < Avo::BaseAction
 
     if outcome.valid?
       succeed "#{outcome.result.size} items imported successfully"
+      close_modal
     else
       error "Error: #{outcome.errors.full_messages.join(", ")}"
     end

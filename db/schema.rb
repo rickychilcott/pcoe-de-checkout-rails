@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_07_21_232538) do
+ActiveRecord::Schema[7.2].define(version: 2024_07_23_172530) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -47,6 +47,22 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_21_232538) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.integer "actor_id"
+    t.integer "facilitator_id", null: false
+    t.string "action", null: false
+    t.string "record_type"
+    t.integer "record_id"
+    t.json "extra", default: {}, null: false
+    t.datetime "occurred_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action"], name: "index_activities_on_action"
+    t.index ["actor_id"], name: "index_activities_on_actor_id"
+    t.index ["facilitator_id"], name: "index_activities_on_facilitator_id"
+    t.index ["record_type", "record_id"], name: "index_activities_on_record"
   end
 
   create_table "admin_user_groups", force: :cascade do |t|
@@ -129,6 +145,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_21_232538) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activities", "admin_users", column: "facilitator_id"
+  add_foreign_key "activities", "customers", column: "actor_id"
   add_foreign_key "admin_user_groups", "admin_users"
   add_foreign_key "admin_user_groups", "groups"
   add_foreign_key "checkouts", "admin_users", column: "checked_out_by_id"

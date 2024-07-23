@@ -4,6 +4,8 @@ require "csv"
 RSpec.describe Item::BulkImport, type: :model do
   describe "imports" do
     it "can import" do
+      Current.admin_user = FactoryBot.create(:admin_user)
+
       FactoryBot.create(:item, id: 1, name: "Existing Item")
       expect(Location.count).to eq 1
       expect(Group.count).to eq 1

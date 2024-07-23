@@ -20,6 +20,7 @@ class Item::BulkImport < ApplicationInteraction
     find_items!
     conform_rows!
     update_and_create_items!
+    log_activities!
 
     resulting_items
   end
@@ -103,8 +104,8 @@ class Item::BulkImport < ApplicationInteraction
         errors.add(:base, "Item with ID #{id} not found")
         next
       end
-
-      @resulting_items << item.update!(row_data)
+      item.update!(row_data)
+      @resulting_items << item
     end
 
     new_items.each do |row_data|
@@ -113,5 +114,21 @@ class Item::BulkImport < ApplicationInteraction
           row_data.without("id")
         )
     end
+  end
+
+  def log_activities!
+    resulting_items.each do |item|
+      item.record_activity!(
+        :item_bulk_import,
+        actor: nil,
+        extra: {
+          import_identifier:
+        }
+      )
+    end
+  end
+
+  def import_identifier
+    @import_identifier ||= "import-#{SecureRandom.uuid}"
   end
 end

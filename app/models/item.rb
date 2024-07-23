@@ -40,6 +40,8 @@ using InsertBefore
 class Item < ApplicationRecord
   has_ancestry
 
+  include ActivityLoggable
+
   belongs_to :location
   belongs_to :group
   has_many :checkouts

@@ -155,3 +155,7 @@ Avo.configure do |config|
   #   link "Profile", path: "/avo/profile", icon: "heroicons/outline/user-circle"
   # }
 end
+
+Rails.configuration.to_prepare do
+  Avo::ApplicationController.include CurrentAttributeSetters
+end
