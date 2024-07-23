@@ -100,9 +100,9 @@ Avo.configure do |config|
   # }
 
   ## == Customization ==
-  # config.app_name = 'Avocadelicious'
-  # config.timezone = 'UTC'
-  # config.currency = 'USD'
+  config.app_name = "PCOEdeCheckout"
+  config.timezone = "UTC"
+  config.currency = "USD"
   # config.hide_layout_when_printing = false
   # config.full_width_container = false
   # config.full_width_index_view = false
