@@ -19,7 +19,7 @@ class Item::Checkout < ApplicationInteraction
         )
 
     item.record_activity!(
-      :item_bulk_import,
+      :item_checked_out,
       actor: customer,
       facilitator: checked_out_by
     )

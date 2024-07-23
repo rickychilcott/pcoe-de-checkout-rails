@@ -13,7 +13,7 @@ class Item::Checkin < ApplicationInteraction
     )
 
     item.record_activity!(
-      :item_bulk_import,
+      :item_checked_in,
       actor: checkout.customer,
       facilitator: returned_by
     )
