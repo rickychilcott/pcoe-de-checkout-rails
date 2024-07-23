@@ -45,8 +45,8 @@ class Item < ApplicationRecord
   belongs_to :location
   belongs_to :group
   has_many :checkouts
-  has_many :current_checkouts, -> { where(returned_at: nil) }, class_name: "Checkout"
-  has_one :current_checkout, -> { where(returned_at: nil) }, class_name: "Checkout"
+  has_many :current_checkouts, -> { where(returned_at: nil) }, class_name: "::Checkout"
+  has_one :current_checkout, -> { where(returned_at: nil) }, class_name: "::Checkout"
 
   has_many_attached :images
   has_rich_text :description
