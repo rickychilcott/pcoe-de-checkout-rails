@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require "rspec/rails"
 require "capybara/rspec"
 require "capybara/cuprite"
+require "axe-rspec"
 
 Capybara.default_max_wait_time = 5
 Capybara.disable_animation = true

@@ -11,6 +11,7 @@ RSpec.describe "Admin Sign In", type: :system do
     click_button "Log in"
 
     expect(page).to have_content "Avo"
+    expect(page).to be_wcag2_accessible
   end
 
   it "fails to log in" do

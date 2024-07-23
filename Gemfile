@@ -34,6 +34,9 @@ group :development do
 end
 
 group :test do
+  gem "axe-core-rspec", "4.9.0"
+  gem "axe-core-api", "4.2.0"
+  gem "axe-matchers", "2.6.1"
   gem "capybara"
   gem "cuprite"
   gem "factory_bot_rails"

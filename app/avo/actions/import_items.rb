@@ -3,7 +3,8 @@ class Avo::Actions::ImportItems < Avo::BaseAction
   self.message = -> do
     <<~MESSAGE
       <span>
-        Use this to import items from a CSV file. You may download the #{link_to("CSV Template", avo.import_items_download_template_path(format: :csv))} to get started.
+        Use this to import items from a CSV file.
+        You may download the #{link_to("CSV Template", avo.import_items_download_template_path(format: :csv))} to get started.
       </span>
     MESSAGE
       .html_safe
