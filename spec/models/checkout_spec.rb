@@ -35,12 +35,14 @@ RSpec.describe Checkout, type: :model do
   end
 
   it "is past due if it is checked out and the expected return date is in the past" do
-    checkout = FactoryBot.create(:checkout, checked_out_at: 2.days.ago, expected_return_on: 1.day.ago)
+    travel_to DateTime.now.middle_of_day do
+      checkout = FactoryBot.create(:checkout, checked_out_at: 2.days.ago, expected_return_on: 1.day.ago)
 
-    expect(checkout).to be_past_due
-    expect(checkout).to be_checked_out
-    expect(Checkout.past_due).to include(checkout)
-    expect(Checkout.checked_out).to include(checkout)
+      expect(checkout).to be_past_due
+      expect(checkout).to be_checked_out
+      expect(Checkout.past_due).to include(checkout)
+      expect(Checkout.checked_out).to include(checkout)
+    end
   end
 
   it "is not past due if it is checked out and the expected return date is today" do
