@@ -5,7 +5,7 @@ module ActivityLoggable
     has_many :activities, as: :record
   end
 
-  def record_activity!(action, actor:, facilitator: Current.admin_user, record: self, extra: {}, throttle_within: nil)
+  def record_activity!(action, actor:, facilitator:, record: self, extra: {}, throttle_within: nil)
     kwargs = {action: action.to_s, record:, actor:, facilitator:}
 
     if throttle_within.present?
@@ -29,6 +29,6 @@ module ActivityLoggable
       request_id: Current.request_id,
       user_agent: Current.user_agent,
       ip_address: Current.ip_address
-    }
+    }.compact
   end
 end

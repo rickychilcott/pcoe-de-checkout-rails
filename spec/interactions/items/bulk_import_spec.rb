@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe Item::BulkImport, type: :model do
   describe "imports" do
     it "can import" do
-      Current.admin_user = FactoryBot.create(:admin_user)
+      admin_user = FactoryBot.create(:admin_user)
 
       FactoryBot.create(:item, id: 1, name: "Existing Item")
       expect(Location.count).to eq 1
@@ -13,7 +13,7 @@ RSpec.describe Item::BulkImport, type: :model do
       expect(first_item.location.name).not_to eq("House")
 
       csv_file = File.open("spec/fixtures/files/items.csv")
-      outcome = described_class.run(csv_file:)
+      outcome = described_class.run(csv_file:, imported_by: admin_user)
 
       expect(outcome).to be_valid
 

@@ -8,6 +8,7 @@ class Item::BulkImport < ApplicationInteraction
   end
 
   file :csv_file
+  object :imported_by, class: "AdminUser"
   validates :csv_file, presence: true
 
   def execute
@@ -120,6 +121,7 @@ class Item::BulkImport < ApplicationInteraction
       item.record_activity!(
         :item_bulk_import,
         actor: nil,
+        facilitator: imported_by,
         extra: {
           import_identifier:
         }
