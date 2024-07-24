@@ -29,9 +29,25 @@
 class Avo::Resources::Item < Avo::BaseResource
   self.includes = [:rich_text_description]
   # self.attachments = []
-  # self.search = {
-  #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
-  # }
+  self.search = {
+    query: -> do
+      query
+        .ransack(
+          name_cont: params[:q],
+          serial_number_cont: params[:q],
+          qr_code_identifier_cont: params[:q],
+          m: "or"
+        )
+        .result(distinct: false)
+    end,
+    help: -> { "- search by name, serial number, or QR code" },
+    item: -> do
+      {
+        title: record.name,
+        description: record.search_description
+      }
+    end
+  }
 
   def fields
     field :id, as: :id
