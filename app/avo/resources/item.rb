@@ -66,6 +66,8 @@ class Avo::Resources::Item < Avo::BaseResource
     end
 
     field :images, as: :files
+
+    field :activities, as: :has_many
   end
 
   def actions

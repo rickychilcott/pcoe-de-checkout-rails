@@ -39,6 +39,9 @@ class Avo::Resources::Activity < Avo::BaseResource
     field :record, as: :belongs_to, readonly: true, link_to_resource: true, polymorphic_as: :record, types: [::Item]
     field :actor, as: :belongs_to, readonly: true
     field :facilitator, as: :belongs_to, readonly: true
+    field :occurred, as: :text, readonly: true do
+      time_ago_in_words(record.occurred_at) + " ago"
+    end
     field :extra, as: :key_value
   end
 end
