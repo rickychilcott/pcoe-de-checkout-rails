@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Admin Sign In", type: :system do
-  it "can log in" do
+  it "can log in and out" do
     admin_user = FactoryBot.create(:admin_user, password: "abcd1234")
     visit new_admin_user_session_path
 
@@ -12,6 +12,14 @@ RSpec.describe "Admin Sign In", type: :system do
 
     expect(page).to have_content "Avo"
     expect(page).to be_wcag2_accessible
+
+    accept_prompt do
+      find('a[data-control="profile-dots"]').click
+      click_on "Sign out"
+    end
+
+    expect(page).to have_content "Log In"
+    expect(page).to have_content "Items Available"
   end
 
   it "fails to log in" do

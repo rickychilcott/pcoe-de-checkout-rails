@@ -23,6 +23,8 @@ Avo.configure do |config|
 
   ## == Authentication ==
   config.current_user_method = :current_admin_user
+  config.current_user_resource_name = :current_admin_user
+  config.sign_out_path_name = :destroy_admin_user_session_path
   # config.is_admin_method = :is_admin
   # config.is_developer_method = :is_developer
   # config.authenticate_with do
