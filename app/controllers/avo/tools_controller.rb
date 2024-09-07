@@ -9,6 +9,7 @@ class Avo::ToolsController < Avo::ApplicationController
 
   def past_due
     @page_title = "Past Due Checkouts"
+    @page_description = "This shows only past due checkouts."
     add_breadcrumb "Past Due Checkouts"
 
     checkouts = Checkout.includes(:customer, :item).past_due
@@ -18,6 +19,7 @@ class Avo::ToolsController < Avo::ApplicationController
 
   def checked_out
     @page_title = "Current Checkouts"
+    @page_description = "This shows all checkouts including those that are past due."
     add_breadcrumb "Current Checkouts"
     checkouts = Checkout.includes(:customer, :item).checked_out
 
