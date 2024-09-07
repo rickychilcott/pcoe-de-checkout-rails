@@ -61,20 +61,20 @@ class Avo::Resources::Item < Avo::BaseResource
       as: :select,
       hide_on: [:show, :index],
       options: -> { Item.pluck(:name, :id) },
-      name: "Parent",
+      name: "Parent Item",
       include_blank: true
 
-    field :parent, as: :text, hide_on: [:new, :edit] do
+    field :parent, name: "Parent Item", as: :text, hide_on: [:new, :edit] do
       record.parent&.name
     end
 
     field :serial_number, as: :text
     field :qr_code_identifier, as: :text, show_on: [:new, :edit]
     field :qr_code, as: :external_image, link_to_record: true, hide_on: [:new, :edit] do
+      next unless record.qr_code_identifier.present?
+
       svg = record.qr_code_as_svg
       "data:image/svg+xml;base64,#{Base64.strict_encode64(svg)}"
-    rescue
-      nil
     end
 
     field :child_items, as: :number, hide_on: [:new, :edit] do
