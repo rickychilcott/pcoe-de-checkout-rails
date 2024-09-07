@@ -6,6 +6,7 @@ gem "active_interaction", "~> 5.3"
 gem "active_interaction-extras"
 gem "ancestry"
 gem "avo", ">= 3.2"
+gem "avo-advanced", ">= 3.2", source: "https://packager.dev/avo-hq/"
 gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "csv"

@@ -1,4 +1,32 @@
 GEM
+  remote: https://packager.dev/avo-hq/
+  specs:
+    avo-advanced (3.12.0)
+      avo (= 3.12.0)
+      avo-dynamic_filters (= 3.12.0)
+      avo-pro (= 3.12.0)
+      zeitwerk (>= 2.6.12)
+    avo-dashboards (3.12.0)
+      avo (= 3.12.0)
+      turbo-rails
+      view_component (>= 3.7.0)
+      zeitwerk (>= 2.6.12)
+    avo-dynamic_filters (3.12.0)
+      avo (= 3.12.0)
+      ransack (>= 4.2.0)
+      view_component (>= 3.7.0)
+      zeitwerk (>= 2.6.12)
+    avo-menu (3.12.0)
+      avo (= 3.12.0)
+      docile
+      zeitwerk (>= 2.6.12)
+    avo-pro (3.12.0)
+      avo (= 3.12.0)
+      avo-dashboards (= 3.12.0)
+      avo-menu (= 3.12.0)
+      zeitwerk (>= 2.6.12)
+
+GEM
   remote: https://rubygems.org/
   specs:
     actioncable (7.2.1)
@@ -467,6 +495,7 @@ DEPENDENCIES
   ancestry
   annotate
   avo (>= 3.2)
+  avo-advanced (>= 3.2)!
   axe-core-api (= 4.2.0)
   axe-core-rspec (= 4.9.0)
   axe-matchers (= 2.6.1)
