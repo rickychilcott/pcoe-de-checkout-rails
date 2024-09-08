@@ -28,9 +28,11 @@ RSpec.describe "Checked Out", type: :system do
     sign_in admin_user
 
     visit avo.resources_items_path
-    click_on "Current Checkouts"
+    click_on "Checkouts"
+    expect(page).to have_content "Checkouts"
 
-    expect(page).to have_content "Current Checkouts"
+    click_on "Current"
+    expect(page).to have_content "Current"
 
     expect(page).to have_content checked_out_due_now.name
     expect(page).to have_content customer_1.name

@@ -6,23 +6,4 @@ class Avo::ToolsController < Avo::ApplicationController
       end
     end
   end
-
-  def past_due
-    @page_title = "Past Due Checkouts"
-    @page_description = "This shows only past due checkouts."
-    add_breadcrumb "Past Due Checkouts"
-
-    checkouts = Checkout.includes(:customer, :item).past_due
-
-    render "avo/tools/checkouts", locals: {checkouts:}
-  end
-
-  def checked_out
-    @page_title = "Current Checkouts"
-    @page_description = "This shows all checkouts including those that are past due."
-    add_breadcrumb "Current Checkouts"
-    checkouts = Checkout.includes(:customer, :item).checked_out
-
-    render "avo/tools/checkouts", locals: {checkouts:}
-  end
 end

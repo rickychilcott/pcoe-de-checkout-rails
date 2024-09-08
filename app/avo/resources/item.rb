@@ -50,7 +50,6 @@ class Avo::Resources::Item < Avo::BaseResource
   }
 
   def fields
-    field :id, as: :id
     field :name, as: :text
     field :description, as: :trix, always_show: true
 

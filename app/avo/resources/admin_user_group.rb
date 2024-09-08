@@ -27,8 +27,6 @@ class Avo::Resources::AdminUserGroup < Avo::BaseResource
   self.visible_on_sidebar = false
 
   def fields
-    field :id, as: :id
-
     field :admin_user, as: :belongs_to
     field :group, as: :belongs_to
   end

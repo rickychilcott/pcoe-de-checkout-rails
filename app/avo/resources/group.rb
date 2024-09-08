@@ -10,12 +10,24 @@
 class Avo::Resources::Group < Avo::BaseResource
   self.includes = [:rich_text_description]
   # self.attachments = []
-  # self.search = {
-  #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
-  # }
+  self.search = {
+    query: -> do
+      query
+        .ransack(
+          name_cont: params[:q],
+          m: "or"
+        )
+        .result(distinct: false)
+    end,
+    item: -> do
+      {
+        title: record.name,
+        description: record.description.to_plain_text.truncate(130)
+      }
+    end
+  }
 
   def fields
-    field :id, as: :id
     field :name, as: :text
     field :description, as: :trix, always_show: true
     field :items, as: :has_many

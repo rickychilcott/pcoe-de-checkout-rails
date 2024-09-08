@@ -28,6 +28,8 @@
 #  returned_by_id     (returned_by_id => admin_users.id)
 #
 class Checkout < ApplicationRecord
+  include ActionView::Helpers::DateHelper
+
   belongs_to :item
   belongs_to :customer
 
@@ -53,5 +55,21 @@ class Checkout < ApplicationRecord
 
   def checked_in?
     !checked_out?
+  end
+
+  def due_soon?
+    checked_out? && (1.day.ago..Time.now).cover?(expected_return_on)
+  end
+
+  def expected_return_on_text
+    words = time_ago_in_words(expected_return_on)
+
+    if past_due?
+      "#{words} ago"
+    elsif due_soon?
+      "today"
+    else
+      "in #{words}"
+    end
   end
 end

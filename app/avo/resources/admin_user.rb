@@ -25,22 +25,37 @@
 class Avo::Resources::AdminUser < Avo::BaseResource
   # self.includes = []
   # self.attachments = []
-  # self.search = {
-  #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
-  # }
+  self.search = {
+    query: -> do
+      query
+        .ransack(
+          name_cont: params[:q],
+          email_cont: params[:q],
+          m: "or"
+        )
+        .result(distinct: false)
+    end,
+    item: -> do
+            {
+              title: "#{record.name} [#{record.email}]"
+              # description: ActionView::Base.full_sanitizer.sanitize(record.body).truncate(130),
+              # image_url: main_app.url_for(record.cover_photo),
+              # image_format: :rounded
+            }
+          end
+  }
 
   def fields
-    field :id, as: :id
     field :name, as: :text
     field :email, as: :text
 
-    field :password, as: :password, disabled: true, required: false
+    field :password, as: :password, required: false
 
-    field :sign_in_count, as: :number, disabled: true
-    field :current_sign_in_at, as: :date_time, disabled: true
-    field :last_sign_in_at, as: :date_time, disabled: true
-    field :current_sign_in_ip, as: :text, disabled: true
-    field :last_sign_in_ip, as: :text, disabled: true
+    field :sign_in_count, as: :number, readonly: true
+    field :current_sign_in_at, as: :date_time, readonly: true
+    field :last_sign_in_at, as: :date_time, readonly: true
+    field :current_sign_in_ip, as: :text, readonly: true
+    field :last_sign_in_ip, as: :text, readonly: true
 
     field :groups, as: :has_many
   end

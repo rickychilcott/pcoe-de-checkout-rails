@@ -51,10 +51,6 @@ class Item < ApplicationRecord
   has_many_attached :images
   has_rich_text :description
 
-  def self.ransackable_attributes(auth_object = nil)
-    super + %w[name serial_number qr_code_identifier]
-  end
-
   def self.importable_column_names
     column_names
       .insert_before("group_id", "group_name")
@@ -75,7 +71,7 @@ class Item < ApplicationRecord
   end
 
   def search_description
-    description.to_plain_text
+    description.to_plain_text.truncate(130)
   end
 
   def available?

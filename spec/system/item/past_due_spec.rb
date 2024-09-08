@@ -29,9 +29,12 @@ RSpec.describe "Past Due", type: :system do
     sign_in admin_user
 
     visit avo.resources_items_path
-    click_on "Past Due"
+    click_on "Checkouts"
+    expect(page).to have_content "Checkouts"
 
-    expect(page).to have_content "Past Due Checkouts"
+    click_on "Past Due"
+    expect(page).to have_content "Past Due"
+
     expect(page).to have_content checked_out_due_now.name
     expect(page).to have_content customer_1.name
 

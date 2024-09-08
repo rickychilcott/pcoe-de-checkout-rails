@@ -103,7 +103,7 @@ Avo.configure do |config|
 
   ## == Customization ==
   config.app_name = "PCOEdeCheckout"
-  config.timezone = "UTC"
+  config.timezone = "EST"
   config.currency = "USD"
   # config.hide_layout_when_printing = false
   # config.full_width_container = false
@@ -139,23 +139,35 @@ Avo.configure do |config|
   #   add_breadcrumb "Home", '/avo'
   # end
 
-  ## == Menus ==
-  # config.main_menu = -> {
-  #   section "Dashboards", icon: "avo/dashboards" do
-  #     all_dashboards
-  #   end
+  # == Menus ==
+  config.main_menu = -> do
+    section "Dashboards", icon: "avo/dashboards" do
+      all_dashboards
+    end
 
-  #   section "Resources", icon: "avo/resources" do
-  #     all_resources
-  #   end
+    section "Checkouts", icon: "heroicons/outline/shopping-bag" do
+      resource :checkouts
+    end
 
-  #   section "Tools", icon: "avo/tools" do
-  #     all_tools
-  #   end
-  # }
-  # config.profile_menu = -> {
-  #   link "Profile", path: "/avo/profile", icon: "heroicons/outline/user-circle"
-  # }
+    section "Customers", icon: "heroicons/outline/academic-cap" do
+      resource :customers
+    end
+
+    section "Other Resources", icon: "avo/resources" do
+      resource :admin_users
+      resource :locations
+      resource :items
+      resource :groups
+    end
+
+    # section "Tools", icon: "avo/tools" do
+    #   all_tools
+    # end
+  end
+
+  config.profile_menu = -> {
+    link "Profile", path: "/avo/profile", icon: "heroicons/outline/user-circle"
+  }
 end
 
 Rails.configuration.to_prepare do
