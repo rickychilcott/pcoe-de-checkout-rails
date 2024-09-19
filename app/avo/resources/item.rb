@@ -28,7 +28,7 @@
 #
 class Avo::Resources::Item < Avo::BaseResource
   self.includes = [:rich_text_description]
-  # self.attachments = []
+
   self.search = {
     query: -> do
       query
@@ -50,11 +50,12 @@ class Avo::Resources::Item < Avo::BaseResource
   }
 
   def fields
-    field :name, as: :text
+    field :name, as: :text, link_to_record: true
     field :description, as: :trix, always_show: true
 
     field :location, as: :belongs_to
     field :group, as: :belongs_to
+    field :status, as: :badge, options: {success: [:available], danger: [:past_due], warning: [:checked_out]}
 
     field :parent_id,
       as: :select,
@@ -83,9 +84,15 @@ class Avo::Resources::Item < Avo::BaseResource
     field :images, as: :files
 
     field :activities, as: :has_many
+    field :checkouts, as: :has_many
   end
 
   def actions
     action Avo::Actions::ImportItems
+  end
+
+  def scopes
+    scope Avo::Scopes::AvailableItems
+    scope Avo::Scopes::CheckedOutItems
   end
 end

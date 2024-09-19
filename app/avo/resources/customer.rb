@@ -10,7 +10,6 @@
 #
 class Avo::Resources::Customer < Avo::BaseResource
   self.includes = [:rich_text_notes, :current_checkouts]
-  # self.attachments = []
 
   self.search = {
     query: -> do
@@ -33,12 +32,14 @@ class Avo::Resources::Customer < Avo::BaseResource
   }
 
   def fields
-    field :name, as: :text
+    field :name, as: :text, link_to_record: true
     field :ohio_id, as: :text
 
     field :checked_out_item_count, as: :number, readonly: true
     field :past_due_item_count, as: :number, readonly: true
 
     field :notes, as: :trix, always_show: true
+
+    field :checkouts, as: :has_many
   end
 end

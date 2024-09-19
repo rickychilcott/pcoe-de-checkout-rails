@@ -42,7 +42,7 @@ Avo.configure do |config|
   #   search: 'search?',
   # }
   # config.raise_error_on_missing_policy = false
-  config.authorization_client = nil
+  config.authorization_client = :pundit
 
   ## == Localization ==
   config.locale = :en
@@ -154,10 +154,10 @@ Avo.configure do |config|
     end
 
     section "Other Resources", icon: "avo/resources" do
-      resource :admin_users
-      resource :locations
       resource :items
+      resource :locations
       resource :groups
+      resource :admin_users
     end
 
     # section "Tools", icon: "avo/tools" do
@@ -165,9 +165,9 @@ Avo.configure do |config|
     # end
   end
 
-  config.profile_menu = -> {
-    link "Profile", path: "/avo/profile", icon: "heroicons/outline/user-circle"
-  }
+  config.profile_menu = -> do
+    # link "Profile", path: "/avo/profile", icon: "heroicons/outline/user-circle"
+  end
 end
 
 Rails.configuration.to_prepare do

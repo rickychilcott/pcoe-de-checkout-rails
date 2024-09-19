@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Item::Checkout, type: :model do
+RSpec.describe Item::Process::Checkout, type: :model do
   it "can checkout" do
     group = FactoryBot.create(:group)
     admin_user = FactoryBot.create(:admin_user)

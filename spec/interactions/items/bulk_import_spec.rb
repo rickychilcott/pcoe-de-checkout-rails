@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Item::BulkImport, type: :model do
+RSpec.describe Item::Process::BulkImport, type: :model do
   describe "imports" do
     it "can import" do
       admin_user = FactoryBot.create(:admin_user)

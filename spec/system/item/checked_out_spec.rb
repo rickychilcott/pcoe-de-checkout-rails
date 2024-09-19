@@ -12,16 +12,16 @@ RSpec.describe "Checked Out", type: :system do
     customer_1 = FactoryBot.create(:customer)
     checked_out_due_now = FactoryBot.create(:item, group:)
 
-    Item::Checkout.run!(item: checked_out_due_now, customer: customer_1, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
+    Item::Process::Checkout.run!(item: checked_out_due_now, customer: customer_1, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
 
     customer_2 = FactoryBot.create(:customer)
     checked_in = FactoryBot.create(:item, group:)
-    checkout = Item::Checkout.run!(item: checked_in, customer: customer_2, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
-    Item::Checkin.run!(item: checked_in, checkout:, returned_by: admin_user)
+    checkout = Item::Process::Checkout.run!(item: checked_in, customer: customer_2, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
+    Item::Process::Checkin.run!(item: checked_in, checkout:, returned_by: admin_user)
 
     customer_3 = FactoryBot.create(:customer)
     checked_out_due_later = FactoryBot.create(:item, group:)
-    Item::Checkout.run!(item: checked_out_due_later, customer: customer_3, expected_return_on: 1.month.from_now.to_date, checked_out_by: admin_user)
+    Item::Process::Checkout.run!(item: checked_out_due_later, customer: customer_3, expected_return_on: 1.month.from_now.to_date, checked_out_by: admin_user)
 
     travel_back
 

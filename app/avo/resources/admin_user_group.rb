@@ -20,7 +20,6 @@
 #
 class Avo::Resources::AdminUserGroup < Avo::BaseResource
   # self.includes = []
-  # self.attachments = []
   # self.search = {
   #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
   # }

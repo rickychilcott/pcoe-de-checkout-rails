@@ -27,7 +27,7 @@
 #
 class Avo::Resources::Activity < Avo::BaseResource
   self.includes = [:actor, :record, :facilitator]
-  # self.attachments = []
+
   # self.search = {
   #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
   # }

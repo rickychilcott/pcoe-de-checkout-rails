@@ -1,4 +1,4 @@
-class Item::Checkin < ApplicationInteraction
+class Item::Process::Checkin < ApplicationInteraction
   run_in_transaction!
 
   object :item, class: Item

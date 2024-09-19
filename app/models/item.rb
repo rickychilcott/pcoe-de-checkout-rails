@@ -45,8 +45,11 @@ class Item < ApplicationRecord
   belongs_to :location
   belongs_to :group
   has_many :checkouts
-  has_many :current_checkouts, -> { where(returned_at: nil) }, class_name: "::Checkout"
-  has_one :current_checkout, -> { where(returned_at: nil) }, class_name: "::Checkout"
+  has_many :current_checkouts, -> { checked_out }, class_name: "Checkout"
+  has_one :current_checkout, -> { checked_out }, class_name: "Checkout"
+
+  scope :not_checked_out, -> { where.not(id: Checkout.checked_out.select(:item_id)) }
+  scope :checked_out, -> { where(id: Checkout.checked_out.select(:item_id)) }
 
   has_many_attached :images
   has_rich_text :description
@@ -68,6 +71,18 @@ class Item < ApplicationRecord
         shape_rendering: "crispEdges",
         module_size: 4
       )
+  end
+
+  # TODO: Make sure we're happy with this -- used to "search" when creating a checkout
+  def tag_label
+    "#{name} (#{qr_code_identifier})"
+  end
+
+  def status
+    return :available unless current_checkout.present?
+    return :past_due if current_checkout.past_due?
+
+    :checked_out
   end
 
   def search_description

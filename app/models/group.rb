@@ -13,4 +13,8 @@ class Group < ApplicationRecord
   has_many :admin_users, through: :admin_user_groups
 
   has_rich_text :description
+
+  def item_count
+    items.count
+  end
 end

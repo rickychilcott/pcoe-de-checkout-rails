@@ -8,8 +8,8 @@
 #  updated_at :datetime         not null
 #
 class Avo::Resources::Location < Avo::BaseResource
-  self.includes = [:rich_text_description]
-  # self.attachments = []
+  self.includes = [:items, :rich_text_description]
+
   self.search = {
     query: -> do
       query
@@ -28,9 +28,10 @@ class Avo::Resources::Location < Avo::BaseResource
   }
 
   def fields
-    field :name, as: :text
+    field :name, as: :text, link_to_record: true
     field :description, as: :trix, always_show: true
 
+    field :item_count, as: :number, readonly: true
     field :items, as: :has_many
   end
 end

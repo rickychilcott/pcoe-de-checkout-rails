@@ -29,7 +29,7 @@
 #
 class Avo::Resources::Checkout < Avo::BaseResource
   self.includes = [:customer, :item]
-  # self.attachments = []
+
   self.search = {
     query: -> do
       query
@@ -42,7 +42,7 @@ class Avo::Resources::Checkout < Avo::BaseResource
     end,
     item: -> do
             {
-              title: "#{record.customer.name} checked out #{record.item.name}",
+              title: item.title,
               description: "Expected Return: #{record.expected_return_on_text}"
               # image_url: main_app.url_for(record.cover_photo),
               # image_format: :rounded
@@ -51,8 +51,15 @@ class Avo::Resources::Checkout < Avo::BaseResource
   }
 
   def fields
-    field :item, as: :belongs_to, readonly: true
-    field :customer, as: :belongs_to, readonly: true
+    field :title, as: :text, link_to_record: true
+    field :item, as: :belongs_to, readonly: true, filterable: {
+      label: "Item Name",
+      query_attributes: [:item_name]
+    }
+    field :customer, as: :belongs_to, readonly: true, filterable: {
+      label: "Customer Name",
+      query_attributes: [:customer_name]
+    }
 
     field :checked_out_at, name: "Checked Out", as: :date_time, readonly: true, format: "yyyy-LL-dd h:mm a"
     field :checked_out_by, as: :belongs_to, readonly: true

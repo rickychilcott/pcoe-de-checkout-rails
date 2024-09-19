@@ -24,7 +24,6 @@
 #
 class Avo::Resources::AdminUser < Avo::BaseResource
   # self.includes = []
-  # self.attachments = []
   self.search = {
     query: -> do
       query
@@ -46,7 +45,7 @@ class Avo::Resources::AdminUser < Avo::BaseResource
   }
 
   def fields
-    field :name, as: :text
+    field :name, as: :text, link_to_record: true
     field :email, as: :text
 
     field :password, as: :password, required: false

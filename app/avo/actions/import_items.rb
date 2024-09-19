@@ -18,7 +18,7 @@ class Avo::Actions::ImportItems < Avo::BaseAction
   end
 
   def handle(query:, fields:, current_user:, resource:, **args)
-    outcome = Item::BulkImport.run(csv_file: fields[:csv_file], imported_by: current_user)
+    outcome = Item::Process::BulkImport.run(csv_file: fields[:csv_file], imported_by: current_user)
 
     if outcome.valid?
       succeed "#{outcome.result.size} items imported successfully"
