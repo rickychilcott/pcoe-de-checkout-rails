@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ItemPolicy, type: :policy do
   let(:user) { User.new }
