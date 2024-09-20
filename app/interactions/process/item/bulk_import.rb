@@ -1,4 +1,4 @@
-class Item::Process::BulkImport < ApplicationInteraction
+class Process::Item::BulkImport < ApplicationInteraction
   run_in_transaction!
 
   def self.csv_template

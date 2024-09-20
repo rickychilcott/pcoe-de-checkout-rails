@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Item::Process::Checkin, type: :model do
+RSpec.describe Process::Item::Checkin, type: :model do
   it "can checkin" do
     group = FactoryBot.create(:group)
     admin_user = FactoryBot.create(:admin_user)
@@ -10,7 +10,7 @@ RSpec.describe Item::Process::Checkin, type: :model do
     customer = FactoryBot.create(:customer)
     item = FactoryBot.create(:item, group:)
 
-    checkout = Item::Process::Checkout.run!(item:, customer:, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
+    checkout = Process::Item::Checkout.run!(item:, customer:, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
     described_class.run!(item:, checkout:, returned_by: admin_user)
 
     expect(Checkout.count).to eq(1)
