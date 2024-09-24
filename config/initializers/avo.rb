@@ -14,7 +14,7 @@ Avo.configure do |config|
   # config.home_path = nil
 
   ## == Licensing ==
-  config.license_key = "REDACTED"
+  config.license_key = ENV.fetch("AVO_LICENSE_KEY")
 
   ## == Set the context ==
   config.set_context do

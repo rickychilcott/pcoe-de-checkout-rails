@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      AVO_LICENSE_KEY: ${{ secrets.AVO_LICENSE_KEY }}
       BUNDLE_PACKAGER__DEV: ${{secrets.BUNDLE_PACKAGER__DEV}}
 
     steps:
@@ -29,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      AVO_LICENSE_KEY: ${{ secrets.AVO_LICENSE_KEY }}
       BUNDLE_PACKAGER__DEV: ${{secrets.BUNDLE_PACKAGER__DEV}}
 
     steps:
@@ -67,8 +69,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+       AVO_LICENSE_KEY: ${{ secrets.AVO_LICENSE_KEY }}
        BUNDLE_PACKAGER__DEV: ${{secrets.BUNDLE_PACKAGER__DEV}}
+       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
     steps:
       - name: Install packages

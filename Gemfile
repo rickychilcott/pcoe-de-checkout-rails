@@ -25,6 +25,7 @@ gem "stimulus-rails"
 gem "turbo-rails"
 
 group :development, :test do
+  gem "dotenv-rails"
   gem "annotate"
   gem "brakeman", "~> 6.1"
   gem "debug", platforms: %i[mri windows]
