@@ -11,6 +11,7 @@ gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "csv"
 gem "devise", "~> 4.9"
+gem "dotenv-rails"
 gem "image_processing", "~> 1.2"
 gem "importmap-rails"
 gem "pagy", "~> 9.0"
@@ -25,7 +26,6 @@ gem "stimulus-rails"
 gem "turbo-rails"
 
 group :development, :test do
-  gem "dotenv-rails"
   gem "annotate"
   gem "brakeman", "~> 6.1"
   gem "debug", platforms: %i[mri windows]
