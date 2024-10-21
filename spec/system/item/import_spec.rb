@@ -15,7 +15,7 @@ RSpec.describe "Item Import", type: :system do
 
       expect(page).to have_content "CSV Template"
 
-      within "turbo-frame#actions_show" do
+      within "turbo-frame#modal_frame" do
         within "form" do
           attach_file "fields_csv_file", Rails.root.join("spec", "fixtures", "files", "items.csv")
           click_button "Import"
@@ -42,7 +42,7 @@ RSpec.describe "Item Import", type: :system do
 
       expect(page).to have_content "CSV Template"
 
-      within "turbo-frame#actions_show" do
+      within "turbo-frame#modal_frame" do
         within "form" do
           attach_file "fields_csv_file", Rails.root.join("spec", "fixtures", "files", "items.csv")
           click_button "Import"
