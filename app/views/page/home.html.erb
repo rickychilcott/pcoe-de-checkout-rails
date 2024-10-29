@@ -1,12 +1,17 @@
-<h1>Items Available</h1>
+<div class="pt-4 min-vh-100">
+  <div class="row">
+    <div class="col-md-6 h-100">
+      <%= render partial: "search_for_item" %>
+    </div>
 
-<% locations.each do |location| %>
-  <% location.items.each do |item| %>
-    <p>
-      <b><%= item.name %></b><br />
-      <%= item.available? ? "Available" : "Taken" %>
-    </p>
-  <% end %>
-<% end %>
+    <div class="col-md-6 h-100">
+      <%= render partial: "search_for_customer" %>
+    </div>
+  </div>
 
-<%= link_to "Log In", new_admin_user_session_path %>
+  <div class="row pt-4">
+    <div class="col-md-12">
+      <%= render partial: "checkouts" %>
+    </div>
+  </div>
+</div>

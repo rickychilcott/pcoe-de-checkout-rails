@@ -43,6 +43,7 @@ class Checkout < ApplicationRecord
 
   default_scope -> { order(expected_return_on: :asc) }
   scope :past_due, -> { checked_out.where(expected_return_on: ...Date.today) }
+  scope :due_today, -> { checked_out.where(expected_return_on: Date.today) }
   scope :checked_out, -> { where(returned_at: nil) }
   scope :checked_in, -> { where.not(returned_at: nil) }
 

@@ -8,13 +8,15 @@ gem "ancestry"
 gem "avo", ">= 3.2"
 gem "avo-advanced", ">= 3.2", source: "https://packager.dev/avo-hq/"
 gem "bootsnap", require: false
-gem "cssbundling-rails"
+# gem "cssbundling-rails"
 gem "csv"
 gem "devise", "~> 4.9"
 gem "dotenv-rails"
 gem "image_processing", "~> 1.2"
 gem "importmap-rails"
+gem "literal", "1.0.0.rc1", git: "https://github.com/joeldrapper/literal.git", branch: "main"
 gem "pagy", "~> 9.0"
+gem "phlex-icons-bootstrap"
 gem "puma", ">= 5.0"
 gem "pundit", "~> 2.4"
 gem "rails", "~> 7.2"
@@ -49,3 +51,5 @@ group :test do
   gem "factory_bot_rails"
   gem "faker"
 end
+
+gem "phlex-rails", git: "https://github.com/joeldrapper/phlex-rails.git", branch: "main"

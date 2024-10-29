@@ -3,6 +3,8 @@ class CheckoutPolicy < ApplicationPolicy
 
   def show? = true
 
+  def act_on? = true
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve

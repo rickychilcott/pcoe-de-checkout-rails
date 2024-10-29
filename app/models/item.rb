@@ -54,6 +54,14 @@ class Item < ApplicationRecord
   has_many_attached :images
   has_rich_text :description
 
+  def self.ransackable_attributes(auth_object = nil)
+    super + %w[name serial_number qr_code_identifier]
+  end
+
+  def self.importable_columns
+    importable_column_names
+  end
+
   def self.importable_column_names
     column_names
       .insert_before("group_id", "group_name")
@@ -75,7 +83,10 @@ class Item < ApplicationRecord
 
   # TODO: Make sure we're happy with this -- used to "search" when creating a checkout
   def tag_label
-    "#{name} (#{qr_code_identifier})"
+    [
+      name,
+      qr_code_identifier.presence && "(#{qr_code_identifier})"
+    ].join(" ")
   end
 
   def status
@@ -91,5 +102,25 @@ class Item < ApplicationRecord
 
   def available?
     !current_checkout.present?
+  end
+
+  def self.available_as_tags
+    Item.with_attached_images.not_checked_out.map do |item|
+      {
+        value: item.id,
+        label: item.tag_label,
+        avatar: item.images.first&.url
+      }
+    end
+  end
+
+  def self.not_available_as_tags
+    Item.with_attached_images.checked_out.map do |item|
+      {
+        value: item.id,
+        label: item.tag_label,
+        avatar: item.images.first&.url
+      }
+    end
   end
 end

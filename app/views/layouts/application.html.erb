@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
-    <title>PcoeDeEquipment</title>
+    <title>PCOE de Checkout</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +12,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <%= render AdminLinksComponent.new(admin_user: current_admin_user) %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

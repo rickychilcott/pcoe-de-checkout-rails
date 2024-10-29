@@ -1,0 +1,50 @@
+
+<div class="row">
+  <div class="col-md-6">
+    <%= render CardComponent.new(id: dom_id(customer), title: customer.name) do %>
+      <p><strong>Email:</strong> <%= customer.email %></p>
+      <p><strong>Ohio ID:</strong> <%= customer.ohio_id %></p>
+      <div class="mt-3">
+        <strong>Notes:</strong>
+        <% if customer.notes.present? %>
+          <%= customer.notes %>
+        <% else %>
+          <span class="text-muted text-italic">None</span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= render CardComponent.new(id: dom_id(customer, :checkouts), title: "Checkouts") do %>
+      <div class="d-flexjustify-content-between">
+        <%= render BadgeComponent.new(
+          label: "Past Due",
+          count: customer.checkouts.past_due.count,
+          button_variant: BsVariant::Danger
+        ) %>
+
+        <%= render BadgeComponent.new(
+          label: "Active Checkouts",
+          count: customer.checkouts.checked_out.count,
+          button_variant: BsVariant::Primary
+        ) %>
+
+        <%= render BadgeComponent.new(
+          label: "Total Checkouts",
+          count: customer.checkouts.count,
+          button_variant: BsVariant::Secondary
+        ) %>
+      </div>
+
+      <h5 class="pt-4">Past Due Items</h5>
+      <%= render ListComponent.new(items: customer.checkouts.past_due) do |checkout| %>
+        <%= render CheckoutComponent.new(checkout:) %>
+      <% end %>
+
+      <h5 class="pt-4">Checked Out Items</h5>
+      <%= render ListComponent.new(items: customer.checkouts.checked_out) do |checkout| %>
+        <%= render CheckoutComponent.new(checkout:) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

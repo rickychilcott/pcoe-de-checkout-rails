@@ -8,6 +8,10 @@
 #  updated_at :datetime         not null
 #  ohio_id    :string           not null
 #
+# Indexes
+#
+#  index_customers_on_ohio_id  (ohio_id) UNIQUE
+#
 class Avo::Resources::Customer < Avo::BaseResource
   self.includes = [:rich_text_notes, :current_checkouts]
 

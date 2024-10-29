@@ -1,0 +1,3 @@
+<%= render CardComponent.new(id: "items", title: "Checked Out Items") do %>
+  <%= turbo_frame_tag :checkouts, src: checkouts_path, loading: :lazy %>
+<% end %>

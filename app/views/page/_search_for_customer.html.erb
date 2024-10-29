@@ -1,0 +1,10 @@
+<%= render CardComponent.new(id: "search-for-customer", title: "Search for Customer") do %>
+  <div data-controller="autocomplete" data-autocomplete-url-value="/customers">
+    <input
+      type="text"
+      data-autocomplete-target="input"
+      placeholder="Search customers..."
+    >
+    <div data-autocomplete-target="results" class="autocomplete-results"></div>
+  </div>
+<% end %>

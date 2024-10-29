@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module PcoeDeEquipment
   class Application < Rails::Application
+    config.autoload_paths << "#{root}/app/views"
+    config.autoload_paths << "#{root}/app/views/layouts"
+    config.autoload_paths << "#{root}/app/views/components"
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
@@ -23,5 +26,7 @@ module PcoeDeEquipment
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.action_view.field_error_proc = proc { |html_tag, instance| html_tag }
   end
 end
