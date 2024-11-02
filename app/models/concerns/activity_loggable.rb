@@ -1,12 +1,20 @@
 module ActivityLoggable
   extend ActiveSupport::Concern
 
+  NoRecordError = Class.new(StandardError)
+
   included do
-    has_many :activities, as: :record
+    if ancestors.include?(ApplicationRecord)
+      has_many(:activities, as: :record)
+    end
   end
 
-  def record_activity!(action, actor:, facilitator:, record: self, extra: {}, throttle_within: nil)
-    kwargs = {action: action.to_s, record:, actor:, facilitator:}
+  def record_activity!(action, actor:, facilitator:, records: nil, extra: {}, throttle_within: nil)
+    records ||= [self] if is_a?(ApplicationRecord)
+
+    raise NoRecordError, "No record provided" if records.blank?
+
+    kwargs = {action: action.to_s, records:, actor:, facilitator:}
 
     if throttle_within.present?
       existing = events.find_by(
@@ -19,7 +27,7 @@ module ActivityLoggable
 
     extra = default_extras.merge(extra.symbolize_keys)
 
-    activities.create!(**kwargs, extra:)
+    Activity.create!(**kwargs, extra: extra)
   end
 
   private

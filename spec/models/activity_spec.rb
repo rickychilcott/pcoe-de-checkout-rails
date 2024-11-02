@@ -6,19 +6,18 @@
 #  action         :string           not null
 #  extra          :json             not null
 #  occurred_at    :datetime         not null
-#  record_type    :string
+#  record_gids    :json             not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  actor_id       :integer
 #  facilitator_id :integer          not null
-#  record_id      :integer
 #
 # Indexes
 #
 #  index_activities_on_action          (action)
 #  index_activities_on_actor_id        (actor_id)
 #  index_activities_on_facilitator_id  (facilitator_id)
-#  index_activities_on_record          (record_type,record_id)
+#  index_activities_on_record_gids     (record_gids)
 #
 # Foreign Keys
 #

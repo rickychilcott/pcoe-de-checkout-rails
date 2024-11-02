@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_29_174707) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_02_192007) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -53,16 +53,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_174707) do
     t.integer "actor_id"
     t.integer "facilitator_id", null: false
     t.string "action", null: false
-    t.string "record_type"
-    t.integer "record_id"
     t.json "extra", default: {}, null: false
     t.datetime "occurred_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "record_gids", default: [], null: false
     t.index ["action"], name: "index_activities_on_action"
     t.index ["actor_id"], name: "index_activities_on_actor_id"
     t.index ["facilitator_id"], name: "index_activities_on_facilitator_id"
-    t.index ["record_type", "record_id"], name: "index_activities_on_record"
+    t.index ["record_gids"], name: "index_activities_on_record_gids"
   end
 
   create_table "admin_user_groups", force: :cascade do |t|

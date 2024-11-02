@@ -11,19 +11,20 @@ class Process::ItemGroup::Checkout < ApplicationInteraction
   date_time :checked_out_at, default: -> { DateTime.now }
 
   def execute
-    # items.each do |item|
-    #   Process::Item::Checkout.run!(
-    #     customer: customer,
-    #     item: item,
-    #     expected_return_on: expected_return_on,
-    #     checked_out_by: checked_out_by,
-    #     checked_out_at: checked_out_at
-    #   )
-    # end
-    items.each do |item|
-      compose(
-        Process::Item::Checkout,
-        inputs.except(:items).merge(item: item)
+    record_activity!(
+      :item_group_checked_out,
+      records: items,
+      actor: customer,
+      facilitator: checked_out_by
+    )
+
+    items.map do |item|
+      Process::Item::Checkout.run!(
+        customer:,
+        item:,
+        expected_return_on:,
+        checked_out_by:,
+        checked_out_at:
       )
     end
   end
