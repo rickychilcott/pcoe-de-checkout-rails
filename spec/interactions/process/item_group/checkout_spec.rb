@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Process::ItemGroup::Checkout, type: :model do
-  fit "can checkout" do
+  it "can checkout" do
     group = create(:group)
     admin_user = create(:admin_user)
     admin_user.groups << group
