@@ -37,10 +37,12 @@ class Activity < ApplicationRecord
     item_bulk_import
     item_checked_out
     item_checked_in
+
+    customer_reminder_sent
   ].freeze
 
   validates :action, inclusion: {
     in: SUPPORTED_ACTIONS,
-    message: "%{value} is not a valid action"
+    message: "%{value} is not a valid action. Must be one of: #{SUPPORTED_ACTIONS.join(", ")}"
   }
 end

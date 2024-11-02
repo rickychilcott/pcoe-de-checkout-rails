@@ -3,10 +3,10 @@ require "rails_helper"
 RSpec.describe "Item Import", type: :system do
   describe "importing" do
     it "succesfully" do
-      group = FactoryBot.create(:group, name: "Default")
-      location = FactoryBot.create(:location, name: "House")
-      FactoryBot.create(:item, id: 1, name: "Existing Item", group:, location:)
-      admin_user = FactoryBot.create(:admin_user)
+      group = create(:group, name: "Default")
+      location = create(:location, name: "House")
+      create(:item, id: 1, name: "Existing Item", group:, location:)
+      admin_user = create(:admin_user)
       sign_in admin_user
 
       visit avo.resources_items_path
@@ -33,7 +33,7 @@ RSpec.describe "Item Import", type: :system do
     end
 
     it "handles errors" do
-      admin_user = FactoryBot.create(:admin_user)
+      admin_user = create(:admin_user)
       sign_in admin_user
 
       visit avo.resources_items_path
@@ -57,7 +57,7 @@ RSpec.describe "Item Import", type: :system do
   end
 
   it "can download template" do
-    admin_user = FactoryBot.create(:admin_user)
+    admin_user = create(:admin_user)
     sign_in admin_user
 
     visit avo.resources_items_path

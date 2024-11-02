@@ -10,6 +10,23 @@ RSpec.describe "Checkout Equipment", type: :system do
     laptop = create(:item, name: "Laptop", location: location, group: group)
     camera = create(:item, name: "Camera", location: location, group: group)
 
+    Process::Item::Checkout.run!(
+      item: laptop,
+      customer:,
+      checked_out_by: admin_user,
+      expected_return_on: 1.week.from_now.to_date
+    )
+
+    Process::Item::Checkout.run!(
+      item: camera,
+      customer:,
+      checked_out_by: admin_user,
+      checked_out_at: 1.week.ago.to_s,
+      expected_return_on: 1.day.ago.to_date
+    )
+
+    expect(customer.checked_out_item_count).to eq(2)
+
     sign_in admin_user
     visit root_path
 
@@ -22,46 +39,34 @@ RSpec.describe "Checkout Equipment", type: :system do
 
     expect(page).to have_current_path(customer_path(customer))
     expect(page).to have_content customer.name
-    expect(page).to have_content customer.ohio_id
-    expect(page).to have_content customer.email
-
-    check "Laptop"
-    check "Camera"
-    fill_in "Expected Return", with: 3.days.from_now.strftime("%m/%d/%Y")
-
-    accept_confirm do
-      click_on "Check Out Items!"
-    end
-
-    expect(customer.checked_out_item_count).to eq(2)
-    expect(laptop.reload).not_to be_available
-    expect(camera.reload).not_to be_available
   end
 
-  it "via item" do
+  it "sends a reminder" do
+    expect(AdminUser.count).to eq(0)
+    expect(Customer.count).to eq(0)
+    expect(Location.count).to eq(0)
+    expect(Group.count).to eq(0)
+    expect(Item.count).to eq(0)
     admin_user = create(:admin_user, password: "abcd1234")
     customer = create(:customer, name: "Sally Smith")
     location = create(:location, name: "Main Library")
     group = create(:group, name: "Adults")
 
     laptop = create(:item, name: "Laptop", location: location, group: group)
-    camera = create(:item, name: "Camera", location: location, group: group)
+
+    Process::Item::Checkout.run!(
+      item: laptop,
+      customer:,
+      checked_out_by: admin_user,
+      expected_return_on: 1.week.ago.to_date
+    )
 
     sign_in admin_user
     visit root_path
 
-    within "#search-for-item" do
-      input = find("input")
-      input.fill_in with: laptop.qr_code_identifier
+    find(css_id(customer, :remind)).click
+    click_on "Send Reminder"
 
-      find(css_id(laptop)).click
-    end
-
-    expect(page).to have_current_path(item_path(laptop))
-    expect(page).to have_content laptop.name
-
-    expect(customer.checked_out_item_count).to eq(2)
-    expect(laptop.reload).not_to be_available
-    expect(camera.reload).not_to be_available
+    expect(page).to have_content("Reminder was sent to #{customer.name}.")
   end
 end

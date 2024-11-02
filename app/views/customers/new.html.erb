@@ -2,20 +2,20 @@
   <div class="col-12">
     <h2>New Customer</h2>
 
-    <%= form_with(model: customer, local: true, class: "mb-3") do |f| %>
+    <%= form_with(model: customer, local: true, class: "mb-3") do |form| %>
       <%= render ErrorMessagesComponent.new(resource: customer) %>
 
       <div class="row mb-3">
         <div class="col-md-6">
-          <%= render FormFieldComponent.new(form: f, field: :name) do %>
-            <%= f.text_field :name, class: "form-control #{'is-invalid' if customer.errors[:name].any?}" %>
+          <%= render FormFieldComponent.new(form:, field: :name) do %>
+            <%= form.text_field :name, class: "form-control #{'is-invalid' if customer.errors[:name].any?}" %>
           <% end %>
         </div>
 
         <div class="col-md-6">
-          <%= render FormFieldComponent.new(form: f, field: :ohio_id, name: "Ohio ID") do %>
+          <%= render FormFieldComponent.new(form:, field: :ohio_id, name: "Ohio ID") do %>
             <div class="input-group <%= 'has-validation' if customer.errors[:ohio_id].any? %>">
-              <%= f.text_field :ohio_id, class: "form-control #{'is-invalid' if customer.errors[:ohio_id].any?}" %>
+              <%= form.text_field :ohio_id, class: "form-control #{'is-invalid' if customer.errors[:ohio_id].any?}" %>
               <span class="input-group-text">@ohio.edu</span>
             </div>
           <% end %>
@@ -23,14 +23,14 @@
       </div>
 
       <div class="mb-3">
-        <%= render FormFieldComponent.new(form: f, field: :notes) do %>
-          <%= f.rich_text_area :notes, class: "form-control" %>
+        <%= render FormFieldComponent.new(form:, field: :notes) do %>
+          <%= form.rich_text_area :notes, class: "form-control" %>
         <% end %>
       </div>
 
       <div class="mb-3">
-        <%= f.submit class: "btn btn-primary" %>
-        <%= link_to "Cancel", customers_path, class: "btn btn-secondary" %>
+        <%= form.submit class: "btn btn-primary" %>
+        <%= link_to "Cancel", root_path, class: "btn btn-secondary" %>
       </div>
     <% end %>
   </div>

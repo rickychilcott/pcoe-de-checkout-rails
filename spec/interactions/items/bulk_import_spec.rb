@@ -3,9 +3,9 @@ require "rails_helper"
 RSpec.describe Process::Item::BulkImport, type: :model do
   describe "imports" do
     it "can import" do
-      admin_user = FactoryBot.create(:admin_user)
+      admin_user = create(:admin_user)
 
-      FactoryBot.create(:item, id: 1, name: "Existing Item")
+      create(:item, id: 1, name: "Existing Item")
       expect(Location.count).to eq 1
       expect(Group.count).to eq 1
       first_item = Item.find(1)

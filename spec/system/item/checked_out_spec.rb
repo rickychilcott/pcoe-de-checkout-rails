@@ -4,23 +4,23 @@ RSpec.describe "Checked Out", type: :system do
   it "shows checked out (include past)" do
     travel_to 5.days.ago
 
-    group = FactoryBot.create(:group)
-    admin_user = FactoryBot.create(:admin_user)
+    group = create(:group)
+    admin_user = create(:admin_user)
     admin_user.groups << group
     admin_user.save!
 
-    customer_1 = FactoryBot.create(:customer)
-    checked_out_due_now = FactoryBot.create(:item, group:)
+    customer_1 = create(:customer)
+    checked_out_due_now = create(:item, group:)
 
     Process::Item::Checkout.run!(item: checked_out_due_now, customer: customer_1, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
 
-    customer_2 = FactoryBot.create(:customer)
-    checked_in = FactoryBot.create(:item, group:)
+    customer_2 = create(:customer)
+    checked_in = create(:item, group:)
     checkout = Process::Item::Checkout.run!(item: checked_in, customer: customer_2, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
     Process::Item::Checkin.run!(item: checked_in, checkout:, returned_by: admin_user)
 
-    customer_3 = FactoryBot.create(:customer)
-    checked_out_due_later = FactoryBot.create(:item, group:)
+    customer_3 = create(:customer)
+    checked_out_due_later = create(:item, group:)
     Process::Item::Checkout.run!(item: checked_out_due_later, customer: customer_3, expected_return_on: 1.month.from_now.to_date, checked_out_by: admin_user)
 
     travel_back

@@ -13,6 +13,8 @@
 #  index_customers_on_ohio_id  (ohio_id) UNIQUE
 #
 class Customer < ApplicationRecord
+  include ActivityLoggable
+
   validates :name, presence: true
   validates :ohio_id, presence: true, uniqueness: true
   has_many :checkouts

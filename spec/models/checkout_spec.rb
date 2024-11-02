@@ -31,12 +31,12 @@ require "rails_helper"
 
 RSpec.describe Checkout, type: :model do
   it "has a valid factory" do
-    expect(FactoryBot.build(:checkout)).to be_valid
+    expect(build(:checkout)).to be_valid
   end
 
   it "is past due if it is checked out and the expected return date is in the past" do
     travel_to DateTime.now.middle_of_day do
-      checkout = FactoryBot.create(:checkout, checked_out_at: 2.days.ago, expected_return_on: 1.day.ago)
+      checkout = create(:checkout, checked_out_at: 2.days.ago, expected_return_on: 1.day.ago)
 
       expect(checkout).to be_past_due
       expect(checkout).to be_checked_out
@@ -46,7 +46,7 @@ RSpec.describe Checkout, type: :model do
   end
 
   it "is not past due if it is checked out and the expected return date is today" do
-    checkout = FactoryBot.create(:checkout, checked_out_at: 2.days.ago, expected_return_on: Date.today)
+    checkout = create(:checkout, checked_out_at: 2.days.ago, expected_return_on: Date.today)
 
     expect(checkout).not_to be_past_due
     expect(checkout).to be_checked_out

@@ -53,3 +53,5 @@ group :test do
 end
 
 gem "phlex-rails", git: "https://github.com/joeldrapper/phlex-rails.git", branch: "main"
+
+gem "kramdown", "~> 2.4"

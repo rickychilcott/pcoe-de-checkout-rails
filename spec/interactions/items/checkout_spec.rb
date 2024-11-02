@@ -2,13 +2,13 @@ require "rails_helper"
 
 RSpec.describe Process::Item::Checkout, type: :model do
   it "can checkout" do
-    group = FactoryBot.create(:group)
-    admin_user = FactoryBot.create(:admin_user)
+    group = create(:group)
+    admin_user = create(:admin_user)
     admin_user.groups << group
     admin_user.save!
 
-    customer = FactoryBot.create(:customer)
-    item = FactoryBot.create(:item, group:)
+    customer = create(:customer)
+    item = create(:item, group:)
 
     checkout = described_class.run!(item:, customer:, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
 
