@@ -1,11 +1,10 @@
 class Reminder
   include ActiveModel::Model
 
-  attr_accessor :customer, :admin_user, :body
+  attr_accessor :customer, :admin_user
 
   validates :admin_user, presence: true
   validates :customer, presence: true
-  validates :body, presence: true
 
   delegate :email_address_with_name, to: ActionMailer::Base
 
@@ -59,12 +58,12 @@ class Reminder
 
   def checkouts_list(checkouts)
     checkouts
-    .map do |checkout|
+      .map do |checkout|
       checkout_item = checkout.item
 
       "- #{checkout_item.name} due #{checkout.expected_return_on}"
     end
-    .join("\n")
+      .join("\n")
   end
 
   def past_due_checkouts

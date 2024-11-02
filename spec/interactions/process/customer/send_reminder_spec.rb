@@ -18,9 +18,9 @@ RSpec.describe Process::Customer::SendReminder do
       CustomerMailer,
       :reminder_email
     ).with(
-        admin_user:,
-        customer:,
-        body:
+      admin_user:,
+      customer:,
+      body:
     )
   end
 
