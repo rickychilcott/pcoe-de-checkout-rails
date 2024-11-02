@@ -96,4 +96,17 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: ENV.fetch("SMTP_HOST", "outlook.office365.com"),
+    port: ENV.fetch("SMTP_PORT", 587).to_i,
+    user_name: ENV.fetch("SMTP_USER", "coe-projrms-sa@ohio.edu"),
+    password: ENV.fetch("SMTP_PASSWORD", ""),
+    domain: ENV.fetch("SMTP_DOMAIN", "ohio.edu"),
+    authentication: :login,
+    enable_starttls_auto: true
+  }
+  config.action_mailer.default_url_options = {host: ENV["HOST"] || "webserver.coe.ohio.edu"}
+  Rails.application.routes.default_url_options = config.action_mailer.default_url_options
 end
