@@ -1,9 +1,7 @@
 class ErrorMessagesComponent < ApplicationComponent
   prop :resource, _Any, reader: :private
 
-  def render?
-    resource.errors.any?
-  end
+  def render? = resource.errors.any?
 
   def view_template
     div(class: "alert alert-danger") do

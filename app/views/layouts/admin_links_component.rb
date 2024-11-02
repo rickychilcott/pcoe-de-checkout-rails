@@ -2,9 +2,7 @@
 class AdminLinksComponent < ApplicationComponent
   prop :admin_user, _Nilable(AdminUser), reader: :private
 
-  def render?
-    admin_user.present?
-  end
+  def render? = admin_user.present?
 
   def view_template
     div(class: "row my-4") do
