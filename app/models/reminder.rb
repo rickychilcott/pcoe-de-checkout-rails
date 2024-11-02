@@ -2,6 +2,7 @@ class Reminder
   include ActiveModel::Model
 
   attr_accessor :customer, :admin_user
+  attr_writer :body
 
   validates :admin_user, presence: true
   validates :customer, presence: true
@@ -13,7 +14,7 @@ class Reminder
   def from = email_address_with_name(admin_user.email, admin_user.name)
 
   def body
-    markdownify(
+    @body ||= markdownify(
       <<~BODY
         Hi #{customer.name},
 
