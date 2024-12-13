@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/joeldrapper/literal.git
-  revision: b645a540de63bff36d655a7f6e8cd445011ae86c
-  branch: main
-  specs:
-    literal (1.0.0.rc1)
-
-GIT
   remote: https://github.com/joeldrapper/phlex-rails.git
   revision: 80388e7c1a5ba53f11e8de45eeb250bb99bc9060
   branch: main
@@ -274,6 +267,7 @@ GEM
       rexml
     language_server-protocol (3.17.0.3)
     lint_roller (1.1.0)
+    literal (1.4.0)
     logger (1.6.1)
     loofah (2.23.1)
       crass (~> 1.0.2)
@@ -550,7 +544,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   kramdown (~> 2.4)
-  literal (= 1.0.0.rc1)!
+  literal
   pagy (~> 9.0)
   phlex-icons-bootstrap
   phlex-rails!
