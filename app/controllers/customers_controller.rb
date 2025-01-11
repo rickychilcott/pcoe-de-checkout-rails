@@ -10,11 +10,14 @@ class CustomersController < ApplicationController
         .ransack(
           name_cont: query,
           ohio_id_cont: query,
+          pid_cont: query,
           m: "or"
         )
         .result(distinct: false)
         .then do |customers|
-          customers.to_a.concat([Customer.new(name: query, ohio_id: query)])
+          customers.to_a.concat([
+            Customer.new(name: query, ohio_id: query)
+          ])
         end
     end
   end
@@ -25,7 +28,7 @@ class CustomersController < ApplicationController
   end
 
   def create
-    customer_params = params.require(:customer).permit(:name, :ohio_id, :notes)
+    customer_params = params.require(:customer).permit(:name, :role, :ohio_id, :pid, :notes)
     customer = Customer.new(customer_params)
 
     if customer.save

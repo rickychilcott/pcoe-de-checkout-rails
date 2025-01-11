@@ -4,6 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string           not null
+#  pid        :string           not null
+#  role       :string           default("student"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  ohio_id    :string           not null
@@ -11,16 +13,26 @@
 # Indexes
 #
 #  index_customers_on_ohio_id  (ohio_id) UNIQUE
+#  index_customers_on_pid      (pid) UNIQUE
 #
 class Customer < ApplicationRecord
+  extend Enumerize
   include ActivityLoggable
+
+  PID_REGEX = /\AP\d{9}\z/
+  def self.pid_regex = PID_REGEX
 
   validates :name, presence: true
   validates :ohio_id, presence: true, uniqueness: true
+  validates :pid, presence: {if: :student?}, uniqueness: :pid?, format: {with: PID_REGEX, if: :pid?, message: "must be a valid PID (i.e. P123456789)"}
+
+  has_many :reservations
   has_many :checkouts
   has_many :current_checkouts, -> { checked_out }, class_name: "Checkout"
 
   has_rich_text :notes
+
+  enumerize :role, in: [:student, :faculty_staff], default: :student, predicates: true
 
   def self.ransackable_attributes(auth_object = nil)
     super + %w[name ohio_id]
@@ -35,6 +47,8 @@ class Customer < ApplicationRecord
   end
 
   def email = "#{ohio_id}@ohio.edu"
+
+  def pid? = pid.present?
 
   def self.as_tags
     order(name: :asc).map { |customer| {value: customer.id, label: customer.name} }

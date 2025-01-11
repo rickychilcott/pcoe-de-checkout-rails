@@ -69,4 +69,28 @@ RSpec.describe "Checkout Equipment", type: :system do
 
     expect(page).to have_content("Reminder was sent to #{customer.name}.")
   end
+
+  it "allows an admin to add a customer" do
+    admin_user = create(:admin_user, password: "abcd1234")
+
+    sign_in admin_user
+    visit new_customer_path
+
+    customer = build(:customer, name: "Sally Smith", role: :student)
+    fill_in "Name", with: customer.name
+    fill_in "Ohio ID", with: customer.ohio_id
+    fill_in "PID", with: customer.pid
+    click_on "Create Customer"
+
+    expect(page).to have_content(customer.name)
+    expect(page).to have_content(customer.ohio_id)
+    expect(page).to have_content(customer.role_text)
+    expect(page).not_to have_content(customer.pid)
+
+    expect(Customer.count).to eq(1)
+    expect(Customer.first.name).to eq(customer.name)
+    expect(Customer.first.ohio_id).to eq(customer.ohio_id)
+    expect(Customer.first.pid).to eq(customer.pid)
+    expect(Customer.first.role).to eq(customer.role)
+  end
 end

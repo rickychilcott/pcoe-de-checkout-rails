@@ -2,8 +2,12 @@
 <div class="row">
   <div class="col-md-6">
     <%= render CardComponent.new(id: dom_id(customer), title: customer.name) do %>
+      <p><strong>Role:</strong> <%= customer.role_text %></p>
       <p><strong>Email:</strong> <%= customer.email %></p>
       <p><strong>Ohio ID:</strong> <%= customer.ohio_id %></p>
+      <% if customer.pid? && policy(customer).show_pid? %>
+        <p><strong>PID:</strong> <%= customer.pid %></p>
+      <% end %>
       <div class="mt-3">
         <strong>Notes:</strong>
         <% if customer.notes.present? %>

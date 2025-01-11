@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_02_192007) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_10_211537) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -113,7 +113,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_02_192007) do
     t.string "ohio_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "pid", null: false
+    t.string "role", default: "student", null: false
     t.index ["ohio_id"], name: "index_customers_on_ohio_id", unique: true
+    t.index ["pid"], name: "index_customers_on_pid", unique: true
   end
 
   create_table "groups", force: :cascade do |t|

@@ -6,17 +6,31 @@
       <%= render ErrorMessagesComponent.new(resource: customer) %>
 
       <div class="row mb-3">
-        <div class="col-md-6">
+        <div class="col-md-3">
           <%= render FormFieldComponent.new(form:, field: :name) do %>
             <%= form.text_field :name, class: "form-control #{'is-invalid' if customer.errors[:name].any?}" %>
           <% end %>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-3">
+          <%= render FormFieldComponent.new(form:, field: :role, name: "Role") do %>
+            <%= form.select :role, Customer.role.options, {}, class: "form-select #{'is-invalid' if customer.errors[:role].any?}" %>
+          <% end %>
+        </div>
+
+        <div class="col-md-3">
           <%= render FormFieldComponent.new(form:, field: :ohio_id, name: "Ohio ID") do %>
             <div class="input-group <%= 'has-validation' if customer.errors[:ohio_id].any? %>">
               <%= form.text_field :ohio_id, class: "form-control #{'is-invalid' if customer.errors[:ohio_id].any?}" %>
               <span class="input-group-text">@ohio.edu</span>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col-md-3">
+          <%= render FormFieldComponent.new(form:, field: :pid, name: "PID") do %>
+            <div class="input-group <%= 'has-validation' if customer.errors[:ohio_id].any? %>">
+              <%= form.text_field :pid, pattern: Customer.pid_regex.source, class: "form-control #{'is-invalid' if customer.errors[:pid].any?}" %>
             </div>
           <% end %>
         </div>

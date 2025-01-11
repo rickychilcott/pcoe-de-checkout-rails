@@ -14,7 +14,7 @@ class FormFieldComponent < ApplicationComponent
   private
 
   def render_label
-    label(class: "form-label") { plain name }
+    raw form.label(field, name, class: "form-label")
   end
 
   def render_errors

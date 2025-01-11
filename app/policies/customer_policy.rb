@@ -1,15 +1,20 @@
 class CustomerPolicy < ApplicationPolicy
-  def index? = true
+  def index? = super || user.groups.any?
 
-  def show? = true
+  def show? = super || user.groups.any?
 
-  def create? = true
+  def show_pid? = super_admin?
 
-  def update? = true
+  def create? = super || user.groups.any?
+
+  def update? = super || user.groups.any?
+
+  def destroy? = super || user.groups.any?
+
+  def upload_csv_file? = super_admin?
 
   class Scope < ApplicationPolicy::Scope
     def resolve
-      # TODO: Scope to group?
       scope.all
     end
   end

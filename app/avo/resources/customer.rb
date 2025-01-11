@@ -4,6 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string           not null
+#  pid        :string           not null
+#  role       :string           default("student"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  ohio_id    :string           not null
@@ -11,6 +13,7 @@
 # Indexes
 #
 #  index_customers_on_ohio_id  (ohio_id) UNIQUE
+#  index_customers_on_pid      (pid) UNIQUE
 #
 class Avo::Resources::Customer < Avo::BaseResource
   self.includes = [:rich_text_notes, :current_checkouts]
@@ -37,8 +40,17 @@ class Avo::Resources::Customer < Avo::BaseResource
 
   def fields
     field :name, as: :text, link_to_record: true
-    field :ohio_id, as: :text
+    field :role, as: :select,
+      options: Customer.role.options,
+      default: Customer.role.default_value,
+      required: true,
+      placeholder: "Select a role"
 
+    field :ohio_id, as: :text, copyable: true
+    field :email, as: :text, copyable: true, as_html: true do
+      link_to record.email, "mailto:#{record.email}"
+    end
+    field :pid, as: :text, placeholder: "P123456789", copyable: true, visible: -> { authorize current_admin_user, Customer, :show_pid?, raise_exception: false }
     field :checked_out_item_count, as: :number, readonly: true
     field :past_due_item_count, as: :number, readonly: true
 

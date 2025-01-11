@@ -1,27 +1,52 @@
 require "rails_helper"
 
 RSpec.describe CustomerPolicy, type: :policy do
-  let(:user) { User.new }
-
   subject { described_class }
 
   permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "allows access to all admins for super_admin" do
+      create(:customer)
+
+      expect(
+        described_class::Scope.new(
+          build(:admin_user, :super_admin),
+          Customer
+        ).resolve
+      ).to eq(Customer.all)
+    end
+
+    it "allows access to all admins for non-super_admin" do
+      create(:customer)
+      group = create(:group)
+
+      expect(
+        described_class::Scope.new(
+          build(:admin_user, groups: [group]),
+          Customer
+        ).resolve
+      ).to eq(Customer.all)
+    end
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  permissions :index?, :show?, :create?, :update?, :destroy? do
+    it "allows access for super_admin" do
+      expect(subject).to permit(build(:admin_user, :super_admin), build(:customer))
+    end
+
+    it "allows access for non-super_admin" do
+      group = create(:group)
+      expect(subject).to permit(build(:admin_user, groups: [group]), build(:customer))
+    end
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  permissions :show_pid?, :upload_csv_file? do
+    it "allows access for super_admin" do
+      expect(subject).to permit(build(:admin_user, :super_admin), build(:customer))
+    end
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "denies access for non-super_admin" do
+      group = create(:group)
+      expect(subject).not_to permit(build(:admin_user, groups: [group]), build(:customer))
+    end
   end
 end
