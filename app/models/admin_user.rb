@@ -14,6 +14,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
+#  super_admin            :boolean          default(FALSE), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -32,11 +33,6 @@ class AdminUser < ApplicationRecord
     :timeoutable
   )
 
-  has_many :admin_user_groups, dependent: :destroy
-  has_many :groups, through: :admin_user_groups
-
-  # TODO: Back this via an attribute
-  def super_admin?
-    true
-  end
+  has_many :admin_groups, dependent: :destroy, class_name: "AdminUserGroup"
+  has_many :groups, through: :admin_groups
 end

@@ -1,15 +1,21 @@
 class CheckoutPolicy < ApplicationPolicy
-  def index? = true
+  def index? = super || user.groups.any?
 
-  def show? = true
+  def show? = super || user.groups.any?
 
-  def act_on? = true
+  def create? = false
+
+  def update? = false
+
+  def destroy? = false
 
   class Scope < ApplicationPolicy::Scope
-    # NOTE: Be explicit about which records you allow access to!
     def resolve
-      # TODO: Scope to group?
-      scope.all
+      if user.super_admin?
+        scope.all
+      else
+        scope.joins(:item).where(item: {group: user.groups})
+      end
     end
   end
 end

@@ -146,17 +146,17 @@ Avo.configure do |config|
     end
 
     section "Checkouts", icon: "heroicons/outline/shopping-bag" do
-      resource :checkouts
+      resource :checkouts, visible: -> { authorize current_admin_user, Checkout, :index?, raise_exception: false }
     end
 
     section "Customers", icon: "heroicons/outline/academic-cap" do
-      resource :customers
+      resource :customers, visible: -> { authorize current_admin_user, Customer, :index?, raise_exception: false }
     end
 
     section "Other Resources", icon: "avo/resources" do
-      resource :items
-      resource :locations
-      resource :groups
+      resource :items, visible: -> { authorize current_admin_user, Item, :index?, raise_exception: false }
+      resource :locations, visible: -> { authorize current_admin_user, Location, :index?, raise_exception: false }
+      resource :groups, visible: -> { authorize current_admin_user, Group, :index?, raise_exception: false }
       resource :admin_users
     end
 

@@ -3,11 +3,11 @@ class LocationPolicy < ApplicationPolicy
 
   def show? = true
 
-  def create? = user.super_admin?
+  def create? = super
 
-  def update? = user.super_admin?
+  def update? = super
 
-  def destroy? = user.super_admin?
+  def destroy? = super
 
   class Scope < ApplicationPolicy::Scope
     def resolve

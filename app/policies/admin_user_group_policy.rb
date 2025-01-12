@@ -1,7 +1,7 @@
-class GroupPolicy < ApplicationPolicy
-  def index? = super
+class AdminUserGroupPolicy < ApplicationPolicy
+  def index? = true
 
-  def show? = super
+  def show? = true
 
   def create? = super
 

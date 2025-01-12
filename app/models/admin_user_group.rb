@@ -21,4 +21,6 @@
 class AdminUserGroup < ApplicationRecord
   belongs_to :admin_user
   belongs_to :group
+
+  validates :admin_user_id, uniqueness: {scope: :group_id, message: "already exists in this group"}
 end

@@ -1,22 +1,19 @@
 class ItemPolicy < ApplicationPolicy
-  def index? = true
+  def index? = super || true
 
-  def show? = true
+  def show? = super || true
 
-  def create? = true
+  def create? = super || in_group?
 
-  def update? = true
+  def update? = super || in_group?
 
-  def destroy? = true
+  def destroy? = super || in_group?
 
-  def act_on? = true
-
-  def upload_csv_file? = true
+  def upload_csv_file? = super_admin?
 
   class Scope < ApplicationPolicy::Scope
     def resolve
-      # TODO: Scope to group?
-      scope.all
+      all_or_in_group
     end
   end
 end

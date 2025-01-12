@@ -7,6 +7,6 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def self.ransackable_associations(auth_object = nil)
-    super
+    authorizable_ransackable_associations
   end
 end

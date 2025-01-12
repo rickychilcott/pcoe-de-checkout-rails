@@ -14,6 +14,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
+#  super_admin            :boolean          default(FALSE), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -47,6 +48,7 @@ class Avo::Resources::AdminUser < Avo::BaseResource
   def fields
     field :name, as: :text, link_to_record: true
     field :email, as: :text
+    field :super_admin, as: :boolean, visibility: {edit: -> { context[:user].super_admin? }}
 
     field :password, as: :password, required: false
 
@@ -56,6 +58,6 @@ class Avo::Resources::AdminUser < Avo::BaseResource
     field :current_sign_in_ip, as: :text, readonly: true
     field :last_sign_in_ip, as: :text, readonly: true
 
-    field :groups, as: :has_many
+    field :admin_groups, as: :has_many, description: "The groups this admin can add, checkout items, and manage."
   end
 end
