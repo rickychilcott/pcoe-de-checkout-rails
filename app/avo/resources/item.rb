@@ -83,7 +83,8 @@ class Avo::Resources::Item < Avo::BaseResource
 
     field :images, as: :files
 
-    field :activities, as: :has_many
+    # TODO: Add activities
+    # field :activities, as: :has_many
     field :checkouts, as: :has_many
   end
 
