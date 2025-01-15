@@ -520,7 +520,7 @@ DEPENDENCIES
   active_interaction-extras
   ancestry
   annotate
-  avo (>= 3.2)
+  avo (>= 3.16)
   avo-pro (>= 3.2)!
   axe-core-api (= 4.2.0)
   axe-core-rspec (= 4.9.0)
