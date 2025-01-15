@@ -102,7 +102,7 @@ Avo.configure do |config|
   # }
 
   ## == Customization ==
-  config.app_name = "PCOEdeCheckout"
+  config.app_name = "PCOE de Checkout"
   config.timezone = "EST"
   config.currency = "USD"
   # config.hide_layout_when_printing = false
