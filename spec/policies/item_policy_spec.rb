@@ -50,4 +50,15 @@ RSpec.describe ItemPolicy, type: :policy do
       expect(subject).not_to permit(build(:admin_user, groups: [group]), build(:item))
     end
   end
+
+  permissions :act_on?, :upload_csv_file? do
+    it "allows access for super_admin" do
+      expect(subject).to permit(build(:admin_user, :super_admin), build(:customer))
+    end
+
+    it "denies access for non-super_admin" do
+      group = create(:group)
+      expect(subject).not_to permit(build(:admin_user, groups: [group]), build(:customer))
+    end
+  end
 end

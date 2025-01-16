@@ -6,7 +6,7 @@ RSpec.describe "Item Import", type: :system do
       group = create(:group, name: "Default")
       location = create(:location, name: "House")
       create(:item, id: 1, name: "Existing Item", group:, location:)
-      admin_user = create(:admin_user)
+      admin_user = create(:admin_user, super_admin: true)
       sign_in admin_user
 
       visit avo.resources_items_path
@@ -33,7 +33,7 @@ RSpec.describe "Item Import", type: :system do
     end
 
     it "handles errors" do
-      admin_user = create(:admin_user)
+      admin_user = create(:admin_user, super_admin: true)
       sign_in admin_user
 
       visit avo.resources_items_path
@@ -57,7 +57,7 @@ RSpec.describe "Item Import", type: :system do
   end
 
   it "can download template" do
-    admin_user = create(:admin_user)
+    admin_user = create(:admin_user, super_admin: true)
     sign_in admin_user
 
     visit avo.resources_items_path
