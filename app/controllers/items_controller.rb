@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
 
     autocomplete_for(Items::AutocompleteComponent) do
       Item
+        .resolved_policy_scope_for(current_admin_user)
         .ransack(
           name_cont: query,
           serial_number_cont: query,

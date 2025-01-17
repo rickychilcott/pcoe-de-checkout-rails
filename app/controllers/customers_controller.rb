@@ -7,6 +7,7 @@ class CustomersController < ApplicationController
 
     autocomplete_for(Customers::AutocompleteComponent) do
       Customer
+        .resolved_policy_scope_for(current_admin_user)
         .ransack(
           name_cont: query,
           ohio_id_cont: query,
@@ -39,7 +40,10 @@ class CustomersController < ApplicationController
   end
 
   def show
-    customer = Customer.find(params[:id])
+    customer =
+      Customer
+        .resolved_policy_scope_for(current_admin_user)
+        .find(params[:id])
 
     render :show, locals: {customer:}
   end

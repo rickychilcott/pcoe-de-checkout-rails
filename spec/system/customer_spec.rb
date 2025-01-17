@@ -47,10 +47,10 @@ RSpec.describe "Checkout Equipment", type: :system do
     expect(Location.count).to eq(0)
     expect(Group.count).to eq(0)
     expect(Item.count).to eq(0)
-    admin_user = create(:admin_user)
-    customer = create(:customer, name: "Sally Smith")
-    location = create(:location, name: "Main Library")
     group = create(:group, name: "Adults")
+    location = create(:location, name: "Main Library")
+    customer = create(:customer, name: "Sally Smith")
+    admin_user = create(:admin_user, groups: [group])
 
     laptop = create(:item, name: "Laptop", location: location, group: group)
 

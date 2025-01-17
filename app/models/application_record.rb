@@ -13,4 +13,8 @@ class ApplicationRecord < ActiveRecord::Base
   def self.policy_class
     "#{self}Policy".constantize
   end
+
+  def self.resolved_policy_scope_for(...)
+    all.resolved_policy_scope_for(...)
+  end
 end
