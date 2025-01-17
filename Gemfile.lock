@@ -400,6 +400,8 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
+    rspec-retry (0.6.2)
+      rspec-core (> 3.3)
     rspec-support (3.13.1)
     rubocop (1.69.2)
       json (~> 2.3)
@@ -551,6 +553,7 @@ DEPENDENCIES
   ransack (~> 4.2)
   rqrcode (~> 2.0)
   rspec-rails (~> 6.1.0)
+  rspec-retry
   solid_queue (~> 1.0)
   sprockets-rails
   sqlite3 (~> 1.4)

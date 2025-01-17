@@ -47,7 +47,7 @@ RSpec.describe "Checkout Equipment", type: :system do
     expect(Location.count).to eq(0)
     expect(Group.count).to eq(0)
     expect(Item.count).to eq(0)
-    admin_user = create(:admin_user, password: "abcd1234")
+    admin_user = create(:admin_user)
     customer = create(:customer, name: "Sally Smith")
     location = create(:location, name: "Main Library")
     group = create(:group, name: "Adults")
@@ -64,6 +64,7 @@ RSpec.describe "Checkout Equipment", type: :system do
     sign_in admin_user
     visit root_path
 
+    expect(page).to have_content("Search for Customer")
     find(css_id(customer, :remind)).click
     click_on "Send Reminder"
 
@@ -71,7 +72,7 @@ RSpec.describe "Checkout Equipment", type: :system do
   end
 
   it "allows an admin to add a customer" do
-    admin_user = create(:admin_user, password: "abcd1234")
+    admin_user = create(:admin_user)
 
     sign_in admin_user
     visit new_customer_path
