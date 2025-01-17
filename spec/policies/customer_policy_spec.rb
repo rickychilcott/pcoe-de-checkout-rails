@@ -39,7 +39,7 @@ RSpec.describe CustomerPolicy, type: :policy do
     end
   end
 
-  permissions :show_pid?, :upload_csv_file? do
+  permissions :act_on?, :show_pid?, :upload_csv_file? do
     it "allows access for super_admin" do
       expect(subject).to permit(build(:admin_user, :super_admin), build(:customer))
     end

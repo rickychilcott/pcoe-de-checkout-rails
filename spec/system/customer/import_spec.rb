@@ -2,30 +2,26 @@ require "rails_helper"
 
 RSpec.describe "Item Import", type: :system do
   describe "importing" do
-    it "succesfully" do
-      group = create(:group, name: "Default")
-      location = create(:location, name: "House")
-      create(:item, id: 1, name: "Existing Item", group:, location:)
+    it "successfully" do
+      create(:customer, name: "Customer With Ohio ID", ohio_id: "aa111111")
       admin_user = create(:admin_user, super_admin: true)
       sign_in admin_user
 
-      visit avo.resources_items_path
+      visit avo.resources_customers_path
       click_on "Actions"
-      click_on "Import Items"
+      click_on "Import Customers"
 
       expect(page).to have_content "CSV Template"
 
       within "turbo-frame#modal_frame" do
         within "form" do
-          attach_file "fields_csv_file", Rails.root.join("spec/fixtures/files/items.csv")
+          attach_file "fields_csv_file", Rails.root.join("spec/fixtures/files/customers.csv")
           click_button "Import"
         end
       end
 
-      expect(page).to have_content "5 items imported successfully"
-      expect(Item.count).to eq 5
-      expect(Location.count).to eq 2
-      expect(Group.count).to eq 1
+      expect(page).to have_content "5 customers imported successfully"
+      expect(Customer.count).to eq 5
       expect(Activity.count).to eq 5
       import_identifiers = Activity.pluck(:extra).map { _1["import_identifier"] }.compact_blank
       expect(import_identifiers.size).to eq 5
@@ -36,23 +32,21 @@ RSpec.describe "Item Import", type: :system do
       admin_user = create(:admin_user, super_admin: true)
       sign_in admin_user
 
-      visit avo.resources_items_path
+      visit avo.resources_customers_path
       click_on "Actions"
-      click_on "Import Items"
+      click_on "Import Customers"
 
       expect(page).to have_content "CSV Template"
 
       within "turbo-frame#modal_frame" do
         within "form" do
-          attach_file "fields_csv_file", Rails.root.join("spec/fixtures/files/items.csv")
+          attach_file "fields_csv_file", Rails.root.join("spec/fixtures/files/bad_customers.csv")
           click_button "Import"
         end
       end
 
       expect(page).to have_content "Error:"
-      expect(Item.count).to eq 0
-      expect(Location.count).to eq 0
-      expect(Group.count).to eq 0
+      expect(Customer.count).to eq 0
     end
   end
 
@@ -60,15 +54,15 @@ RSpec.describe "Item Import", type: :system do
     admin_user = create(:admin_user, super_admin: true)
     sign_in admin_user
 
-    visit avo.resources_items_path
+    visit avo.resources_customers_path
     click_on "Actions"
-    click_on "Import Items"
+    click_on "Import Customers"
 
     expect(page).to have_content "CSV Template"
 
     click_link "CSV Template"
 
     wait_for_download
-    expect(downloads).to include(/item-import-template.csv/)
+    expect(downloads).to include(/customer-import-template.csv/)
   end
 end

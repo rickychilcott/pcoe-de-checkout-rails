@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string           not null
-#  pid        :string           not null
+#  pid        :string
 #  role       :string           default("student"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -33,6 +33,10 @@ class Customer < ApplicationRecord
   has_rich_text :notes
 
   enumerize :role, in: [:student, :faculty_staff], default: :student, predicates: true
+
+  def self.importable_column_names
+    column_names.without("id", "created_at", "updated_at")
+  end
 
   def self.ransackable_attributes(auth_object = nil)
     super + %w[name ohio_id]

@@ -38,6 +38,7 @@ class Activity < ApplicationRecord
 
     item_group_checked_out
 
+    customer_bulk_import
     customer_reminder_sent
   ].freeze
 

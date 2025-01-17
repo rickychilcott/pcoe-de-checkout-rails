@@ -1,0 +1,6 @@
+name,role,ohio_id,pid
+Customer With Ohio ID,student,aa111111,P000000001
+Another Customer With Ohio ID,Student,bb222222,P000000002
+Another Customer Without ID," Student",cc333333,P000000003
+Faculty/Staff Customer,"faculty_staff",dd444444,
+Another Faculty/Staff Customer," Faculty or Staff ",ee555555,P000000005

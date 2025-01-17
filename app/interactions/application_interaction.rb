@@ -6,4 +6,6 @@ class ApplicationInteraction < ActiveInteraction::Base
   class Job < ActiveJob::Base
     include ActiveInteraction::Extras::ActiveJob::Perform
   end
+
+  def errors? = errors.any?
 end

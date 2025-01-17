@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string           not null
-#  pid        :string           not null
+#  pid        :string
 #  role       :string           default("student"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
