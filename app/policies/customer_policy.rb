@@ -11,7 +11,7 @@ class CustomerPolicy < ApplicationPolicy
 
   def destroy? = super || user.groups.any?
 
-  def act_on? = super_admin?
+  def act_on? = super
 
   def upload_csv_file? = super_admin?
 

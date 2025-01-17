@@ -22,6 +22,8 @@ class ApplicationPolicy
 
   def destroy? = super_admin?
 
+  def act_on? = super_admin?
+
   class Scope
     def initialize(user, scope)
       @user = user

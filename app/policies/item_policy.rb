@@ -9,7 +9,7 @@ class ItemPolicy < ApplicationPolicy
 
   def destroy? = super || in_group?
 
-  def act_on? = super_admin?
+  def act_on? = super
 
   def upload_csv_file? = super_admin?
 

@@ -5,7 +5,7 @@ RSpec.describe AdminUserPolicy, type: :policy do
 
   permissions ".scope" do
     it "allows access to all admins for super_admin" do
-      create(:admin_user)
+      create(:admin_user, :super_admin)
 
       expect(
         described_class::Scope.new(
