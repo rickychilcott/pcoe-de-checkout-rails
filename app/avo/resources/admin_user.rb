@@ -51,6 +51,7 @@ class Avo::Resources::AdminUser < Avo::BaseResource
     field :super_admin, as: :boolean, visibility: {edit: -> { context[:user].super_admin? }}
 
     field :password, as: :password, required: false
+    field :password_confirmation, as: :password, required: false
 
     field :sign_in_count, as: :number, readonly: true
     field :current_sign_in_at, as: :date_time, readonly: true

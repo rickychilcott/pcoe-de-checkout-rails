@@ -35,4 +35,9 @@ class AdminUser < ApplicationRecord
 
   has_many :admin_groups, dependent: :destroy, class_name: "AdminUserGroup"
   has_many :groups, through: :admin_groups
+
+  # override Devise's password_required? method
+  def password_required? = new_record? || changing_password?
+
+  def changing_password? = password.present? || password_confirmation.present?
 end
