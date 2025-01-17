@@ -86,12 +86,17 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up NPM
+        run: |
+          yarn install --pure-lockfile
+
       - name: Setup db
         run: |
           bin/rails db:test:prepare
 
       - name: Compile assets
         run: |
+          yarn build:css
           bin/rails assets:precompile
 
       - name: Run tests
