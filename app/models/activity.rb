@@ -42,10 +42,14 @@ class Activity < ApplicationRecord
     customer_reminder_sent
   ].freeze
 
+  def self.supported_actions = SUPPORTED_ACTIONS
+
   validates :action, inclusion: {
-    in: SUPPORTED_ACTIONS,
-    message: "%{value} is not a valid action. Must be one of: #{SUPPORTED_ACTIONS.join(", ")}"
+    in: supported_actions,
+    message: "%{value} is not a valid action. Must be one of: #{supported_actions.join(", ")}"
   }
+  validates :record_gids, length: {minimum: 1}
+  validates :occurred_at, presence: true
 
   def records
     GlobalID::Locator

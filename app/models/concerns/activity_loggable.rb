@@ -27,7 +27,7 @@ module ActivityLoggable
 
     extra = default_extras.merge(extra.symbolize_keys)
 
-    Activity.create!(**kwargs, extra: extra)
+    Activity.create!(**kwargs, extra:, occurred_at: Time.current)
   end
 
   private
