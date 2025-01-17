@@ -31,9 +31,9 @@ gem "turbo-rails"
 
 group :development, :test do
   gem "annotate"
-  gem "brakeman", "~> 6.1"
+  gem "brakeman", "~> 7.0"
   gem "debug", platforms: %i[mri windows]
-  gem "rspec-rails", "~> 6.1.0"
+  gem "rspec-rails", "~> 7.0"
   gem "rspec-retry"
   gem "i18n-tasks"
 end

@@ -8,7 +8,7 @@ class AdminLinksComponent < ApplicationComponent
     div(class: "row my-4") do
       div(class: "col-auto") do
         link_to(root_path, class: "btn btn-primary") do
-          render(Phlex::Icons::Bootstrap::HouseFill.new)
+          render(PhlexIcons::Bootstrap::HouseFill.new)
         end
       end
 
@@ -21,7 +21,7 @@ class AdminLinksComponent < ApplicationComponent
 
       div(class: "col-auto") do
         link_to(avo_path, id: "avo-link", class: "btn btn-warning") do
-          render(Phlex::Icons::Bootstrap::Gear.new)
+          render(PhlexIcons::Bootstrap::Gear.new)
         end
       end
     end

@@ -7,7 +7,7 @@ class FormFieldComponent < ApplicationComponent
 
   def view_template(&)
     render_label
-    yield_content(&)
+    __yield_content__(&)
     render_errors if has_errors?
   end
 

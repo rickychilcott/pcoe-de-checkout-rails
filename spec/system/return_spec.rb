@@ -47,11 +47,11 @@ RSpec.describe "Return Equipment", type: :system do
   it "via item" do
     group = create(:group, name: "Adults")
     location = create(:location, name: "Main Library")
-    customer = create(:customer, name: "Sally Smith")
+    _customer = create(:customer, name: "Sally Smith")
     admin_user = create(:admin_user, groups: [group])
 
     laptop = create(:item, name: "Laptop", location: location, group: group)
-    camera = create(:item, name: "Camera", location: location, group: group)
+    _camera = create(:item, name: "Camera", location: location, group: group)
 
     sign_in admin_user
     visit root_path

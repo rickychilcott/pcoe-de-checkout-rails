@@ -39,13 +39,13 @@ RSpec.describe "Checkout Equipment", type: :system do
   end
 
   it "via item" do
-    customer = create(:customer, name: "Sally Smith")
+    _customer = create(:customer, name: "Sally Smith")
     location = create(:location, name: "Main Library")
     group = create(:group, name: "Adults")
     admin_user = create(:admin_user, groups: [group], password: "abcd1234")
 
     laptop = create(:item, name: "Laptop", location: location, group: group)
-    camera = create(:item, name: "Camera", location: location, group: group)
+    _camera = create(:item, name: "Camera", location: location, group: group)
 
     sign_in admin_user
     visit root_path
