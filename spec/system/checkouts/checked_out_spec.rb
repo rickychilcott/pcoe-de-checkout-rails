@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "Past Due", type: :system do
-  it "shows past due items and not checked in items" do
+RSpec.describe "Checked Out", type: :system do
+  it "shows checked out (include past)" do
     travel_to 5.days.ago
 
     group = create(:group)
@@ -21,8 +21,7 @@ RSpec.describe "Past Due", type: :system do
 
     customer_3 = create(:customer)
     checked_out_due_later = create(:item, group:)
-    checkout = Process::Item::Checkout.run!(item: checked_out_due_later, customer: customer_3, expected_return_on: 1.month.from_now.to_date, checked_out_by: admin_user)
-    Process::Item::Checkin.run!(item: checked_out_due_later, checkout:, returned_by: admin_user)
+    Process::Item::Checkout.run!(item: checked_out_due_later, customer: customer_3, expected_return_on: 1.month.from_now.to_date, checked_out_by: admin_user)
 
     travel_back
 
@@ -32,14 +31,39 @@ RSpec.describe "Past Due", type: :system do
     click_on "Checkouts"
     expect(page).to have_content "Checkouts"
 
-    click_on "Past Due"
-    expect(page).to have_content "Past Due"
+    open_resource_filters
+    select_filter_option("Checkout status", "current")
+    expect_applied_filters_count(1)
 
     expect(page).to have_content checked_out_due_now.name
     expect(page).to have_content customer_1.name
 
     expect(page).not_to have_content checked_in.name
     expect(page).not_to have_content customer_2.name
+
+    expect(page).to have_content checked_out_due_later.name
+    expect(page).to have_content customer_3.name
+
+    open_resource_filters
+    select_filter_option("Checkout status", "past_due")
+    expect_applied_filters_count(1)
+    expect(page).to have_content checked_out_due_now.name
+    expect(page).to have_content customer_1.name
+
+    expect(page).not_to have_content checked_in.name
+    expect(page).not_to have_content customer_2.name
+
+    expect(page).not_to have_content checked_out_due_later.name
+    expect(page).not_to have_content customer_3.name
+
+    open_resource_filters
+    select_filter_option("Checkout status", "completed")
+    expect_applied_filters_count(1)
+    expect(page).not_to have_content checked_out_due_now.name
+    expect(page).not_to have_content customer_1.name
+
+    expect(page).to have_content checked_in.name
+    expect(page).to have_content customer_2.name
 
     expect(page).not_to have_content checked_out_due_later.name
     expect(page).not_to have_content customer_3.name

@@ -92,8 +92,7 @@ class Avo::Resources::Item < Avo::BaseResource
     action Avo::Actions::ImportItems
   end
 
-  # def scopes
-  #   scope Avo::Scopes::AvailableItems
-  #   scope Avo::Scopes::CheckedOutItems
-  # end
+  def filters
+    filter Avo::Filters::ItemStatusFilter
+  end
 end

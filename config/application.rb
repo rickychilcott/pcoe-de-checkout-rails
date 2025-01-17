@@ -30,3 +30,5 @@ module PcoeDeCheckout
     config.action_view.field_error_proc = proc { |html_tag, instance| html_tag }
   end
 end
+
+require Rails.root.join("app/models/concerns/active_record/relation/pundit_policy_helper")

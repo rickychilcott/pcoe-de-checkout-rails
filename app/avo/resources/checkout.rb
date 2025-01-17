@@ -83,9 +83,7 @@ class Avo::Resources::Checkout < Avo::BaseResource
     field :returned_by, as: :belongs_to, readonly: true
   end
 
-  # def scopes
-  #   scope Avo::Scopes::CurrentCheckouts, default: true
-  #   scope Avo::Scopes::PastDueCheckouts
-  #   scope Avo::Scopes::CompletedCheckouts
-  # end
+  def filters
+    filter Avo::Filters::CheckoutStatusFilter
+  end
 end
