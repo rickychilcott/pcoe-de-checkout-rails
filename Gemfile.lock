@@ -260,6 +260,11 @@ GEM
     kramdown (2.5.1)
       rexml (>= 3.3.9)
     language_server-protocol (3.17.0.3)
+    launchy (3.0.1)
+      addressable (~> 2.8)
+      childprocess (~> 5.0)
+    letter_opener (1.10.0)
+      launchy (>= 2.2, < 4)
     lint_roller (1.1.0)
     literal (1.5.0)
     logger (1.6.5)
@@ -545,6 +550,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   kramdown (~> 2.4)
+  letter_opener
   literal
   pagy (~> 9.0)
   phlex-icons-bootstrap
