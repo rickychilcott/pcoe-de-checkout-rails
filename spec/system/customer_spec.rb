@@ -1,14 +1,14 @@
 require "rails_helper"
 
-RSpec.describe "Checkout Equipment", type: :system do
+RSpec.describe "Customer", type: :system do
   it "via customer" do
     admin_user = create(:admin_user, password: "abcd1234")
     customer = create(:customer, name: "Sally Smith")
     location = create(:location, name: "Main Library")
     group = create(:group, name: "Adults")
 
-    laptop = create(:item, name: "Laptop", location: location, group: group)
-    camera = create(:item, name: "Camera", location: location, group: group)
+    laptop = create(:item, name: "Laptop", location:, group:)
+    camera = create(:item, name: "Camera", location:, group:)
 
     Process::Item::Checkout.run!(
       item: laptop,
@@ -39,6 +39,15 @@ RSpec.describe "Checkout Equipment", type: :system do
 
     expect(page).to have_current_path(customer_path(customer))
     expect(page).to have_content customer.name
+
+    expect(page).to have_content("Past Due Items")
+    expect(page).not_to have_content("No Items Past Due")
+
+    expect(page).to have_content("Checked Out Items")
+    expect(page).not_to have_content("No Items Checked Out")
+
+    expect(page).to have_content("Available Items to Check Out")
+    expect(page).to have_content("No Items Available")
   end
 
   it "sends a reminder" do

@@ -41,14 +41,19 @@
         ) %>
       </div>
 
-      <h5 class="pt-4">Past Due Items</h5>
-      <%= render ListComponent.new(items: customer.checkouts.past_due) do |checkout| %>
+      <h5 id="past-due-items" class="pt-4">Past Due Items</h5>
+      <%= render ListComponent.new(items: customer.checkouts.past_due, fallback: "No Items Past Due") do |checkout| %>
         <%= render CheckoutComponent.new(checkout:) %>
       <% end %>
 
-      <h5 class="pt-4">Checked Out Items</h5>
-      <%= render ListComponent.new(items: customer.checkouts.checked_out) do |checkout| %>
+      <h5 id="checked-out-items" class="pt-4">Checked Out Items</h5>
+      <%= render ListComponent.new(items: customer.checkouts.checked_out, fallback: "No Items Checked Out") do |checkout| %>
         <%= render CheckoutComponent.new(checkout:) %>
+      <% end %>
+
+      <h5 id="check-out-available-items" class="pt-4">Available Items to Check Out</h5>
+      <%= render ListComponent.new(items: resolved_policy_scope(Item).not_checked_out, fallback: "No Items Available") do |item| %>
+        <%= render ItemComponent.new(item:) %>
       <% end %>
     <% end %>
   </div>

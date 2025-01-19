@@ -1,5 +1,5 @@
 <%= turbo_frame_tag :checkouts do %>
-  <%= render ListComponent.new(items: checkouts) do |checkout| %>
+  <%= render ListComponent.new(items: checkouts, fallback: "No checkouts") do |checkout| %>
     <%= render CheckoutComponent.new(checkout:) %>
     <%= render Checkouts::ReminderComponent.new(customer: checkout.customer) %>
   <% end %>
