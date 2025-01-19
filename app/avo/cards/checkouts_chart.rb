@@ -19,33 +19,19 @@ class Avo::Cards::CheckoutsChart < Avo::Cards::ChartkickCard
   self.chart_options = {library: {plugins: {legend: {display: true}}}}
   self.flush = true
 
+  START_DATE =
+    {
+      "7" => -> { 7.days.ago },
+      "30" => -> { 30.days.ago },
+      "90" => -> { 90.days.ago },
+      "365" => -> { 365.days.ago },
+      "MTD" => -> { DateTime.current.beginning_of_month },
+      "QTD" => -> { DateTime.current.beginning_of_quarter },
+      "YTD" => -> { DateTime.current.beginning_of_year },
+      "ALL" => -> { Checkout.minimum(:checked_out_at) || DateTime.current }
+    }
   def query
-    points = 16
-    i = Time.new.year.to_i - points
-    base_data = Array.new(points).map do
-      i += 1
-      [i.to_s, rand(0..20)]
-    end.to_h
-
-    start_date =
-      case range
-      when "7"
-        7.days.ago
-      when "30"
-        30.days.ago
-      when "90"
-        90.days.ago
-      when "365"
-        365.days.ago
-      when "MTD"
-        DateTime.current.beginning_of_month
-      when "QTD"
-        DateTime.current.beginning_of_quarter
-      when "YTD"
-        DateTime.current.beginning_of_year
-      when "ALL"
-        Checkout.minimum(:checked_out_at) || DateTime.current
-      end
+    start_date = START_DATE.fetch(range.to_s).call
 
     dates = start_date.to_date..DateTime.current.to_date
     raw_data =
