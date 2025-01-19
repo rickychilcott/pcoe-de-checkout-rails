@@ -11,20 +11,17 @@
 #  updated_at         :datetime         not null
 #  group_id           :integer          not null
 #  location_id        :integer
-#  parent_item_id     :integer
 #
 # Indexes
 #
-#  index_items_on_ancestry        (ancestry)
-#  index_items_on_group_id        (group_id)
-#  index_items_on_location_id     (location_id)
-#  index_items_on_parent_item_id  (parent_item_id)
+#  index_items_on_ancestry     (ancestry)
+#  index_items_on_group_id     (group_id)
+#  index_items_on_location_id  (location_id)
 #
 # Foreign Keys
 #
-#  group_id        (group_id => groups.id)
-#  location_id     (location_id => locations.id)
-#  parent_item_id  (parent_item_id => items.id)
+#  group_id     (group_id => groups.id)
+#  location_id  (location_id => locations.id)
 #
 class Avo::Resources::Item < Avo::BaseResource
   self.includes = [:rich_text_description]

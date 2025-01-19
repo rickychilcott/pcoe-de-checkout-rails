@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_16_134750) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_19_234222) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -128,7 +128,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_16_134750) do
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.string "serial_number"
-    t.integer "parent_item_id"
     t.integer "location_id"
     t.string "qr_code_identifier"
     t.integer "group_id", null: false
@@ -138,7 +137,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_16_134750) do
     t.index ["ancestry"], name: "index_items_on_ancestry"
     t.index ["group_id"], name: "index_items_on_group_id"
     t.index ["location_id"], name: "index_items_on_location_id"
-    t.index ["parent_item_id"], name: "index_items_on_parent_item_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -158,6 +156,5 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_16_134750) do
   add_foreign_key "checkouts", "customers"
   add_foreign_key "checkouts", "items"
   add_foreign_key "items", "groups"
-  add_foreign_key "items", "items", column: "parent_item_id"
   add_foreign_key "items", "locations"
 end

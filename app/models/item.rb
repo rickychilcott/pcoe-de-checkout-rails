@@ -11,20 +11,17 @@
 #  updated_at         :datetime         not null
 #  group_id           :integer          not null
 #  location_id        :integer
-#  parent_item_id     :integer
 #
 # Indexes
 #
-#  index_items_on_ancestry        (ancestry)
-#  index_items_on_group_id        (group_id)
-#  index_items_on_location_id     (location_id)
-#  index_items_on_parent_item_id  (parent_item_id)
+#  index_items_on_ancestry     (ancestry)
+#  index_items_on_group_id     (group_id)
+#  index_items_on_location_id  (location_id)
 #
 # Foreign Keys
 #
-#  group_id        (group_id => groups.id)
-#  location_id     (location_id => locations.id)
-#  parent_item_id  (parent_item_id => items.id)
+#  group_id     (group_id => groups.id)
+#  location_id  (location_id => locations.id)
 #
 
 module InsertBefore
@@ -44,6 +41,7 @@ class Item < ApplicationRecord
 
   belongs_to :location
   belongs_to :group
+
   has_many :checkouts
   has_many :current_checkouts, -> { checked_out }, class_name: "Checkout"
   has_one :current_checkout, -> { checked_out }, class_name: "Checkout"
@@ -62,6 +60,7 @@ class Item < ApplicationRecord
     column_names
       .insert_before("group_id", "group_name")
       .insert_before("location_id", "location_name")
+      .insert_before("ancestry", "parent_item_id")
       .without("group_id", "location_id")
       .without("created_at", "updated_at", "ancestry")
   end
