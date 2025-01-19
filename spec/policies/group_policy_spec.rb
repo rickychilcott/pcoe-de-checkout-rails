@@ -27,7 +27,17 @@ RSpec.describe GroupPolicy, type: :policy do
     end
   end
 
-  permissions :index?, :show?, :create?, :update?, :destroy? do
+  permissions :index?, :show? do
+    it "allows access for super_admin" do
+      expect(subject).to permit(build(:admin_user, :super_admin), build(:group))
+    end
+
+    it "denies access for non-super_admin" do
+      expect(subject).to permit(build(:admin_user), build(:group))
+    end
+  end
+
+  permissions :create?, :update?, :destroy? do
     it "allows access for super_admin" do
       expect(subject).to permit(build(:admin_user, :super_admin), build(:group))
     end

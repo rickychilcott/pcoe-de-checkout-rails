@@ -2,7 +2,7 @@
 # The values disaplayed here are the default ones. Uncomment and change them to fit your needs.
 Avo.configure do |config|
   ## == Routing ==
-  config.root_path = "/avo"
+  config.root_path = "/admin"
   # used only when you have custom `map` configuration in your config.ru
   # config.prefix_path = "/internal"
 
@@ -11,7 +11,7 @@ Avo.configure do |config|
   # config.mount_avo_engines = true
 
   # Where should the user be redirected when visiting the `/avo` url
-  # config.home_path = nil
+  config.home_path = "/admin/dashboards/home"
 
   ## == Licensing ==
   config.license_key = ENV.fetch("AVO_LICENSE_KEY")
@@ -141,12 +141,10 @@ Avo.configure do |config|
 
   # == Menus ==
   config.main_menu = -> do
+    link "Main App", path: "/"
+
     section "Dashboards", icon: "avo/dashboards" do
       all_dashboards
-    end
-
-    section "Checkouts", icon: "heroicons/outline/shopping-bag" do
-      resource :checkouts, visible: -> { authorize current_admin_user, Checkout, :index?, raise_exception: false }
     end
 
     section "Customers", icon: "heroicons/outline/academic-cap" do
@@ -158,6 +156,10 @@ Avo.configure do |config|
       resource :locations, visible: -> { authorize current_admin_user, Location, :index?, raise_exception: false }
       resource :groups, visible: -> { authorize current_admin_user, Group, :index?, raise_exception: false }
       resource :admin_users
+    end
+
+    section "Checkouts", icon: "heroicons/outline/shopping-bag" do
+      resource :checkouts, visible: -> { authorize current_admin_user, Checkout, :index?, raise_exception: false }
     end
 
     # section "Tools", icon: "avo/tools" do
