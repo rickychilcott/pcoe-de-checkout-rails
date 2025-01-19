@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
   end
 
   def pundit_user = current_admin_user
+
+  def resolved_policy_scope(klass_or_scope)
+    klass_or_scope.resolved_policy_scope_for(current_admin_user)
+  end
+  helper_method :resolved_policy_scope
 end

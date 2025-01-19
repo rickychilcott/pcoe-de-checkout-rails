@@ -1,8 +1,7 @@
 class CheckoutsController < ApplicationController
   def index
     checkouts =
-      Checkout
-        .resolved_policy_scope_for(current_admin_user)
+      resolved_policy_scope(Checkout)
         .includes(:checked_out_by, :item)
         .past_due
         .or(Checkout.due_today)

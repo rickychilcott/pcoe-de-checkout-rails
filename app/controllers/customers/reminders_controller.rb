@@ -13,10 +13,7 @@ class Customers::RemindersController < ApplicationController
   def create
     admin_user = current_admin_user
     body = params[:reminder][:body]
-    customer =
-      Customer
-        .resolved_policy_scope_for(current_admin_user)
-        .find(params[:customer_id])
+    customer = resolved_policy_scope(Customer).find(params[:customer_id])
     reminder = Reminder.new({customer:, admin_user:, body:})
 
     if reminder.valid?
