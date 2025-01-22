@@ -9,3 +9,6 @@ application.register("autocomplete", AutocompleteController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ValueStripperController from "./value_stripper_controller"
+application.register("value-stripper", ValueStripperController)
