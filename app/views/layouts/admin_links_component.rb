@@ -13,9 +13,9 @@ class AdminLinksComponent < ApplicationComponent
       end
 
       div(class: "col") do
-        link_to("Log out as #{admin_user.name}",
+        link_to("Sign out as #{admin_user.name}",
           destroy_admin_user_session_path,
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to log out?"},
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to sign out?"},
           class: "btn btn-secondary w-100")
       end
 
