@@ -20,12 +20,12 @@ RSpec.describe ItemsController, type: :controller do
 
       expect(parsed_results).to match_array(
         findable_items.map do |item|
-          /#{item.name} - #{item.serial_number}/
+          /#{item.name}.*#{item.serial_number}/
         end
       )
       expect(parsed_results).not_to match_array(
         not_findable_items.map do |item|
-          /#{item.name} - #{item.serial_number}/
+          /#{item.name}.*#{item.serial_number}/
         end
       )
     end
@@ -49,12 +49,12 @@ RSpec.describe ItemsController, type: :controller do
       expect(response).to have_http_status(:ok)
       expect(parsed_results).to match_array(
         group_items.map do |item|
-          /#{item.name} - #{item.serial_number}/
+          /#{item.name}.*#{item.serial_number}/
         end
       )
       expect(parsed_results).not_to match_array(
         non_group_items.map do |item|
-          /#{item.name} - #{item.serial_number}/
+          /#{item.name}.*#{item.serial_number}/
         end
       )
     end

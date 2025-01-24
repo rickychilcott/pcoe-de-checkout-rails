@@ -22,6 +22,18 @@ class Items::AutocompleteComponent < ApplicationComponent
   def checkout = item.current_checkout
 
   def render_inner_text
-    plain "#{item.name} - #{item.qr_code_identifier}"
+    plain [item.name, qr_code_identifier, serial_number].compact.join(" ")
+  end
+
+  def qr_code_identifier
+    return unless item.qr_code_identifier.present?
+
+    "(#{item.qr_code_identifier})"
+  end
+
+  def serial_number
+    return unless item.serial_number.present?
+
+    "[#{item.serial_number}]"
   end
 end
