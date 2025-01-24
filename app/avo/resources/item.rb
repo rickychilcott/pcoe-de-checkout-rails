@@ -66,7 +66,18 @@ class Avo::Resources::Item < Avo::BaseResource
     end
 
     field :serial_number, as: :text
-    field :qr_code_identifier, as: :text, show_on: [:new, :edit]
+    field :qr_code_identifier, as: :text, show_on: [:new, :edit], html: {
+      edit: {
+        input: {
+          data: {
+            controller: "value-stripper",
+            value_stripper_replacements_value: ValueStripper.all_replacements.to_json,
+            action: "keyup->value-stripper#update paste->value-stripper#update change->value-stripper#update",
+            value_stripper_target: "input"
+          }
+        }
+      }
+    }
     field :qr_code, as: :external_image, link_to_record: true, hide_on: [:new, :edit] do
       next unless record.qr_code_identifier.present?
 

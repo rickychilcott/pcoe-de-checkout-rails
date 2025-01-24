@@ -1,5 +1,5 @@
 <%= render CardComponent.new(id: "search-for-item", title: "Search for Item") do %>
-  <div data-controller="autocomplete value-stripper" data-autocomplete-url-value="/items" data-value-stripper-replacements-value='[{"from":"http://cheqroom.com/qr/","to":""}]'>
+  <div data-controller="autocomplete value-stripper" data-autocomplete-url-value="/items" data-value-stripper-replacements-value='<%= ValueStripper.all_replacements.to_json %>'>
     <input
       type="text"
       data-autocomplete-target="input"
