@@ -1,0 +1,3 @@
+<%= render CardComponent.new(id: "past-due-items", title: "Past Due Items") do %>
+  <%= turbo_frame_tag :checkouts, src: checkouts_path(only_past_due: true), loading: :lazy %>
+<% end %>
