@@ -20,7 +20,7 @@ RSpec.describe CheckoutGroupPolicy, type: :policy do
     it "allows access to group checkouts for non-super_admin" do
       user = create(:admin_user, groups: [group])
       item = create(:item, group:)
-      checkout_1 = create(:checkout, item:)
+      _checkout_1 = create(:checkout, item:)
       _checkout_2 = create(:checkout)
 
       expect {
