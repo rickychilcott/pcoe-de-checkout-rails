@@ -11,3 +11,4 @@ pin "@rails/actiontext", to: "actiontext.esm.js"
 
 # Avo custom JS entrypoint
 pin "avo.custom", preload: true
+pin "turbo_power" # @0.7.1

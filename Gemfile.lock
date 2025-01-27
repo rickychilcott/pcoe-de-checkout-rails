@@ -578,6 +578,7 @@ DEPENDENCIES
   standardrb
   stimulus-rails
   turbo-rails
+  turbo_power (~> 0.7.0)
   web-console
 
 RUBY VERSION

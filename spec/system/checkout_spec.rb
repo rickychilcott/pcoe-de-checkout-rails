@@ -1,14 +1,14 @@
 require "rails_helper"
 
 RSpec.describe "Checkout Equipment", type: :system do
-  xit "via customer" do
-    admin_user = create(:admin_user, password: "abcd1234")
+  it "via customer", retry: 0 do
     customer = create(:customer, name: "Sally Smith")
     location = create(:location, name: "Main Library")
     group = create(:group, name: "Adults")
+    admin_user = create(:admin_user, password: "abcd1234", groups: [group])
 
-    laptop = create(:item, name: "Laptop", location: location, group: group)
-    camera = create(:item, name: "Camera", location: location, group: group)
+    laptop = create(:item, name: "Laptop", location:, group:)
+    camera = create(:item, name: "Camera", location:, group:)
 
     sign_in admin_user
     visit root_path
@@ -25,17 +25,20 @@ RSpec.describe "Checkout Equipment", type: :system do
     expect(page).to have_content customer.ohio_id
     expect(page).to have_content customer.email
 
-    check "Laptop"
-    check "Camera"
-    fill_in "Expected Return", with: 3.days.from_now.strftime("%m/%d/%Y")
+    check("Laptop")
+    check("Camera")
+    fill_in "Expected Return", with: 3.days.from_now.strftime("%Y-%m-%d")
+    click_on "Check Out Items!"
 
-    accept_confirm do
-      click_on "Check Out Items!"
-    end
+    expect(page).to have_content "2 Items checked out to #{customer.name}"
 
     expect(customer.checked_out_item_count).to eq(2)
     expect(laptop.reload).not_to be_available
     expect(camera.reload).not_to be_available
+
+    expect(page).to have_content "Laptop"
+    expect(page).to have_content "Camera"
+    expect(page).to have_content "No Items Available"
   end
 
   it "via item" do

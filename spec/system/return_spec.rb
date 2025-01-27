@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Return Equipment", type: :system do
-  xit "via customer" do
+  it "via customer" do
     admin_user = create(:admin_user, password: "abcd1234")
     customer = create(:customer, name: "Sally Smith")
     location = create(:location, name: "Main Library")

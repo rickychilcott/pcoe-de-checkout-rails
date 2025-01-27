@@ -59,3 +59,5 @@ end
 gem "phlex-rails", git: "https://github.com/joeldrapper/phlex-rails.git", branch: "main"
 
 gem "kramdown", "~> 2.4"
+
+gem "turbo_power", "~> 0.7.0"

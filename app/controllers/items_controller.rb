@@ -15,4 +15,13 @@ class ItemsController < ApplicationController
         .result(distinct: false)
     end
   end
+
+  def show
+    item =
+      resolved_policy_scope(Item)
+        .includes(:location, :group)
+        .find(params[:id])
+
+    render locals: {item:}
+  end
 end

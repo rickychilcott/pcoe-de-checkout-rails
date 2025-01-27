@@ -7,10 +7,10 @@ class FlashMessagesComponent < ApplicationComponent
 
   def view_template
     FLASH_TYPES.each do |type|
-      next unless flash[type]
+      next unless (message = flash[type])
 
       div(class: "mt-4 alert alert-#{BOOTSTRAP_CLASSES[type]} alert-dismissible fade show", role: "alert") do
-        plain flash[type]
+        plain message
         button(
           type: "button",
           class: "btn-close",
