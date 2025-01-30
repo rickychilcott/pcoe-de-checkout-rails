@@ -17,9 +17,11 @@ class Checkout::ReturnableListComponent < ApplicationComponent
           end
         end
 
-        form_row do
-          button(class: "btn btn-primary") do
-            plain "Return Items!"
+        if checkouts.any?
+          form_row do
+            button(class: "btn btn-primary") do
+              plain "Return Items!"
+            end
           end
         end
       end
