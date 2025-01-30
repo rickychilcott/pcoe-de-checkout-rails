@@ -31,23 +31,27 @@ RSpec.describe CheckoutPolicy, type: :policy do
     end
   end
 
-  permissions :index?, :show? do
+  permissions :index?, :show?, :return? do
     it "allows access for super_admin" do
-      expect(subject).to permit(build(:admin_user, :super_admin), build(:item, group:))
+      item = build(:item, group:)
+      expect(subject).to permit(build(:admin_user, :super_admin), build(:checkout, item:))
     end
 
     it "allows access for non-super_admin" do
-      expect(subject).to permit(build(:admin_user, groups: [group]), build(:item, group:))
+      item = build(:item, group:)
+      expect(subject).to permit(build(:admin_user, groups: [group]), build(:checkout, item:))
     end
   end
 
   permissions :create?, :update?, :destroy? do
     it "denies access for super_admin" do
-      expect(subject).not_to permit(build(:admin_user, :super_admin), build(:item, group:))
+      item = build(:item, group:)
+      expect(subject).not_to permit(build(:admin_user, :super_admin), build(:checkout, item:))
     end
 
     it "denies access for checkouts" do
-      expect(subject).not_to permit(build(:admin_user, groups: [group]), build(:item, group:))
+      item = build(:item, group:)
+      expect(subject).not_to permit(build(:admin_user, groups: [group]), build(:checkout, item:))
     end
   end
 end

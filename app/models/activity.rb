@@ -34,7 +34,7 @@ class Activity < ApplicationRecord
     item_viewed
     item_bulk_import
     item_checked_out
-    item_checked_in
+    item_returned
 
     item_group_checked_out
 

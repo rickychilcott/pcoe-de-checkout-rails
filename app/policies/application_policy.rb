@@ -57,9 +57,19 @@ class ApplicationPolicy
 
   delegate :super_admin?, to: :user
 
+  def in_any_group?
+    user.groups.any?
+  end
+
   def in_group?
     raise ArgumentError, "#{record.class} does not implement #group" unless record.respond_to?(:group)
 
     record.group.in?(user.groups)
+  end
+
+  def in_items_group?
+    raise ArgumentError, "#{record.class} does not implement #item" unless record.respond_to?(:item)
+
+    record.item.group.in?(user.groups)
   end
 end

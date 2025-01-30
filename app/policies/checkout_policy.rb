@@ -1,13 +1,15 @@
 class CheckoutPolicy < ApplicationPolicy
-  def index? = super || user.groups.any?
+  def index? = super || in_any_group?
 
-  def show? = super || user.groups.any?
+  def show? = super || in_any_group?
 
   def create? = false
 
   def update? = false
 
   def destroy? = false
+
+  def return? = super_admin? || in_items_group?
 
   class Scope < ApplicationPolicy::Scope
     def resolve

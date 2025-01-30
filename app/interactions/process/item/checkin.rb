@@ -13,7 +13,7 @@ class Process::Item::Checkin < ApplicationInteraction
     )
 
     item.record_activity!(
-      :item_checked_in,
+      :item_returned,
       actor: checkout.customer,
       facilitator: returned_by
     )
