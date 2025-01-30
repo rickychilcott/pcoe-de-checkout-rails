@@ -74,7 +74,7 @@ RSpec.describe "Customer", type: :system do
     visit root_path
 
     expect(page).to have_content("Search for Customer")
-    find(css_id(customer, :remind)).click
+    find(css_id(customer, :remind), match: :first).click
     click_on "Send Reminder"
 
     expect(page).to have_content("Reminder was sent to #{customer.name}.")
