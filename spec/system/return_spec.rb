@@ -47,6 +47,10 @@ RSpec.describe "Return Equipment", type: :system do
     expect(customer.reload.checked_out_item_count).to eq(1)
     expect(laptop.reload).to be_available
     expect(camera.reload).not_to be_available
+
+    expect(page).to have_content "1 Item returned for #{customer.name}"
+    expect(page).to have_content "Camera"
+    expect(page).to have_content "Laptop"
   end
 
   it "via item" do

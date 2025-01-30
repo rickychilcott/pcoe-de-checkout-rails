@@ -13,7 +13,7 @@ class Customers::ReturnsController < ApplicationController
       returned_by: current_admin_user
     )
 
-    flash[:notice] = "#{checkouts.size} #{"Item".pluralize(checkouts.size)} returned from #{customer.name}"
+    flash[:notice] = "#{checkouts.size} #{"Item".pluralize(checkouts.size)} returned for #{customer.name}"
 
     respond_to do |format|
       format.html { redirect_to customer_path(customer), status: :see_other }

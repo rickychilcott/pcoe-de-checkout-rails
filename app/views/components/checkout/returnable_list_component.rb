@@ -8,7 +8,7 @@ class Checkout::ReturnableListComponent < ApplicationComponent
 
   def view_template
     turbo_frame_tag("#{id}-returnable-checkouts") do
-      form_with(url: customer_returns_url(customer), data: {turbo_confirm: "Are you sure you want to return these items?"}) do
+      form_with(url: customer_returns_url(customer), data: {turbo_confirm: "Are you sure you want to return these item(s)?"}) do
         input(type: :hidden, name: "customer_id", value: customer.id)
 
         form_row do
