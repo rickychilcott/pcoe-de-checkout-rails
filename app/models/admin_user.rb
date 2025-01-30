@@ -35,6 +35,7 @@ class AdminUser < ApplicationRecord
 
   has_many :admin_groups, dependent: :destroy, class_name: "AdminUserGroup"
   has_many :groups, through: :admin_groups
+  has_many :activities, foreign_key: :facilitator_id, dependent: :nullify
 
   # override Devise's password_required? method
   def password_required? = new_record? || changing_password?

@@ -61,5 +61,7 @@ class Avo::Resources::Customer < Avo::BaseResource
     field :notes, as: :trix, always_show: true
 
     field :checkouts, as: :has_many
+
+    field :activities, as: :has_many
   end
 end

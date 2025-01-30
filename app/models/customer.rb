@@ -29,6 +29,7 @@ class Customer < ApplicationRecord
   has_many :reservations
   has_many :checkouts
   has_many :current_checkouts, -> { checked_out }, class_name: "Checkout"
+  has_many :activities, foreign_key: :actor_id, dependent: :nullify
 
   has_rich_text :notes
 

@@ -25,7 +25,7 @@
 #  facilitator_id  (facilitator_id => admin_users.id)
 #
 class Avo::Resources::Activity < Avo::BaseResource
-  self.includes = [:actor, :record, :facilitator]
+  self.includes = [:actor, :facilitator]
 
   # self.search = {
   #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
@@ -35,7 +35,9 @@ class Avo::Resources::Activity < Avo::BaseResource
     field :action, as: :text, readonly: true, as_html: true do
       link_to record.action, avo.resources_activity_path(record)
     end
-    field :record, as: :belongs_to, readonly: true, link_to_resource: true, polymorphic_as: :record, types: [::Item]
+
+    # TODO vvv
+    # field :records, as: :has_many, readonly: true#, link_to_resource: true, polymorphic_as: :record, types: [::Item]
     field :actor, as: :belongs_to, readonly: true
     field :facilitator, as: :belongs_to, readonly: true
     field :occurred, as: :text, readonly: true do

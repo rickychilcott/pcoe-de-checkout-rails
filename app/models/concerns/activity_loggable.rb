@@ -9,6 +9,12 @@ module ActivityLoggable
     end
   end
 
+  def activities
+    Activity.matching_record_gid(
+      to_global_id
+    )
+  end
+
   def record_activity!(action, actor:, facilitator:, records: nil, extra: {}, throttle_within: nil)
     records ||= [self] if is_a?(ApplicationRecord)
 

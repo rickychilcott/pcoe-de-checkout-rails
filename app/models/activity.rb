@@ -28,6 +28,20 @@ class Activity < ApplicationRecord
   belongs_to :actor, class_name: "Customer", optional: true
   belongs_to :facilitator, class_name: "AdminUser"
 
+  scope :matching_record_gid, ->(gid) {
+    activities_table = Activity.arel_table
+
+    Activity.where(
+      Arel::Nodes::NamedFunction.new(
+        "json_extract",
+        [
+          activities_table[:record_gids],
+          Arel.sql("'$'")
+        ]
+      ).matches("%#{gid}%")
+    )
+  }
+
   SUPPORTED_ACTIONS = %w[
     item_added
     item_deleted
