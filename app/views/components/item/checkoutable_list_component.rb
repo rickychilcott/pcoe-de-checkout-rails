@@ -1,4 +1,5 @@
 class Item::CheckoutableListComponent < ApplicationComponent
+  prop :id, _String?, reader: :private
   prop :customer, Customer, reader: :private
   prop :items, _Enumerable(Item), reader: :private
   prop :fallback, String, reader: :private
@@ -11,7 +12,7 @@ class Item::CheckoutableListComponent < ApplicationComponent
         input(type: :hidden, name: "customer_id", value: customer.id)
 
         form_row do
-          render ::ListComponent.new(items:, fallback:) do |item|
+          render ::ListComponent.new(id:, items:, fallback:) do |item|
             render ItemComponent.new(item:)
           end
         end

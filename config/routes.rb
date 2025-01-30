@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
     resources :customers, only: [:index, :new, :create, :show] do
       resources :checkouts, only: [:create], module: :customers
+      resources :returns, only: [:create], module: :customers
       resources :reminders, only: [:new, :create], module: :customers
     end
 

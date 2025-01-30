@@ -2,13 +2,13 @@ require "rails_helper"
 
 RSpec.describe "Return Equipment", type: :system do
   it "via customer" do
-    admin_user = create(:admin_user, password: "abcd1234")
     customer = create(:customer, name: "Sally Smith")
     location = create(:location, name: "Main Library")
     group = create(:group, name: "Adults")
+    admin_user = create(:admin_user, password: "abcd1234", groups: [group])
 
-    laptop = create(:item, name: "Laptop", location: location, group: group)
-    camera = create(:item, name: "Camera", location: location, group: group)
+    laptop = create(:item, name: "Laptop", location:, group:)
+    camera = create(:item, name: "Camera", location:, group:)
 
     Process::ItemGroup::Checkout.run!(
       items: [laptop, camera],
@@ -16,6 +16,10 @@ RSpec.describe "Return Equipment", type: :system do
       checked_out_by: admin_user,
       expected_return_on: 1.day.ago.to_date
     )
+
+    expect(customer.checked_out_item_count).to eq(2)
+    expect(laptop).not_to be_available
+    expect(camera).not_to be_available
 
     sign_in admin_user
     visit root_path
@@ -32,15 +36,16 @@ RSpec.describe "Return Equipment", type: :system do
     expect(page).to have_content customer.ohio_id
     expect(page).to have_content customer.email
 
-    check "Laptop"
-    fill_in "Expected Return", with: 3.days.from_now.strftime("%m/%d/%Y")
+    within "#past-due-items-list-returnable-checkouts" do
+      check_item(/Laptop/)
 
-    accept_confirm do
-      click_on "Check Out Items!"
+      accept_confirm do
+        click_on "Return Items!"
+      end
     end
 
-    expect(customer.checked_out_item_count).to eq(2)
-    expect(laptop.reload).not_to be_available
+    expect(customer.reload.checked_out_item_count).to eq(1)
+    expect(laptop.reload).to be_available
     expect(camera.reload).not_to be_available
   end
 
@@ -50,8 +55,8 @@ RSpec.describe "Return Equipment", type: :system do
     _customer = create(:customer, name: "Sally Smith")
     admin_user = create(:admin_user, groups: [group])
 
-    laptop = create(:item, name: "Laptop", location: location, group: group)
-    _camera = create(:item, name: "Camera", location: location, group: group)
+    laptop = create(:item, name: "Laptop", location:, group:)
+    _camera = create(:item, name: "Camera", location:, group:)
 
     sign_in admin_user
     visit root_path
@@ -70,5 +75,13 @@ RSpec.describe "Return Equipment", type: :system do
     # expect(customer.checked_out_item_count).to eq(2)
     # expect(laptop.reload).not_to be_available
     # expect(camera.reload).not_to be_available
+  end
+
+  private
+
+  def check_item(name)
+    find("li.list-group-item", text: name)
+      .find("input[type='checkbox']")
+      .set(true)
   end
 end

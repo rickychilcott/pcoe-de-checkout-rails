@@ -37,6 +37,7 @@ class Activity < ApplicationRecord
     item_returned
 
     item_group_checked_out
+    checkouts_returned
 
     customer_bulk_import
     customer_reminder_sent

@@ -3,15 +3,12 @@ require "rails_helper"
 RSpec.describe Process::Item::Checkin, type: :model do
   it "can checkin" do
     group = create(:group)
-    admin_user = create(:admin_user)
-    admin_user.groups << group
-    admin_user.save!
-
     customer = create(:customer)
     item = create(:item, group:)
+    admin_user = create(:admin_user, groups: [group])
 
     checkout = Process::Item::Checkout.run!(item:, customer:, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
-    described_class.run!(item:, checkout:, returned_by: admin_user)
+    described_class.run!(checkout:, returned_by: admin_user)
 
     expect(Checkout.count).to eq(1)
     expect(checkout).to be_checked_in

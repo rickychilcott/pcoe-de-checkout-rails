@@ -1,7 +1,6 @@
 class Process::Item::Checkin < ApplicationInteraction
   run_in_transaction!
 
-  object :item, class: Item
   object :checkout, class: Checkout
   object :returned_by, class: AdminUser
   date_time :returned_at, default: -> { DateTime.now }
@@ -20,4 +19,8 @@ class Process::Item::Checkin < ApplicationInteraction
 
     checkout
   end
+
+  private
+
+  delegate :item, to: :checkout
 end

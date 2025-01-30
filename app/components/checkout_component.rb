@@ -10,14 +10,18 @@ class CheckoutComponent < ApplicationComponent
   private
 
   def checkbox
-    check_box_tag("checkout_ids[]", checkout.id, false, id: dom_id(checkout, :id))
+    check_box_tag("checkout_ids[]", checkout.id, false, id: checkout_id)
   end
 
   def link
-    link_to(new_checkout_return_path(checkout), id: dom_id(checkout, :return), data: {turbo_frame: "_top"}) do
-      plain "#{item_name} [#{customer_name}] due #{expected_return_on_phrase}"
+    label(for: checkout_id) do
+      link_to(new_checkout_return_path(checkout), id: dom_id(checkout, :return), data: {turbo_frame: "_top"}) do
+        plain "#{item_name} [#{customer_name}] due #{expected_return_on_phrase}"
+      end
     end
   end
+
+  def checkout_id = dom_id(checkout, :id)
 
   def item_name
     checkout.item.name
