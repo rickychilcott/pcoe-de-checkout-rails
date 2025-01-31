@@ -9,6 +9,7 @@ export default class extends Controller {
   }
 
   connect() {
+    this.clearInput()
     this.clearResults()
     this.inputTarget.addEventListener("input", this.search)
   }
@@ -50,10 +51,15 @@ export default class extends Controller {
   selectItem(item) {
     this.inputTarget.value = item.textContent.trim() // Fill input with selected item's text
 
+    this.clearInput()
     this.clearResults()
   }
 
   clearResults() {
     this.resultsTarget.innerHTML = ""
+  }
+
+  clearInput() {
+    this.inputTarget.value = ""
   }
 }
