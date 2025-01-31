@@ -25,15 +25,15 @@ class Avo::Cards::CheckoutsChart < Avo::Cards::ChartkickCard
       "30" => -> { 30.days.ago },
       "90" => -> { 90.days.ago },
       "365" => -> { 365.days.ago },
-      "MTD" => -> { DateTime.current.beginning_of_month },
-      "QTD" => -> { DateTime.current.beginning_of_quarter },
-      "YTD" => -> { DateTime.current.beginning_of_year },
-      "ALL" => -> { Checkout.minimum(:checked_out_at) || DateTime.current }
+      "MTD" => -> { Date.current.beginning_of_month },
+      "QTD" => -> { Date.current.beginning_of_quarter },
+      "YTD" => -> { Date.current.beginning_of_year },
+      "ALL" => -> { Checkout.minimum(:checked_out_at) || Date.current }
     }
   def query
     start_date = START_DATE.fetch(range.to_s).call
 
-    dates = start_date.to_date..DateTime.current.to_date
+    dates = start_date.to_date..Date.current
     raw_data =
       Checkout
         .resolved_policy_scope_for(current_user)
@@ -48,13 +48,15 @@ class Avo::Cards::CheckoutsChart < Avo::Cards::ChartkickCard
     end
 
     raw_data.each do |checkout|
-      checkout_date, returned_at_date = checkout.checked_out_at.to_date, checkout.returned_at&.to_date
+      checkout_date = checkout.checked_out_at.to_date
+      returned_at_date = checkout.returned_at&.to_date || Date.current
 
       (checkout_date..returned_at_date).each { |date| checked_out_item_data[date.to_s] += 1 }
     end
 
     raw_data.each do |checkout|
-      expected_return_on_date, returned_at_date = checkout.expected_return_on.to_date, checkout.returned_at&.to_date
+      expected_return_on_date = checkout.expected_return_on.to_date
+      returned_at_date = checkout.returned_at&.to_date || Date.current
 
       next if expected_return_on_date.after?(returned_at_date) || expected_return_on_date.eql?(returned_at_date)
 
