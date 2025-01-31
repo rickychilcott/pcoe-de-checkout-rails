@@ -30,7 +30,7 @@ class Avo::Resources::Customer < Avo::BaseResource
     end,
     item: -> do
             {
-              title: "#{record.name} [#{record.ohio_id}]",
+              title: record.title,
               description: record.notes.to_plain_text.truncate(130)
               # image_url: main_app.url_for(record.cover_photo),
               # image_format: :rounded
@@ -62,6 +62,6 @@ class Avo::Resources::Customer < Avo::BaseResource
 
     field :checkouts, as: :has_many
 
-    field :activities, as: :has_many
+    field :all_activities, as: :has_many, use_resource: Avo::Resources::Activity
   end
 end

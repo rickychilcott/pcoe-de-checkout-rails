@@ -5,7 +5,7 @@ class Avo::ItemsController < Avo::ResourcesController
     data = Item.with_attached_images.not_checked_out.map do |item|
       {
         value: item.id,
-        label: item.tag_label,
+        label: item.name_with_identifiers,
         avatar: item.images.first&.url
       }
     end

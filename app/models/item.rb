@@ -52,6 +52,10 @@ class Item < ApplicationRecord
   has_many_attached :images
   has_rich_text :description
 
+  def all_activities
+    activities
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     super + %w[name serial_number qr_code_identifier]
   end
@@ -76,12 +80,11 @@ class Item < ApplicationRecord
       )
   end
 
-  # TODO: Make sure we're happy with this -- used to "search" when creating a checkout
-  def tag_label
-    [
-      name,
-      qr_code_identifier.presence && "(#{qr_code_identifier})"
-    ].join(" ")
+  def name_with_identifiers
+    qr_code_identifier_text = "(#{qr_code_identifier})" if qr_code_identifier.present?
+    serial_number_text = "[#{serial_number}]" if serial_number.present?
+
+    [name, qr_code_identifier_text, serial_number_text].compact.join(" ".freeze)
   end
 
   def status
@@ -103,7 +106,7 @@ class Item < ApplicationRecord
     Item.with_attached_images.not_checked_out.map do |item|
       {
         value: item.id,
-        label: item.tag_label,
+        label: item.name_with_identifiers,
         avatar: item.images.first&.url
       }
     end
@@ -113,7 +116,7 @@ class Item < ApplicationRecord
     Item.with_attached_images.checked_out.map do |item|
       {
         value: item.id,
-        label: item.tag_label,
+        label: item.name_with_identifiers,
         avatar: item.images.first&.url
       }
     end

@@ -40,7 +40,7 @@ class Avo::Resources::Item < Avo::BaseResource
     help: -> { "- search by name, serial number, or QR code" },
     item: -> do
       {
-        title: record.name,
+        title: record.title,
         description: record.search_description
       }
     end
@@ -91,7 +91,7 @@ class Avo::Resources::Item < Avo::BaseResource
 
     field :images, as: :files
 
-    field :activities, as: :has_many
+    field :all_activities, as: :has_many, use_resource: Avo::Resources::Activity
     field :checkouts, as: :has_many
   end
 

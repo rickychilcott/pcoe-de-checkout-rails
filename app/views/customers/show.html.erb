@@ -1,6 +1,6 @@
 
-<div class="row">
-  <div class="col-md-6">
+<div class="row" data-masonry='{"percentPosition": true }'>
+  <div class="col-md-6 pb-4">
     <%= render CardComponent.new(id: dom_id(customer), title: customer.name) do %>
       <p><strong>Role:</strong> <%= customer.role_text %></p>
       <p><strong>Email:</strong> <%= customer.email %></p>
@@ -18,7 +18,8 @@
       </div>
     <% end %>
   </div>
-  <div class="col-md-6">
+
+  <div class="col-md-6 pb-4">
     <%= render CardComponent.new(id: dom_id(customer, :checkouts), title: "Checkouts") do %>
       <div class="d-flexjustify-content-between">
         <%= render BadgeComponent.new(
@@ -49,6 +50,14 @@
 
       <h5 id="check-out-available-items" class="pt-4">Available Items to Check Out</h5>
       <%= render Item::CheckoutableListComponent.new(id: "check-out-available-items-list", customer:, items: resolved_policy_scope(Item).not_checked_out, fallback: "No Items Available") %>
+    <% end %>
+  </div>
+
+  <div class="col-md-6 pb-4">
+    <%= render CardComponent.new(id: dom_id(customer, :history), title: "History") do %>
+      <%= render ListComponent.new(items: customer.all_activities, fallback: "No Item History") do |activity| %>
+        <%= render ActivityComponent.new(activity:) %>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -47,7 +47,7 @@ class Checkout < ApplicationRecord
   scope :checked_out, -> { where(returned_at: nil) }
   scope :checked_in, -> { where.not(returned_at: nil) }
 
-  def title
+  def name
     "#{customer.name} checked out #{item.name}"
   end
 

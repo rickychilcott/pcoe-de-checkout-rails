@@ -29,11 +29,15 @@ class Customer < ApplicationRecord
   has_many :reservations
   has_many :checkouts
   has_many :current_checkouts, -> { checked_out }, class_name: "Checkout"
-  has_many :activities, foreign_key: :actor_id, dependent: :nullify
+  has_many :acted_activities, foreign_key: :actor_id, dependent: :nullify, class_name: "Activity"
 
   has_rich_text :notes
 
   enumerize :role, in: [:student, :faculty_staff], default: :student, predicates: true
+
+  def all_activities
+    acted_activities.or(activities)
+  end
 
   def self.importable_column_names
     column_names.without("id", "created_at", "updated_at")
@@ -49,6 +53,10 @@ class Customer < ApplicationRecord
 
   def past_due_item_count
     current_checkouts.count(&:past_due?)
+  end
+
+  def name_with_ohio_id
+    "#{name} (#{ohio_id})"
   end
 
   def email = "#{ohio_id}@ohio.edu"

@@ -15,6 +15,11 @@ class CheckoutsController < ApplicationController
     render :index, locals: {checkouts:}
   end
 
+  def show
+    checkout = resolved_policy_scope(Checkout).find(params[:id])
+    redirect_to item_path(checkout.item)
+  end
+
   private
 
   helper_method def only_past_due?

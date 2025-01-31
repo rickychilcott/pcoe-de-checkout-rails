@@ -21,7 +21,7 @@ class Avo::Resources::Group < Avo::BaseResource
     end,
     item: -> do
       {
-        title: record.name,
+        title: record.title,
         description: record.description.to_plain_text.truncate(130)
       }
     end

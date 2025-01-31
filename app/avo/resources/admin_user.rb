@@ -37,7 +37,7 @@ class Avo::Resources::AdminUser < Avo::BaseResource
     end,
     item: -> do
             {
-              title: "#{record.name} [#{record.email}]"
+              title: record.title
               # description: ActionView::Base.full_sanitizer.sanitize(record.body).truncate(130),
               # image_url: main_app.url_for(record.cover_photo),
               # image_format: :rounded
@@ -60,5 +60,6 @@ class Avo::Resources::AdminUser < Avo::BaseResource
     field :last_sign_in_ip, as: :text, readonly: true
 
     field :admin_groups, as: :has_many, description: "The groups this admin can add, checkout items, and manage."
+    field :all_activities, as: :has_many, description: "The activities this admin has facilitated.", use_resource: Avo::Resources::Activity
   end
 end

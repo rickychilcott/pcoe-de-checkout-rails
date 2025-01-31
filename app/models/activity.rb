@@ -42,26 +42,32 @@ class Activity < ApplicationRecord
     )
   }
 
-  SUPPORTED_ACTIONS = %w[
-    item_added
-    item_deleted
-    item_viewed
-    item_bulk_import
-    item_checked_out
-    item_returned
+  SUPPORTED_ACTIONS_WITH_LABELS = {
+    "item_added" => "Item Added",
+    "item_deleted" => "Item Deleted",
+    "item_viewed" => "Item Viewed",
+    "item_bulk_import" => "Item Bulk Imported",
+    "item_checked_out" => "Item Checked Out",
+    "item_returned" => "Item Returned",
 
-    item_group_checked_out
-    checkouts_returned
+    "item_group_checked_out" => "Items Checked Out",
+    "checkouts_returned" => "Items Returned",
 
-    customer_bulk_import
-    customer_reminder_sent
-  ].freeze
+    "customer_bulk_import" => "Customer Bulk Imported",
+    "customer_reminder_sent" => "Customer Reminder Sent"
+  }.freeze
+
+  SUPPORTED_ACTIONS = SUPPORTED_ACTIONS_WITH_LABELS.keys.freeze
+
+  def self.label_for_action(action)
+    SUPPORTED_ACTIONS_WITH_LABELS[action.to_sym] || action.to_s.humanize
+  end
 
   def self.supported_actions = SUPPORTED_ACTIONS
 
   validates :action, inclusion: {
     in: supported_actions,
-    message: "%{value} is not a valid action. Must be one of: #{supported_actions.join(", ")}"
+    message: "%{value} is not a valid action. Must be one of: #{supported_actions.to_sentence(two_words_connector: " or ", last_word_connector: " or ")}"
   }
   validates :record_gids, length: {minimum: 1}
   validates :occurred_at, presence: true
