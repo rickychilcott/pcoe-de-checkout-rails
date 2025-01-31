@@ -23,6 +23,6 @@ RSpec.describe Process::Item::Checkout, type: :model do
     expect(activity.actor).to eq(customer)
     expect(activity.facilitator).to eq(admin_user)
     expect(activity.action).to eq("item_checked_out")
-    expect(activity.record).to eq(item)
+    expect(activity.records).to include(item)
   end
 end

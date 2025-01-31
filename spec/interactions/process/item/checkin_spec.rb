@@ -22,6 +22,6 @@ RSpec.describe Process::Item::Checkin, type: :model do
     activity = Activity.find_by(action: "item_returned")
     expect(activity.actor).to eq(customer)
     expect(activity.facilitator).to eq(admin_user)
-    expect(activity.record).to eq(item)
+    expect(activity.records).to include(item)
   end
 end

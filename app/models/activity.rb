@@ -83,12 +83,4 @@ class Activity < ApplicationRecord
       records
         .map { _1.to_global_id.to_s }
   end
-
-  def record
-    records.first
-  end
-
-  def record=(value)
-    self.records = [value]
-  end
 end
