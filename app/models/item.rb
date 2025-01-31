@@ -80,7 +80,7 @@ class Item < ApplicationRecord
       )
   end
 
-  def name_with_identifiers
+  def title
     qr_code_identifier_text = "(#{qr_code_identifier})" if qr_code_identifier.present?
     serial_number_text = "[#{serial_number}]" if serial_number.present?
 
@@ -102,11 +102,13 @@ class Item < ApplicationRecord
     !current_checkout.present?
   end
 
+  def not_available? = !available?
+
   def self.available_as_tags
     Item.with_attached_images.not_checked_out.map do |item|
       {
         value: item.id,
-        label: item.name_with_identifiers,
+        label: item.title,
         avatar: item.images.first&.url
       }
     end
@@ -116,7 +118,7 @@ class Item < ApplicationRecord
     Item.with_attached_images.checked_out.map do |item|
       {
         value: item.id,
-        label: item.name_with_identifiers,
+        label: item.title,
         avatar: item.images.first&.url
       }
     end

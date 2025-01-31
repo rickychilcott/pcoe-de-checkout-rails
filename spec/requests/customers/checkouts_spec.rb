@@ -14,7 +14,7 @@ RSpec.describe Customers::CheckoutsController, type: :controller do
 
         post :create, params: {customer_id: customer.id, expected_return_on:, item_ids: [item.id]}
         expect(response).to have_http_status(:redirect)
-        expect(flash[:notice]).to eq("1 Item checked out to #{customer.name}")
+        expect(flash[:notice]).to eq("1 Item checked out to #{customer.title}")
         expect(response).to redirect_to(customer)
       end
     end

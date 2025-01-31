@@ -14,7 +14,7 @@ class Customers::CheckoutsController < ApplicationController
       expected_return_on: params[:expected_return_on]
     )
 
-    flash[:notice] = "#{items.size} #{"Item".pluralize(items.size)} checked out to #{customer.name}"
+    flash[:notice] = "#{items.size} #{"Item".pluralize(items.size)} checked out to #{customer.title}"
 
     respond_to do |format|
       format.html { redirect_to customer_path(customer), status: :see_other }

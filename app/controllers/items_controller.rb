@@ -19,9 +19,10 @@ class ItemsController < ApplicationController
   def show
     item =
       resolved_policy_scope(Item)
-        .includes(:location, :group)
+        .includes(:location, :group, :current_checkout)
         .find(params[:id])
 
-    render locals: {item:}
+    current_checkout = item.current_checkout
+    render locals: {item:, current_checkout:}
   end
 end

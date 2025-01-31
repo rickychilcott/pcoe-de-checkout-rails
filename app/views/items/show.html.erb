@@ -1,6 +1,6 @@
 
-<div class="row">
-  <div class="col-md-6">
+<div class="row" data-masonry='{"percentPosition": true }'>
+  <div class="col-md-6 pb-4">
     <%= render CardComponent.new(id: dom_id(item), title: item.name) do %>
       <p><strong>Location:</strong> <%= item.location.name %></p>
       <p><strong>Group:</strong> <%= item.group.name %></p>
@@ -28,7 +28,30 @@
     <% end %>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6 pb-4">
+    <% if item.available? %>
+      <%= render AlertComponent.new(
+        label: "Item is Available",
+        bg_variant: BsVariant::Success
+      ) %>
+    <% else %>
+      <%= render AlertComponent.new(
+        label: "Item is checked out",
+        bg_variant: BsVariant::Danger
+      ) %>
+
+      <%= link_to "Return Item!",
+              customer_returns_path(current_checkout.customer, checkout_ids: [current_checkout.id]),
+              class: "btn btn-primary w-100",
+              data: {
+                turbo_method: :post,
+                turbo_confirm: "Are you sure you want to return this item?"
+              } %>
+    <% end %>
+  </div>
+
+
+  <div class="col-md-6 pb-4">
     <%= render CardComponent.new(id: dom_id(item, :history), title: "History") do %>
       <%= render ListComponent.new(items: item.all_activities, fallback: "No Item History") do |activity| %>
         <%= render ActivityComponent.new(activity:) %>

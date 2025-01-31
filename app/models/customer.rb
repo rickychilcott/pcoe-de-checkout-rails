@@ -55,7 +55,7 @@ class Customer < ApplicationRecord
     current_checkouts.count(&:past_due?)
   end
 
-  def name_with_ohio_id
+  def title
     "#{name} (#{ohio_id})"
   end
 

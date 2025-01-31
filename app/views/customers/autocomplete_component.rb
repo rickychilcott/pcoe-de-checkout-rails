@@ -7,7 +7,7 @@ class Customers::AutocompleteComponent < ApplicationComponent
     div class: "autocomplete-item", data: {id: customer.id} do
       if customer.persisted?
         link_to customer_path(customer), id: dom_id(customer) do
-          plain customer.name_with_ohio_id
+          plain customer.title
         end
       else
         link_to new_customer_path(name: customer.name, ohio_id: customer.ohio_id), id: dom_id(customer) do

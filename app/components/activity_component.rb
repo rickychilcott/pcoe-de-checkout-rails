@@ -5,7 +5,7 @@ class ActivityComponent < ApplicationComponent
     upper do
       plain action_label
       plain " to ".freeze
-      link_to actor_name_with_ohio_id, actor
+      link_to actor_title, actor
     end
 
     middle do
@@ -23,7 +23,7 @@ class ActivityComponent < ApplicationComponent
   private
 
   delegate :action, :actor, :facilitator, :occurred_at, :records, to: :activity
-  delegate :name_with_ohio_id, to: :actor, prefix: true
+  delegate :title, to: :actor, prefix: true
   delegate :name, to: :facilitator, prefix: true
 
   def upper(&)
@@ -56,7 +56,7 @@ class ActivityComponent < ApplicationComponent
       ul do
         records.each do |record|
           li do
-            link_to record.name, record
+            link_to record.title, record
           end
         end
       end

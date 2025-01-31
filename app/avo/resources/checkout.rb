@@ -42,7 +42,7 @@ class Avo::Resources::Checkout < Avo::BaseResource
     end,
     item: -> do
             {
-              title: record.name,
+              title: record.title,
               description: "Expected Return: #{record.expected_return_on_text}"
               # image_url: (main_app.url_for(record.cover_photo) if record.cover_photo?),
               # image_format: :rounded

@@ -56,11 +56,18 @@ RSpec.describe "Return Equipment", type: :system do
   it "via item" do
     group = create(:group, name: "Adults")
     location = create(:location, name: "Main Library")
-    _customer = create(:customer, name: "Sally Smith")
+    customer = create(:customer, name: "Sally Smith")
     admin_user = create(:admin_user, groups: [group])
 
     laptop = create(:item, name: "Laptop", location:, group:)
     _camera = create(:item, name: "Camera", location:, group:)
+
+    Process::ItemGroup::Checkout.run!(
+      items: [laptop],
+      customer:,
+      checked_out_by: admin_user,
+      expected_return_on: 2.day.ago.to_date
+    )
 
     sign_in admin_user
     visit root_path
@@ -69,16 +76,18 @@ RSpec.describe "Return Equipment", type: :system do
       input = find("input")
       input.fill_in with: laptop.qr_code_identifier
 
-      find(css_id(laptop, :checkout)).click
+      find(css_id(laptop, :return)).click
     end
 
-    expect(page).to have_current_path(new_item_checkout_path(laptop))
+    expect(page).to have_current_path(item_path(laptop))
     expect(page).to have_content laptop.name
+    expect(page).to have_content "Item is checked out"
 
-    # TODO: Checkout item
-    # expect(customer.checked_out_item_count).to eq(2)
-    # expect(laptop.reload).not_to be_available
-    # expect(camera.reload).not_to be_available
+    expect(page).to have_content "Return Item!"
+    click_on "Return Item!"
+
+    expect(page).to have_content "1 Item returned for #{customer.name}"
+    # expect(laptop.reload).to be_available
   end
 
   private

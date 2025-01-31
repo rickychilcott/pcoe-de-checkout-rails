@@ -5,21 +5,19 @@ class Items::AutocompleteComponent < ApplicationComponent
 
   def view_template
     div(class: "autocomplete-item", data: {id: item.id}) do
-      if item.available?
-        link_to item_path(item), id: dom_id(item, :checkout), data: {turbo_frame: "_top"} do
-          render_inner_text
-        end
-      else
-        link_to item_path(item), id: dom_id(item, :return), data: {turbo_frame: "_top"} do
-          render_inner_text
-        end
+      link_to item_path(item), id: link_id, data: {turbo_frame: "_top"} do
+        plain item.title
       end
     end
   end
 
   private
 
-  def render_inner_text
-    plain item.name_with_identifiers
+  def link_id
+    if item.available?
+      dom_id(item, :checkout)
+    else
+      dom_id(item, :return)
+    end
   end
 end
