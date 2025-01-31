@@ -4,19 +4,14 @@ Rails.application.routes.draw do
   constraints(AdminConstraint) do
     mount Avo::Engine, at: Avo.configuration.root_path
 
-    resources :checkouts, only: [:index] do
-      resources :returns, only: [:new, :create], module: :checkouts
-    end
-
     resources :customers, only: [:index, :new, :create, :show] do
       resources :checkouts, only: [:create], module: :customers
       resources :returns, only: [:create], module: :customers
       resources :reminders, only: [:new, :create], module: :customers
     end
 
-    resources :items, only: [:index, :show] do
-      resources :checkouts, only: [:new, :create], module: :items
-    end
+    resources :items, only: [:index, :show]
+    resources :checkouts, only: [:index, :show]
   end
 
   devise_for :admin_users
