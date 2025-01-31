@@ -14,7 +14,7 @@ RSpec.describe "Return Equipment", type: :system do
       items: [laptop, camera],
       customer:,
       checked_out_by: admin_user,
-      expected_return_on: 1.day.ago.to_date
+      expected_return_on: 2.day.ago.to_date
     )
 
     expect(customer.checked_out_item_count).to eq(2)

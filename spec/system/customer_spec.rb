@@ -22,7 +22,7 @@ RSpec.describe "Customer", type: :system do
       customer:,
       checked_out_by: admin_user,
       checked_out_at: 1.week.ago.to_s,
-      expected_return_on: 1.day.ago.to_date
+      expected_return_on: 2.day.ago.to_date
     )
 
     expect(customer.checked_out_item_count).to eq(2)
