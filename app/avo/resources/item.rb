@@ -81,8 +81,10 @@ class Avo::Resources::Item < Avo::BaseResource
     field :qr_code, as: :external_image, link_to_record: true, hide_on: [:new, :edit] do
       next unless record.qr_code_identifier.present?
 
-      svg = record.qr_code_as_svg
-      "data:image/svg+xml;base64,#{Base64.strict_encode64(svg)}"
+      png = record.qr_code_as_png.to_blob
+      base64_encoded = Base64.strict_encode64(png)
+
+      "data:image/png;base64,#{base64_encoded}"
     end
 
     field :child_items, as: :number, hide_on: [:new, :edit] do

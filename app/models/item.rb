@@ -69,12 +69,12 @@ class Item < ApplicationRecord
       .without("created_at", "updated_at", "ancestry")
   end
 
-  def qr_code_as_svg
+  def qr_code_as_png
     RQRCode::QRCode
       .new(qr_code_identifier)
-      .as_svg(
+      .as_png(
         offset: 5,
-        color: "000",
+        size: 300,
         shape_rendering: "crispEdges",
         module_size: 4
       )
