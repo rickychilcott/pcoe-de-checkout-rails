@@ -84,7 +84,10 @@ RSpec.describe "Return Equipment", type: :system do
     expect(page).to have_content "Item is checked out"
 
     expect(page).to have_content "Return Item!"
-    click_on "Return Item!"
+
+    accept_confirm do
+      click_on "Return Item!"
+    end
 
     expect(page).to have_content "1 Item returned for #{customer.name}"
     # expect(laptop.reload).to be_available
