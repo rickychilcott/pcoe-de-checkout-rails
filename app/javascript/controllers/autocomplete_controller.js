@@ -6,16 +6,22 @@ export default class extends Controller {
 
   initialize() {
     this.search = this.search.bind(this)
+    this.clearResults = this.clearResults.bind(this)
   }
 
   connect() {
     this.clearInput()
     this.clearResults()
+
     this.inputTarget.addEventListener("input", this.search)
+    this.inputTarget.addEventListener("focus", this.search)
+    this.inputTarget.addEventListener("blur", this.clearResults)
   }
 
   disconnect() {
     this.inputTarget.removeEventListener("input", this.search)
+    this.inputTarget.removeEventListener("focus", this.search)
+    this.inputTarget.removeEventListener("blur", this.clearResults)
   }
 
   search() {
