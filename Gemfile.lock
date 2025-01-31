@@ -10,19 +10,19 @@ GIT
 GEM
   remote: https://packager.dev/avo-hq/
   specs:
-    avo-dashboards (3.16.4)
-      avo (= 3.16.4)
+    avo-dashboards (3.16.5)
+      avo (= 3.16.5)
       turbo-rails
       view_component (>= 3.7.0)
       zeitwerk (>= 2.6.12)
-    avo-menu (3.16.4)
-      avo (= 3.16.4)
+    avo-menu (3.16.5)
+      avo (= 3.16.5)
       docile
       zeitwerk (>= 2.6.12)
-    avo-pro (3.16.4)
-      avo (= 3.16.4)
-      avo-dashboards (= 3.16.4)
-      avo-menu (= 3.16.4)
+    avo-pro (3.16.5)
+      avo (= 3.16.5)
+      avo-dashboards (= 3.16.5)
+      avo-menu (= 3.16.5)
       zeitwerk (>= 2.6.12)
 
 GEM
@@ -117,7 +117,7 @@ GEM
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
-    avo (3.16.4)
+    avo (3.16.5)
       actionview (>= 6.1)
       active_link_to
       activerecord (>= 6.1)
@@ -213,8 +213,8 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
-    factory_bot (6.5.0)
-      activesupport (>= 5.0.0)
+    factory_bot (6.5.1)
+      activesupport (>= 6.1.0)
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
