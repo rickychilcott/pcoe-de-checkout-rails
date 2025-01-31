@@ -15,4 +15,9 @@ class ApplicationController < ActionController::Base
     klass_or_scope.resolved_policy_scope_for(current_admin_user)
   end
   helper_method :resolved_policy_scope
+
+  def target_turbo_frame_id
+    params[:turbo_frame].presence ||
+      request.headers["HTTP_TURBO_FRAME"]
+  end
 end

@@ -33,3 +33,13 @@
 .fs-8 {
   font-size: 0.8rem;
 }
+
+.hide-first-if-multiple:has(:nth-child(2))> :first-child {
+  display: none;
+}
+
+.hide-first-if-multiple>li:nth-child(2) {
+  border-top: 1px solid var(--bs-border-color);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}

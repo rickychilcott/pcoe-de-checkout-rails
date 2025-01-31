@@ -48,8 +48,22 @@
       <h5 id="checked-out-items" class="pt-4">Checked Out Items</h5>
       <%= render Checkout::ReturnableListComponent.new(id: "checked-out-items-list", customer:, checkouts: customer.checkouts.checked_out, fallback: "No Items Checked Out") %>
 
-      <h5 id="check-out-available-items" class="pt-4">Available Items to Check Out</h5>
-      <%= render Item::CheckoutableListComponent.new(id: "check-out-available-items-list", customer:, items: resolved_policy_scope(Item).not_checked_out, fallback: "No Items Available") %>
+      <h5 class="pt-4">Check Out Items</h5>
+      <%= tag.div(data: { controller: "autocomplete value-stripper",
+                          autocomplete_url_value: items_path(filter: :not_checked_out, autocomplete_class: Items::AutocompleteAddComponent.name),
+                          value_stripper_replacements_value: ValueStripper.all_replacements.to_json},
+                          class: "pb-2") do %>
+        <input
+          type="text"
+          data-autocomplete-target="input"
+          placeholder="Search items..."
+          data-action="keyup->value-stripper#update paste->value-stripper#update change->value-stripper#update"
+          data-value-stripper-target="input"
+        >
+        <div data-autocomplete-target="results" class="autocomplete-results"></div>
+      <% end %>
+
+      <%= render Item::CheckoutableListComponent.new(id: "check-out-available-items-list", customer:, items: [], fallback: "No Items Items Yet") %>
     <% end %>
   </div>
 

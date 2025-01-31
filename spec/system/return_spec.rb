@@ -50,7 +50,7 @@ RSpec.describe "Return Equipment", type: :system do
 
     expect(page).to have_content "1 Item returned for #{customer.name}"
     expect(page).to have_content "Camera"
-    expect(page).to have_content "Laptop"
+    expect(page).not_to have_content "Laptop"
   end
 
   it "via item" do

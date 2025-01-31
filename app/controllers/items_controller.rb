@@ -4,15 +4,22 @@ class ItemsController < ApplicationController
   def index
     query = params[:q]
 
-    autocomplete_for(Items::AutocompleteComponent) do
-      resolved_policy_scope(Item)
-        .ransack(
-          name_cont: query,
-          serial_number_cont: query,
-          qr_code_identifier_cont: query,
-          m: "or"
-        )
-        .result(distinct: false)
+    autocomplete_for(autocomplete_component_class) do
+      items =
+        resolved_policy_scope(Item)
+          .ransack(
+            name_cont: query,
+            serial_number_cont: query,
+            qr_code_identifier_cont: query,
+            m: "or"
+          )
+          .result(distinct: false)
+
+      if only_not_checked_out?
+        items.not_checked_out
+      else
+        items
+      end
     end
   end
 
@@ -24,5 +31,20 @@ class ItemsController < ApplicationController
 
     current_checkout = item.current_checkout
     render locals: {item:, current_checkout:}
+  end
+
+  private
+
+  def only_not_checked_out?
+    params[:filter] == "not_checked_out"
+  end
+
+  ALLOWED_AUTOCOMPLETE_CLASSES = [
+    Items::AutocompleteNavigateComponent,
+    Items::AutocompleteAddComponent
+  ].map { |klass| [klass.name, klass] }.to_h.freeze
+
+  def autocomplete_component_class
+    ALLOWED_AUTOCOMPLETE_CLASSES.fetch(params[:autocomplete_class], Items::AutocompleteNavigateComponent)
   end
 end

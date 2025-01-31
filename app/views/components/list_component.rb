@@ -6,16 +6,15 @@ class ListComponent < ApplicationComponent
   prop :fallback, String, reader: :private
 
   def view_template
-    ul(id:, class: "list-group ms-2 pe-3") do
-      if items.any?
-        items.each do |item|
-          list_item do
-            yield(item)
-          end
-        end
-      else
+    ul(id:, class: "list-group ms-2 pe-3 hide-first-if-multiple") do
+      # will be hidden via CSS if there are multiple items
+      list_item do
+        fallback
+      end
+
+      items.each do |item|
         list_item do
-          fallback
+          yield(item)
         end
       end
     end

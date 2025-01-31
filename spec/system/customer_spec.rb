@@ -46,8 +46,8 @@ RSpec.describe "Customer", type: :system do
     expect(page).to have_content("Checked Out Items")
     expect(page).not_to have_content("No Items Checked Out")
 
-    expect(page).to have_content("Available Items to Check Out")
-    expect(page).to have_content("No Items Available")
+    expect(page).to have_content("Check Out Items")
+    expect(page).to have_content("No Items Items Yet")
   end
 
   it "sends a reminder" do

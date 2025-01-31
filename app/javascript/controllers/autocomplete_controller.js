@@ -7,6 +7,7 @@ export default class extends Controller {
   initialize() {
     this.search = this.search.bind(this)
     this.clearResults = this.clearResults.bind(this)
+    this.slowlyClearResults = this.slowlyClearResults.bind(this)
   }
 
   connect() {
@@ -15,13 +16,13 @@ export default class extends Controller {
 
     this.inputTarget.addEventListener("input", this.search)
     this.inputTarget.addEventListener("focus", this.search)
-    this.inputTarget.addEventListener("blur", this.clearResults)
+    this.inputTarget.addEventListener("blur", this.slowlyClearResults)
   }
 
   disconnect() {
     this.inputTarget.removeEventListener("input", this.search)
     this.inputTarget.removeEventListener("focus", this.search)
-    this.inputTarget.removeEventListener("blur", this.clearResults)
+    this.inputTarget.removeEventListener("blur", this.slowlyClearResults)
   }
 
   search() {
@@ -31,8 +32,11 @@ export default class extends Controller {
       return
     }
 
+    const url = new URL(this.urlValue, window.location.origin);
+    url.searchParams.set("q", query);
+
     // Fetch results from the provided URL with the query parameter
-    fetch(`${this.urlValue}?q=${encodeURIComponent(query)}`)
+    fetch(url.toString())
       .then(response => response.json())
       .then(data => {
         this.showResults(data.results)
@@ -63,6 +67,10 @@ export default class extends Controller {
 
   clearResults() {
     this.resultsTarget.innerHTML = ""
+  }
+
+  slowlyClearResults() {
+    setTimeout(this.clearResults, 200)
   }
 
   clearInput() {

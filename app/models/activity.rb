@@ -28,6 +28,8 @@ class Activity < ApplicationRecord
   belongs_to :actor, class_name: "Customer", optional: true
   belongs_to :facilitator, class_name: "AdminUser"
 
+  default_scope -> { order(occurred_at: :desc) }
+
   scope :matching_record_gid, ->(gid) {
     activities_table = Activity.arel_table
 

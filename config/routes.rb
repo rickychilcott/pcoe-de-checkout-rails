@@ -10,6 +10,11 @@ Rails.application.routes.draw do
       resources :reminders, only: [:new, :create], module: :customers
     end
 
+    scope "/cart" do
+      get :add_items, to: "cart#add_items", as: :cart_add_items
+      delete :remove_items, to: "cart#remove_items", as: :cart_remove_items
+    end
+
     resources :items, only: [:index, :show]
     resources :checkouts, only: [:index, :show]
   end
