@@ -9,17 +9,20 @@ class Avo::Filters::ItemStatusFilter < Avo::Filters::SelectFilter
       query.not_checked_out
     when "checked_out"
       query.checked_out
+    else
+      query
     end
   end
 
   def options
     {
+      all: "All",
       available: "Available",
       checked_out: "Checked Out"
     }
   end
 
   def default
-    "available"
+    "all"
   end
 end
