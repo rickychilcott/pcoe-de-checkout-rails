@@ -15,7 +15,7 @@ class CheckoutComponent < ApplicationComponent
 
   def link
     label(for: checkout_id) do
-      link_to(new_checkout_return_path(checkout), id: dom_id(checkout, :return), data: {turbo_frame: "_top"}) do
+      link_to(item_path(item), id: dom_id(checkout, :return), data: {turbo_frame: "_top"}, class: "ps-2") do
         plain "#{item_name} [#{customer_name}] due #{expected_return_on_phrase}"
       end
     end
@@ -23,13 +23,10 @@ class CheckoutComponent < ApplicationComponent
 
   def checkout_id = dom_id(checkout, :id)
 
-  def item_name
-    checkout.item.name
-  end
-
-  def customer_name
-    checkout.customer.name
-  end
+  delegate :item, to: :checkout
+  delegate :name, to: :item, prefix: true
+  delegate :customer, to: :checkout
+  delegate :name, to: :customer, prefix: true
 
   def expected_return_on_phrase
     if checkout.past_due?

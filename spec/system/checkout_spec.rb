@@ -60,7 +60,7 @@ RSpec.describe "Checkout Equipment", type: :system do
       find(css_id(laptop, :checkout)).click
     end
 
-    expect(page).to have_current_path(new_item_checkout_path(laptop))
+    expect(page).to have_current_path(item_path(laptop))
     expect(page).to have_content laptop.name
 
     # TODO - fill in the rest of the test

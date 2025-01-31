@@ -3,7 +3,7 @@ class Customers::ReturnsController < ApplicationController
 
   def create
     customer = Customer.find(params[:customer_id])
-    checkouts = resolved_policy_scope(Checkout).where(id: params[:checkout_ids])
+    checkouts = resolved_policy_scope(Checkout).where(id: params[:checkout_ids], customer:)
 
     checkouts.each { authorize _1, :return? }
 

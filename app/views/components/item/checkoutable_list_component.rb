@@ -32,10 +32,8 @@ class Item::CheckoutableListComponent < ApplicationComponent
           )
         end
 
-        form_row do
-          button(class: "btn btn-primary") do
-            plain "Check Out Items!"
-          end
+        button(class: "btn btn-primary px-4") do
+          plain "Check Out Items!"
         end
       end
     end

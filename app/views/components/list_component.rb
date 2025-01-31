@@ -6,7 +6,7 @@ class ListComponent < ApplicationComponent
   prop :fallback, String, reader: :private
 
   def view_template
-    ul(id:, class: "list-group") do
+    ul(id:, class: "list-group ms-2 pe-3") do
       if items.any?
         items.each do |item|
           list_item do
