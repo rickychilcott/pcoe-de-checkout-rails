@@ -25,6 +25,19 @@
           <span class="text-muted text-italic">None</span>
         <% end %>
       </div>
+
+      <div class="mt-3">
+        <strong>Images:</strong>
+        <% if item.images.any? %>
+          <div class="d-inline-flex mw-100">
+            <% item.images.each do |image| %>
+              <%= image_tag(image, width: "200px") %>
+            <% end %>
+          </div>
+        <% else %>
+          <span class="text-muted text-italic">None</span>
+        <% end %>
+      </div>
     <% end %>
   </div>
 

@@ -64,4 +64,16 @@ RSpec.describe Item, type: :model do
       )
     end
   end
+
+  describe "images" do
+    it "can have images" do
+      item = create(:item)
+      expect(item.images).to be_empty
+
+      image = File.open(Rails.root.join("spec", "fixtures", "files", "image.jpeg"))
+
+      item.images.attach(io: image, filename: "image.jpg", content_type: "image/jpg")
+      expect(item.images).not_to be_empty
+    end
+  end
 end

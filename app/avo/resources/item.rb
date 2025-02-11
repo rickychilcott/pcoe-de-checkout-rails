@@ -91,7 +91,7 @@ class Avo::Resources::Item < Avo::BaseResource
       record.children.count
     end
 
-    field :images, as: :files
+    field :images, as: :files, accept: "image/*", direct_upload: true, display_filename: false
 
     field :all_activities, as: :has_many, use_resource: Avo::Resources::Activity
     field :checkouts, as: :has_many

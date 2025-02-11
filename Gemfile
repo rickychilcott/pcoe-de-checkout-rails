@@ -4,6 +4,8 @@ ruby file: ".ruby-version"
 
 gem "active_interaction", "~> 5.3"
 gem "active_interaction-extras"
+gem "active_storage_validations"
+gem "activestorage"
 gem "ancestry"
 gem "avo", ">= 3.16"
 gem "avo-pro", ">= 3.2", source: "https://packager.dev/avo-hq/"

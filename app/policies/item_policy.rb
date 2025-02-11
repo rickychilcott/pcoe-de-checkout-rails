@@ -13,6 +13,12 @@ class ItemPolicy < ApplicationPolicy
 
   def upload_csv_file? = super_admin?
 
+  def upload_images? = super_admin? || in_group?
+
+  def download_images? = super_admin? || in_group?
+
+  def delete_images? = super_admin? || in_group?
+
   class Scope < ApplicationPolicy::Scope
     def resolve
       all_or_in_group

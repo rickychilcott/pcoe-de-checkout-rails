@@ -53,6 +53,7 @@ class Item < ApplicationRecord
   validates :qr_code_identifier, uniqueness: true, allow_blank: true
 
   has_many_attached :images
+  validates :images, content_type: /image\/.*\z/
   has_rich_text :description
 
   def all_activities
