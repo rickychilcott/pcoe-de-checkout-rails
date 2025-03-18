@@ -23,14 +23,20 @@ RSpec.describe Customer, type: :model do
   end
 
   it "requires PID, if student" do
-    expect(build(:customer, role: :student, pid: nil)).not_to be_valid
+    customer = build(:customer, role: :student, pid: nil)
+    expect(customer).not_to be_valid
+    expect(customer.errors.full_messages.to_sentence).to include("PID can't be blank")
   end
 
   it "doesn't require PID, if not student" do
-    expect(build(:customer, role: :faculty_staff, pid: nil)).to be_valid
+    customer = build(:customer, role: :faculty_staff, pid: nil)
+    expect(customer).to be_valid
+    expect(customer.errors.full_messages.to_sentence).to be_empty
   end
 
   it "enforces PID format if provided and faculty/staff" do
-    expect(build(:customer, role: :faculty_staff, pid: "P123")).not_to be_valid
+    customer = build(:customer, role: :faculty_staff, pid: "P123")
+    expect(customer).not_to be_valid
+    expect(customer.errors.full_messages.to_sentence).to include("PID must be a valid PID")
   end
 end

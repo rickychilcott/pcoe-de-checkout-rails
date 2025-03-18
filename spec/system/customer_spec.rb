@@ -89,6 +89,7 @@ RSpec.describe "Customer", type: :system do
     customer = build(:customer, name: "Sally Smith", role: :student)
     fill_in "Name", with: customer.name
     fill_in "Ohio ID", with: customer.ohio_id
+    select "Student", from: "Role"
     fill_in "PID", with: customer.pid
     click_on "Create Customer"
 
@@ -102,5 +103,30 @@ RSpec.describe "Customer", type: :system do
     expect(Customer.first.ohio_id).to eq(customer.ohio_id)
     expect(Customer.first.pid).to eq(customer.pid)
     expect(Customer.first.role).to eq(customer.role)
+  end
+
+  it "allows an admin to create a faculty/staff" do
+    admin_user = create(:admin_user, password: "abcd1234")
+
+    sign_in admin_user
+    visit new_customer_path
+
+    fill_in "Name", with: "John Doe"
+    fill_in "Ohio ID", with: "ab123456"
+    select "Faculty or Staff", from: "Role"
+    fill_in "PID", with: ""
+    click_on "Create Customer"
+
+    expect(page).to have_content("John Doe")
+    expect(page).to have_content("ab123456")
+    expect(page).to have_content("Faculty or Staff")
+
+    expect(page).to have_content("Checkouts")
+
+    expect(Customer.count).to eq(1)
+    expect(Customer.first.name).to eq("John Doe")
+    expect(Customer.first.ohio_id).to eq("ab123456")
+    expect(Customer.first.role).to eq("faculty_staff")
+    expect(Customer.first.pid).to be_blank
   end
 end
