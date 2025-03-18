@@ -21,8 +21,6 @@ class FlashMessagesComponent < ApplicationComponent
     end
   end
 
-  private
-
   FLASH_TYPES = Set[:alert, :notice, :error, :success].freeze
   BOOTSTRAP_CLASSES = {
     alert: "warning",

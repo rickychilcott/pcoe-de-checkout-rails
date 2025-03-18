@@ -33,16 +33,16 @@ class ItemsController < ApplicationController
     render locals: {item:, current_checkout:}
   end
 
+  ALLOWED_AUTOCOMPLETE_CLASSES = [
+    Items::AutocompleteNavigateComponent,
+    Items::AutocompleteAddComponent
+  ].map { |klass| [klass.name, klass] }.to_h.freeze
+
   private
 
   def only_not_checked_out?
     params[:filter] == "not_checked_out"
   end
-
-  ALLOWED_AUTOCOMPLETE_CLASSES = [
-    Items::AutocompleteNavigateComponent,
-    Items::AutocompleteAddComponent
-  ].map { |klass| [klass.name, klass] }.to_h.freeze
 
   def autocomplete_component_class
     ALLOWED_AUTOCOMPLETE_CLASSES.fetch(params[:autocomplete_class], Items::AutocompleteNavigateComponent)
