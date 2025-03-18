@@ -37,7 +37,7 @@ class AdminUser < ApplicationRecord
   has_many :groups, through: :admin_groups
   has_many :facilitated_activities, foreign_key: :facilitator_id, dependent: :nullify, class_name: "Activity"
 
-  def title = "#{record.name} [#{record.email}]"
+  def title = "#{name} [#{email}]"
 
   # override Devise's password_required? method
   def password_required? = new_record? || changing_password?

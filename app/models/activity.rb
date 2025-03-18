@@ -85,4 +85,8 @@ class Activity < ApplicationRecord
       records
         .map { _1.to_global_id.to_s }
   end
+
+  def occurred_on
+    occurred_at.to_date
+  end
 end
