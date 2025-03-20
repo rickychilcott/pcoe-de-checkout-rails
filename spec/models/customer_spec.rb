@@ -39,4 +39,10 @@ RSpec.describe Customer, type: :model do
     expect(customer).not_to be_valid
     expect(customer.errors.full_messages.to_sentence).to include("PID must be a valid PID")
   end
+
+  it "doesn't care about uniqueness of PID if faculty/staff" do
+    create(:customer, role: :faculty_staff, pid: "")
+    customer = build(:customer, role: :faculty_staff, pid: "")
+    expect(customer).to be_valid
+  end
 end

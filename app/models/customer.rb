@@ -24,12 +24,13 @@ class Customer < ApplicationRecord
 
   validates :name, presence: true
   validates :ohio_id, presence: true, uniqueness: true
-  validates :pid, presence: {if: :student?}, uniqueness: :pid?, format: {with: PID_REGEX, if: :pid?, message: "must be a valid PID (i.e. P123456789)"}
+  validates :pid, presence: {if: :student?}, uniqueness: {if: :pid?}, format: {with: PID_REGEX, if: :pid?, message: "must be a valid PID (i.e. P123456789)"}
 
   has_many :reservations
   has_many :checkouts
   has_many :current_checkouts, -> { checked_out }, class_name: "Checkout"
   has_many :acted_activities, foreign_key: :actor_id, dependent: :nullify, class_name: "Activity"
+  normalizes :pid, with: ->(value) { value.presence&.upcase&.strip }
 
   has_rich_text :notes
 
