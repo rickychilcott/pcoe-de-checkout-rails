@@ -1,0 +1,357 @@
+id,checked_out_ohio_id,,KeyCode,Key#,serial_number,name,description,group_name,location_name,,,,,Code,Location
+10000,adamsw1 ,Key,15B1,12,15B1-12,Key 15B1-12,DO Back Door,Keys,Home,,,,,15,Master
+10001,adamsw1 ,Key,15B8,3,15B8-3,Key 15B8-3,102R,Keys,Home,,,,,15B15,104
+10002,attaway,Key,15F20,1,15F20-1,Key 15F20-1,225F,Keys,Home,,,,,15B1,DO Back Door
+10003,attaway,Key,15F,10,15F-10,Key 15F-10,CTOP Suite,Keys,Home,,,,,15D,SA Suite
+10004,baileyc1,Key,15B17,1,15B17-1,Key 15B17-1,102I,Keys,Home,,,,,15D13,SA& UB
+10005,baileyc1,Key,15B1,2,15B1-2,Key 15B1-2,DO Back Door,Keys,Home,,,,,15B23,Dissertation
+10006,demkob,Key,15B19,2,15B19-2,Key 15B19-2,102E,Keys,Home,,,,,15C,HCS Suite
+10007,demkob,Key,15B1,3,15B1-3,Key 15B1-3,DO Back Door,Keys,Home,,,,,15C15,Back Storage Kitchen
+10008,harrisl1,Key,15H22,1,15H22-1,Key 15H22-1,309W,Keys,Home,,,,,15E,RSP Suite
+10009,harrisl1,Key,15B3,3,15B3-3,Key 15B3-3,102H,Keys,Home,,,,,15G,SLC Suite
+10010,harrisl1,Key,15B1,8,15B1-8,Key 15B1-8,DO Back Door,Keys,Home,,,,,15B27,Storage 237
+10011,helfrich,Key,15B5,1,15B5-1,Key 15B5-1,102L,Keys,Home,,,,,15F,CTOP Suite
+10012,helfrich,Key,15B2,7,15B2-7,Key 15B2-7,102F,Keys,Home,,,,,15F9,238
+10013,helfrich,Key,15,13,15-13,Key 15-13,,Keys,Home,,,,,15F8,240
+10014,lydic,Key,15,2,15-2,Key 15-2,,Keys,Home,,,,,15F7,242
+10015,martinj2,Key,15B10,2,15B10-2,Key 15B10-2,102S,Keys,Home,,,,,15F10,Exp Lab
+10016,martinj2,Key,15B8,2,15B8-2,Key 15B8-2,102R,Keys,Home,,,,,15H2,220
+10017,martinj2,Key,15B1,4,15B1-4,Key 15B1-4,DO Back Door,Keys,Home,,,,,15K,ES Suite
+10018,meekse,Key,6E1,2015,6E1-2015,Key 6E1-2015,OHIO Classroom,Keys,Home,,,,,15K1,ES Back Door
+10019,nguyend4,Key,15S4,2,15S4-2,Key 15S4-2,432C,Keys,Home,,,,,15H,TE Suite
+10020,nguyend4,Key,15S1,1,15S1-1,Key 15S1-1,CHE Back Door,Keys,Home,,,,,15J,OCEMS Suite
+10021,patterc1,Key,15B2,1,15B2-1,Key 15B2-1,102F,Keys,Home,,,,,15H40,335/335A
+10022,patterc1,Key,15B29,10,15B29-10,Key 15B29-10,Seminar Rooms,Keys,Home,,,,,15H39,331/331A
+10023,ricer,Key,15B4,3,15B4-3,Key 15B4-3,102J,Keys,Home,,,,,15S,CHE Suite
+10024,ricer,Key,15B1,13,15B1-13,Key 15B1-13,DO Back Door,Keys,Home,,,,,15S1,CHE Back Door
+10025,lawrenck,Key,6E1,2579,6E1-2579,Key 6E1-2579,OHIO Classroom,Keys,Home,,,,,15T,Hill Center Master
+10026,watsonh,Key,15,7,15-7,Key 15-7,,Keys,Home,,,,,15N,CTOP Annex
+10027,watsonh,Key,6E1,,6E1-,Key 6E1-,OHIO Classroom,Keys,Home,,,,,15K24,Stat Lab 434
+10028,backese,Key,15F16,3,15F16-3,Key 15F16-3,225B,Keys,Home,,,,,15B29,Seminar Rooms
+10029,backese,Key,15F20,2,15F20-2,Key 15F20-2,225F,Keys,Home,,,,,15M,PDS Master
+10030,backese,Key,15F17,3,15F17-3,Key 15F17-3,225C,Keys,Home,,,,,15L1,CORAS Suite 
+10031,backese,Key,15F21,2,15F21-2,Key 15F21-2,225D,Keys,Home,,,,,15C1,Kitchen - Textile Labs
+10032,backese,Key,15F19,2,15F19-2,Key 15F19-2,225G,Keys,Home,,,,,15B22,102A
+10033,backese,Key,15F18,3,15F18-3,Key 15F18-3,225E,Keys,Home,,,,,15B21,102B -102C
+10034,backese,Key,15F16,2,15F16-2,Key 15F16-2,225B,Keys,Home,,,,,15B20,102D
+10035,backese,Key,15F,7,15F-7,Key 15F-7,CTOP Suite,Keys,Home,,,,,15B19,102E
+10036,backese,Key,15F17,1,15F17-1,Key 15F17-1,225C,Keys,Home,,,,,15B2,102F
+10037,backese,Key,15F17,2,15F17-2,Key 15F17-2,225C,Keys,Home,,,,,15B18,102G
+10038,backese,Key,15F17,,15F17-,Key 15F17-,225C,Keys,Home,,,,,15B3,102H
+10039,bhatc,Key,15S7,3,15S7-3,Key 15S7-3,432F,Keys,Home,,,,,15B17,102I
+10040,bhatc,Key,15S1,8,15S1-8,Key 15S1-8,CHE Back Door,Keys,Home,,,,,15B4,102J
+10041,davist,Key,15B28,1,15B28-1,Key 15B28-1,324,Keys,Home,,,,,15B12,102K
+10042,davist,Key,6E1,2023,6E1-2023,Key 6E1-2023,OHIO Classroom,Keys,Home,,,,,15B5,102L
+10043,erby,Key,15T2,3,15T2-3,Key 15T2-3,437A,Keys,Home,,,,,15B11,102M
+10044,erby,Key,15T4,3,15T4-3,Key 15T4-3,437C,Keys,Home,,,,,15B6,102N
+10045,erby,Key,15T3,3,15T3-3,Key 15T3-3,437B,Keys,Home,,,,,15B7,102O/102P
+10046,erby,Key,15T5,3,15T5-3,Key 15T5-3,437D,Keys,Home,,,,,15B8,102R
+10047,erby,Key,15T6,2,15T6-2,Key 15T6-2,437E,Keys,Home,,,,,15B10,102S
+10048,erby,Key,15T7,1,15T7-1,Key 15T7-1,437F,Keys,Home,,,,,15B9,102T
+10049,erby,Key,15T8,3,15T8-3,Key 15T8-3,437G,Keys,Home,,,,,15B16,102U
+10050,erby,Key,15T9,2,15T9-2,Key 15T9-2,437H,Keys,Home,,,,,15B14,102W
+10051,erby,Key,15T10,3,15T10-3,Key 15T10-3,437J,Keys,Home,,,,,15B13,102Y
+10052,erby,Key,15T13,3,15T13-3,Key 15T13-3,437K,Keys,Home,,,,,15D22,103B
+10053,foremant,Key,15S8,3,15S8-3,Key 15S8-3,432G,Keys,Home,,,,,15D21,103C
+10054,foremant,Key,15S12,4,15S12-4,Key 15S12-4,432L,Keys,Home,,,,,15D20,103D
+10055,foremant,Key,15S1,3,15S1-3,Key 15S1-3,CHE Back Door,Keys,Home,,,,,15D19,103E
+10056,foremant,Key,15T2,1,15T2-1,Key 15T2-1,437A,Keys,Home,,,,,15D18,103F
+10057,harrisol,Key,15S2,3,15S2-3,Key 15S2-3,432A,Keys,Home,,,,,15D17,103G
+10058,harrisol,Key,15B29,13,15B29-13,Key 15B29-13,Seminar Rooms,Keys,Home,,,,,15D16,103H
+10059,harrisol,Key,15N2,,15N2-,Key 15N2-,400A,Keys,Home,,,,,15D15,103J
+10060,mcclais1,Key,15S6,2,15S6-2,Key 15S6-2,432E,Keys,Home,,,,,15D5,103K
+10061,mcclais1,Key,15C9,3,15C9-3,Key 15C9-3,121F,Keys,Home,,,,,15D6,103L
+10062,mcclais1,Key,15S,1,15S-1,Key 15S-1,CHE Suite,Keys,Home,,,,,15D12,103M
+10063,mcclais1,Key,15C,1,15C-1,Key 15C-1,HCS Suite,Keys,Home,,,,,15D7,103N
+10064,mcclais1,Key,15B23,8,15B23-8,Key 15B23-8,Dissertation,Keys,Home,,,,,15D11,103P
+10065,middletr,Key,15,8,15-8,Key 15-8,,Keys,Home,,,,,15D8,103Q
+10066,middletr,Key,6E1,2560,6E1-2560,Key 6E1-2560,OHIO Classroom,Keys,Home,,,,,15D10,103R
+10067,middletr,Key,15B5,2,15B5-2,Key 15B5-2,102L,Keys,Home,,,,,15D9,103S
+10068,middletr,Key,15S10,3,15S10-3,Key 15S10-3,432J,Keys,Home,,,,,15C12,121A
+10069,middletr,Key,15S1,10,15S1-10,Key 15S1-10,CHE Back Door,Keys,Home,,,,,15C13,121B
+10070,matherp,Key,15S3,1,15S3-1,Key 15S3-1,432B,Keys,Home,,,,,15C11,121C
+10071,matherp,Key,15S1,3,15S1-3,Key 15S1-3,CHE Back Door,Keys,Home,,,,,15C14,121D
+10072,matherp,Key,15H40,19,15H40-19,Key 15H40-19,335/335A,Keys,Home,,,,,15C10,121E
+10073,cosswell,Key,15H39,16,15H39-16,Key 15H39-16,331/331A,Keys,Home,,,,,15C9,121F
+10074,okumu,Key,15S16,2,15S16-2,Key 15S16-2,432R,Keys,Home,,,,,15C8,121G
+10075,pillay,Key,15S14,2,15S14-2,Key 15S14-2,432M,Keys,Home,,,,,15C7,121H
+10076,pillay,Key,15T2,2,15T2-2,Key 15T2-2,437A,Keys,Home,,,,,15C3,121J
+10077,pillay,Key,15S1,4,15S1-4,Key 15S1-4,CHE Back Door,Keys,Home,,,,,15C2,121K
+10078,robinsoh,Key,15S5,2,15S5-2,Key 15S5-2,432D,Keys,Home,,,,,15C18,121L
+10079,robinsoh,Key,15T4,1,15T4-1,Key 15T4-1,437C,Keys,Home,,,,,15C4,121M
+10080,robinsoh,Key,15S1,12,15S1-12,Key 15S1-12,CHE Back Door,Keys,Home,,,,,15C5,121N
+10081,lisau,Key,15S11,2,15S11-2,Key 15S11-2,432K,Keys,Home,,,,,15C6,121Q
+10082,lisau,Key,6E1,2040,6E1-2040,Key 6E1-2040,OHIO Classroom,Keys,Home,,,,,15C16,123
+10083,willifor,Key,15S9,3,15S9-3,Key 15S9-3,432H,Keys,Home,,,,,15D2,125A
+10084,willifor,Key,15S1,2,15S1-2,Key 15S1-2,CHE Back Door,Keys,Home,,,,,15D3,125B
+10085,yangl,Key,15S18,7,15S18-7,Key 15S18-7,432T,Keys,Home,,,,,15D14,125C
+10086,yangl,Key,15S13,,15S13-,Key 15S13-,432N,Keys,Home,,,,,15D4,125D
+10087,yangl,Key,15S18,5,15S18-5,Key 15S18-5,432T,Keys,Home,,,,,15B24,127
+10088,yangl,Key,15S1,7,15S1-7,Key 15S1-7,CHE Back Door,Keys,Home,,,,,15E3,202A
+10089,yangl,Key,15S18,1,15S18-1,Key 15S18-1,432T,Keys,Home,,,,,15E4,202B
+10090,yangl,Key,15H39,11,15H39-11,Key 15H39-11,331/331A,Keys,Home,,,,,15E2,202C
+10091,ahmeda,Key,15H12,11,15H12-11,Key 15H12-11,309L,Keys,Home,,,,,15E5,202D
+10092,ahmeda,Key,15H25,1,15H25-1,Key 15H25-1,309AA,Keys,Home,,,,,15E6,202F
+10093,andersa1,Key,15H11,3,15H11-3,Key 15H11-3,309J,Keys,Home,,,,,15E7,202G
+10094,andersa1,Key,15H39,9,15H39-9,Key 15H39-9,331/331A,Keys,Home,,,,,15E16,202H
+10095,francisj,Key,15G8,1,15G8-1,Key 15G8-1,218J,Keys,Home,,,,,15E8,202J
+10096,francisj,Key,15G,1,15G-1,Key 15G-1,SLC Suite,Keys,Home,,,,,15E15,202K
+10097,francisj,Key,15G6,2,15G6-2,Key 15G6-2,218F,Keys,Home,,,,,15E9,202L
+10098,bates,Key,15H10,2,15H10-2,Key 15H10-2,309H,Keys,Home,,,,,15E14,202M
+10099,bates,Key,15H12,6,15H12-6,Key 15H12-6,309L,Keys,Home,,,,,15E10,202N
+10100,dani,Key,15H39,2,15H39-2,Key 15H39-2,331/331A,Keys,Home,,,,,15E13,202P
+10101,dani,Key,15H29,1,15H29-1,Key 15H29-1,309EE,Keys,Home,,,,,15E11,202Q
+10102,dani,Key,15H,4,15H-4,Key 15H-4,TE Suite,Keys,Home,,,,,15E12,202R
+10103,doppen,Key,15H15,3,15H15-3,Key 15H15-3,309P,Keys,Home,,,,,15E17,202S
+10104,doppen,Key,15H15,2,15H15-2,Key 15H15-2,309P,Keys,Home,,,,,15E18,202T
+10105,doppen,Key,15B29,1,15B29-1,Key 15B29-1,Seminar Rooms,Keys,Home,,,,,15E19,202U
+10106,doppen,Key,15H26,2,15H26-2,Key 15H26-2,309BB,Keys,Home,,,,,15E20,202V
+10107,doppen,Key,15H26,1,15H26-1,Key 15H26-1,309BB,Keys,Home,,,,,15E21,202W
+10108,elaskyw,Key,15H23,2,15H23-2,Key 15H23-2,309Y,Keys,Home,,,,,15E22,202X
+10109,elaskyw,Key,15H23,3,15H23-3,Key 15H23-3,309Y,Keys,Home,,,,,15E23,202Y
+10110,elaskyw,Key,6E1,2558,6E1-2558,Key 6E1-2558,OHIO Classroom,Keys,Home,,,,,15F2,203
+10111,feeneyd,Key,15H6,2,15H6-2,Key 15H6-2,309D,Keys,Home,,,,,15F3,204
+10112,foleyg,Key,15B29,3,15B29-3,Key 15B29-3,Seminar Rooms,Keys,Home,,,,,15F4,205
+10113,foleyg,Key,15J5,1,15J5-1,Key 15J5-1,321D,Keys,Home,,,,,15F5,206
+10114,foleyg,Key,15J6,1,15J6-1,Key 15J6-1,321E,Keys,Home,,,,,15F6,207
+10115,foleyg,Key,15J7,6,15J7-6,Key 15J7-6,321F,Keys,Home,,,,,15G2,218A
+10116,foleyg,Key,15J4,2,15J4-2,Key 15J4-2,321C,Keys,Home,,,,,15G3,218B
+10117,foleyg,Key,15H40,4,15H40-4,Key 15H40-4,335/335A,Keys,Home,,,,,15G4,218C
+10118,at737719,Key,15J7,1,15J7-1,Key 15J7-1,321F,Keys,Home,,,,,15G5,218D
+10119,os005910,Key,15J7,1,15J7-1,Key 15J7-1,321F,Keys,Home,,,,,15G10,218E
+10120,os005910,Key,15J4,3,15J4-3,Key 15J4-3,321C,Keys,Home,,,,,15G6,218F
+10121,ea428815,Key,15J7,5,15J7-5,Key 15J7-5,321F,Keys,Home,,,,,15G7,218G
+10122,ha333415,Key,15J7,3,15J7-3,Key 15J7-3,321F,Keys,Home,,,,,15G8,218J
+10123,db497117,Key,15J7,2,15J7-2,Key 15J7-2,321F,Keys,Home,,,,,15G9,218K
+10124,felton,Key,15H19,1,15H19-1,Key 15H19-1,309T,Keys,Home,,,,,15C17,221A
+10125,felton,Key,15J2,1,15J2-1,Key 15J2-1,321A,Keys,Home,,,,,15F16,225B
+10126,felton,Key,15J6,4,15J6-4,Key 15J6-4,321E,Keys,Home,,,,,15F17,225C
+10127,felton,Key,15H40,1,15H40-1,Key 15H40-1,335/335A,Keys,Home,,,,,15F21,225D
+10128,felton,Key,15H40,23,15H40-23,Key 15H40-23,335/335A,Keys,Home,,,,,15F18,225E
+10129,felton,Key,15H40,26,15H40-26,Key 15H40-26,335/335A,Keys,Home,,,,,15F20,225F
+10130,felton,Key,15J4,6,15J4-6,Key 15J4-6,321C,Keys,Home,,,,,15F19,225G
+10131,felton,Key,15J4,4,15J4-4,Key 15J4-4,321C,Keys,Home,,,,,15F11,227
+10132,felton,Key,15J4,5,15J4-5,Key 15J4-5,321C,Keys,Home,,,,,15F12,228
+10133,gagneg,Key,15G3,2,15G3-2,Key 15G3-2,218B,Keys,Home,,,,,15F13,229A
+10134,jj621414,Key,15G3,2,15G3-2,Key 15G3-2,218B,Keys,Home,,,,,15F14,230A
+10135,geist,Key,15H32,3,15H32-3,Key 15H32-3,309HH,Keys,Home,,,,,15F15,231
+10136,geist,Key,15H2,3,15H2-3,Key 15H2-3,220,Keys,Home,,,,,15B26,243
+10137,goff,Key,15H20,2,15H20-2,Key 15H20-2,309U,Keys,Home,,,,,15B64,244A
+10138,gibbst1,Key,15H36,3,15H36-3,Key 15H36-3,309MM,Keys,Home,,,,,15K2,302A
+10139,gut,Key,15H28,3,15H28-3,Key 15H28-3,309DD,Keys,Home,,,,,15K3,302B
+10140,gut,Key,15H12,3,15H12-3,Key 15H12-3,309L,Keys,Home,,,,,15K4,302C
+10141,gut,Key,15H,3,15H-3,Key 15H-3,TE Suite,Keys,Home,,,,,15K5,302D
+10142,hall-jon,Key,6E1,2050,6E1-2050,Key 6E1-2050,OHIO Classroom,Keys,Home,,,,,15K6,302E
+10143,hall-jon,Key,15H39,4,15H39-4,Key 15H39-4,331/331A,Keys,Home,,,,,15K7,302F
+10144,hallman,Key,15H18,2,15H18-2,Key 15H18-2,309S,Keys,Home,,,,,15K8,302G
+10145,hallman,Key,6E1,2677,6E1-2677,Key 6E1-2677,OHIO Classroom,Keys,Home,,,,,15K9,302H
+10146,hallman,Key,15H40,9,15H40-9,Key 15H40-9,335/335A,Keys,Home,,,,,15K10,302J
+10147,hareh,Key,6E1,,6E1-,Key 6E1-,OHIO Classroom,Keys,Home,,,,,15K11,302K
+10148,hartmans,Key,15H31,2,15H31-2,Key 15H31-2,309GG,Keys,Home,,,,,15K12,302L
+10149,hartmans,Key,15H14,3,15H14-3,Key 15H14-3,309N,Keys,Home,,,,,15K13,302M
+10150,hartmans,Key,15B27,3,15B27-3,Key 15B27-3,Storage 237,Keys,Home,,,,,15K14,302N
+10151,kh426613,Key,15H40,14,15H40-14,Key 15H40-14,335/335A,Keys,Home,,,,,15K15,302P
+10152,lhoisington@athenscsd.org,Key,15H13,4,15H13-4,Key 15H13-4,309M,Keys,Home,,,,,15K16,302Q
+10153,huang.s.1,Key,15H34,2,15H34-2,Key 15H34-2,309KK,Keys,Home,,,,,15K17,302R
+10154,huang.s.1,Key,6E1,2056,6E1-2056,Key 6E1-2056,OHIO Classroom,Keys,Home,,,,,15K18,302S
+10155,huang.s.1,Key,15H39,14,15H39-14,Key 15H39-14,331/331A,Keys,Home,,,,,15K19,302T
+10156,jungj,Key,15H30,3,15H30-3,Key 15H30-3,309FF,Keys,Home,,,,,15K20,302U
+10157,jungj,Key,15H12,1,15H12-1,Key 15H12-1,309L,Keys,Home,,,,,15K21,302V
+10158,kennedyc,Key,15H35,2,15H35-2,Key 15H35-2,309LL,Keys,Home,,,,,15K22,302W
+10159,keiferm1,Key,15M2,2,15M2-2,Key 15M2-2,WebCast Studio,Keys,Home,,,,,15K23,302X
+10160,keiferm1,Key,15D2,1,15D2-1,Key 15D2-1,125A,Keys,Home,,,,,15H3,309A
+10161,keiferm1,Key,15J7,2,15J7-2,Key 15J7-2,321F,Keys,Home,,,,,15H4,309B
+10162,koestler,Key,15J2,3,15J2-3,Key 15J2-3,321A,Keys,Home,,,,,15H5,309C
+10163,koestler,Key,15J3,2,15J3-2,Key 15J3-2,321B,Keys,Home,,,,,15H6,309D
+10164,koestler,Key,15J6,2,15J6-2,Key 15J6-2,321E,Keys,Home,,,,,15H7,309E
+10165,koestler,Key,15J7,4,15J7-4,Key 15J7-4,321F,Keys,Home,,,,,15H8,309F
+10166,koestler,Key,15H40,3,15H40-3,Key 15H40-3,335/335A,Keys,Home,,,,,15H9,309G
+10167,koestler,Key,15J,1,15J-1,Key 15J-1,OCEMS Suite,Keys,Home,,,,,15H10,309H
+10168,kopish,Key,15H17,2,15H17-2,Key 15H17-2,309R,Keys,Home,,,,,15H12,309L
+10169,kopish,Key,15B29,1,15B29-1,Key 15B29-1,Seminar Rooms,Keys,Home,,,,,15H11,309J
+10170,loibl,Key,15G5,3,15G5-3,Key 15G5-3,218D,Keys,Home,,,,,15H13,309M
+10171,loibl,Key,15G,2,15G-2,Key 15G-2,SLC Suite,Keys,Home,,,,,15H14,309N
+10172,martinj8,Key,15H3,1,15H3-1,Key 15H3-1,309A,Keys,Home,,,,,15H15,309P
+10173,martinj8,Key,15B27,1,15B27-1,Key 15B27-1,Storage 237,Keys,Home,,,,,15H16,309Q
+10174,martinj8,Key,15H40,21,15H40-21,Key 15H40-21,335/335A,Keys,Home,,,,,15H17,309R
+10175,martinj8,Key,15H,2,15H-2,Key 15H-2,TE Suite,Keys,Home,,,,,15H18,309S
+10176,martinj8,Key,15J,3,15J-3,Key 15J-3,OCEMS Suite,Keys,Home,,,,,15H19,309T
+10177,martinj8,Key,15B29,6,15B29-6,Key 15B29-6,Seminar Rooms,Keys,Home,,,,,15H20,309U
+10178,martinj8,Key,15B29,7,15B29-7,Key 15B29-7,Seminar Rooms,Keys,Home,,,,,15H21,309V
+10179,martinj8,Key,15H39,15,15H39-15,Key 15H39-15,331/331A,Keys,Home,,,,,15H22,309W
+10180,martinj8,Key,6E1,2708,6E1-2708,Key 6E1-2708,OHIO Classroom,Keys,Home,,,,,15H23,309Y
+10181,martinj8,Key,15C8,2,15C8-2,Key 15C8-2,121G,Keys,Home,,,,,15H24,309Z
+10182,mc408393,Key,15G3,1,15G3-1,Key 15G3-1,218B,Keys,Home,,,,,15H25,309AA
+10183,mooneyd,Key,15J3,1,15J3-1,Key 15J3-1,321B,Keys,Home,,,,,15H26,309BB
+10184,mooneyd,Key,15H39,6,15H39-6,Key 15H39-6,331/331A,Keys,Home,,,,,15H27,309CC
+10185,mooneyd,Key,15H,,15H-,Key 15H-,TE Suite,Keys,Home,,,,,15H28,309DD
+10186,mooneyd,Key,15J,5,15J-5,Key 15J-5,OCEMS Suite,Keys,Home,,,,,15H29,309EE
+10187,mooneyd,Key,15H40,6,15H40-6,Key 15H40-6,335/335A,Keys,Home,,,,,15H30,309FF
+10188,mooneyd,Key,15B27,4,15B27-4,Key 15B27-4,Storage 237,Keys,Home,,,,,15H31,309GG
+10189,mooneyd,Key,15B23,9,15B23-9,Key 15B23-9,Dissertation,Keys,Home,,,,,15H32,309HH
+10190,mooneyd,Key,15G,,15G-,Key 15G-,SLC Suite,Keys,Home,,,,,15H33,309JJ
+10191,newtonj,Key,15H8,2,15H8-2,Key 15H8-2,309F,Keys,Home,,,,,15H34,309KK
+10192,noelb,Key,15H7,3,15H7-3,Key 15H7-3,309E,Keys,Home,,,,,15H35,309LL
+10193,nolan,Key,15H34,1,15H34-1,Key 15H34-1,309KK,Keys,Home,,,,,15H36,309MM
+10194,nolan,Key,15G9,2,15G9-2,Key 15G9-2,218K,Keys,Home,,,,,15H37,309NN
+10195,payne,Key,15D18,3,15D18-3,Key 15D18-3,103F,Keys,Home,,,,,15H38,309PP
+10196,pigman,Key,6E1,2036,6E1-2036,Key 6E1-2036,OHIO Classroom,Keys,Home,,,,,15J2,321A
+10197,pigman,Key,15H5,2,15H5-2,Key 15H5-2,309C,Keys,Home,,,,,15J3,321B
+10198,rawls,Key,15H,6,15H-6,Key 15H-6,TE Suite,Keys,Home,,,,,15J4,321C
+10199,rawls,Key,15H33,1,15H33-1,Key 15H33-1,309JJ,Keys,Home,,,,,15J5,321D
+10200,rawls,Key,15M2,3,15M2-3,Key 15M2-3,WebCast Studio,Keys,Home,,,,,15J6,321E
+10201,rawls,Key,15M3,1,15M3-1,Key 15M3-1,WebCast Ctrl Rm,Keys,Home,,,,,15J7,321F
+10202,maherm,Key,15H25,3,15H25-3,Key 15H25-3,309AA,Keys,Home,,,,,15L2,322A
+10203,maherm,Key,15H9,1,15H9-1,Key 15H9-1,309G,Keys,Home,,,,,15B28,324
+10204,skon,Key,15H37,1,15H37-1,Key 15H37-1,309NN,Keys,Home,,,,,15N2,400A
+10205,skon,Key,15G6,1,15G6-1,Key 15G6-1,218F,Keys,Home,,,,,15N3,400B
+10206,stepp,Key,6E1,2734,6E1-2734,Key 6E1-2734,OHIO Classroom,Keys,Home,,,,,15R3,403
+10207,stepp,Key,15H39,10,15H39-10,Key 15H39-10,331/331A,Keys,Home,,,,,15P2,406A
+10208,stittb,Key,15G6,3,15G6-3,Key 15G6-3,218F,Keys,Home,,,,,15R1,408
+10209,jh859394,Key,15H40,12,15H40-12,Key 15H40-12,335/335A,Keys,Home,,,,,15R2,410
+10210,jh859394,Key,15J7,10,15J7-10,Key 15J7-10,321F,Keys,Home,,,,,15S2,432A
+10211,wentworl,Key,15H16,3,15H16-3,Key 15H16-3,309Q,Keys,Home,,,,,15S3,432B
+10212,wentworl,Key,15H14,1,15H14-1,Key 15H14-1,309N,Keys,Home,,,,,15S4,432C
+10213,wentworl,Key,15H39,20,15H39-20,Key 15H39-20,331/331A,Keys,Home,,,,,15S5,432D
+10214,any.wolfe,Key,15H38,1,15H38-1,Key 15H38-1,309PP,Keys,Home,,,,,15S6,432E
+10215,wolfel2,Key,15J4,7,15J4-7,Key 15J4-7,321C,Keys,Home,,,,,15S7,432F
+10216,woodsb,Key,15G3,3,15G3-3,Key 15G3-3,218B,Keys,Home,,,,,15S8,432G
+10217,woodsb,Key,15B29,8,15B29-8,Key 15B29-8,Seminar Rooms,Keys,Home,,,,,15S9,432H
+10218,allanson,Key,15E4,2,15E4-2,Key 15E4-2,202B,Keys,Home,,,,,15S10,432J
+10219,carrd,Key,15E13,3,15E13-3,Key 15E13-3,202P,Keys,Home,,,,,15S11,432K
+10220,carrd,Key,15E9,,15E9-,Key 15E9-,202L,Keys,Home,,,,,15S12,432L
+10221,cinquepm,Key,15B29,2,15B29-2,Key 15B29-2,Seminar Rooms,Keys,Home,,,,,15S14,432M
+10222,cinquepm,Key,15E2,2,15E2-2,Key 15E2-2,202C,Keys,Home,,,,,15S13,432N
+10223,cinquepm,Key,15E,4,15E-4,Key 15E-4,RSP Suite,Keys,Home,,,,,15S15,432P
+10224,cinquepm,Key,6E1,,6E1-,Key 6E1-,OHIO Classroom,Keys,Home,,,,,15S16,432R
+10225,cinquepm,Key,15C,5,15C-5,Key 15C-5,HCS Suite,Keys,Home,,,,,15S17,432S
+10226,crowlej1,Key,15E5,1,15E5-1,Key 15E5-1,202D,Keys,Home,,,,,15S18,432T
+10227,crowlej1,Key,6E1,2009,6E1-2009,Key 6E1-2009,OHIO Classroom,Keys,Home,,,,,15S21,432U
+10228,harveys3,Key,15E10,3,15E10-3,Key 15E10-3,202N,Keys,Home,,,,,15S19,432V
+10229,amachamer,Key,15E15,3,15E15-3,Key 15E15-3,202K,Keys,Home,,,,,15S20,432W
+10230,amachamer,Key,15H39,3,15H39-3,Key 15H39-3,331/331A,Keys,Home,,,,,15M2,WebCast Studio
+10231,martinc2,Key,15E6,2,15E6-2,Key 15E6-2,202F,Keys,Home,,,,,15M3,WebCast Ctrl Rm
+10232,martinc2,Key,15B29,11,15B29-11,Key 15B29-11,Seminar Rooms,Keys,Home,,,,,15T2,437A
+10233,martinc2,Key,15E,2,15E-2,Key 15E-2,RSP Suite,Keys,Home,,,,,15T3,437B
+10234,martinc2,Key,15E2,1,15E2-1,Key 15E2-1,202C,Keys,Home,,,,,15T4,437C
+10235,martinc2,Key,15E12,3,15E12-3,Key 15E12-3,202R,Keys,Home,,,,,15T5,437D
+10236,oh,Key,15E7,2,15E7-2,Key 15E7-2,202G,Keys,Home,,,,,15T6,437E
+10237,ambrozy,Key,15C6,1,15C6-1,Key 15C6-1,121Q,Keys,Home,,,,,15T7,437F
+10238,brownd14,Key,15E23,2,15E23-2,Key 15E23-2,202Y,Keys,Home,,,,,15T8,437G
+10239,choih,Key,15C3,3,15C3-3,Key 15C3-3,121J,Keys,Home,,,,,15T9,437H
+10240,choih,Key,15E9,1,15E9-1,Key 15E9-1,202L,Keys,Home,,,,,15T10,437J
+10241,choih,Key,15H40,2,15H40-2,Key 15H40-2,335/335A,Keys,Home,,,,,15T13,437K
+10242,chens5,Key,15E21,2,15E21-2,Key 15E21-2,202W,Keys,Home,,,,,15T11,437L
+10243,chens5,Key,15C7,4,15C7-4,Key 15C7-4,121H,Keys,Home,,,,,15T12,437M
+10244,chens5,Key,15B29,5,15B29-5,Key 15B29-5,Seminar Rooms,Keys,Home,,,,,6E1,OHIO Classroom
+10245,diebel,Key,15E14,3,15E14-3,Key 15E14-3,202M,Keys,Home,,,,,,
+10246,diebel,Key,15C15,7,15C15-7,Key 15C15-7,Back Storage Kitchen,Keys,Home,,,,,,
+10247,gannont,Key,15E19,2,15E19-2,Key 15E19-2,202U,Keys,Home,,,,,,
+10248,gannont,Key,15C16,3,15C16-3,Key 15C16-3,123,Keys,Home,,,,,,
+10249,gannont,Key,15C1,9,15C1-9,Key 15C1-9,Kitchen - Textile Labs,Keys,Home,,,,,,
+10250,gannont,Key,15C12,3,15C12-3,Key 15C12-3,121A,Keys,Home,,,,,,
+10251,poaps,Key,15E16,1,15E16-1,Key 15E16-1,202H,Keys,Home,,,,,,
+10252,poaps,Key,15H39,7,15H39-7,Key 15H39-7,331/331A,Keys,Home,,,,,,
+10253,noh,Key,15C8,1,15C8-1,Key 15C8-1,121G,Keys,Home,,,,,,
+10254,noh,Key,15E3,3,15E3-3,Key 15E3-3,202A,Keys,Home,,,,,,
+10255,richarm4,Key,15C14,3,15C14-3,Key 15C14-3,121D,Keys,Home,,,,,,
+10256,richarm4,Key,15C14,1,15C14-1,Key 15C14-1,121D,Keys,Home,,,,,,
+10257,richarm4,Key,15C16,1,15C16-1,Key 15C16-1,123,Keys,Home,,,,,,
+10258,richarm4,Key,15C16,2,15C16-2,Key 15C16-2,123,Keys,Home,,,,,,
+10259,richarm4,Key,15B29,4,15B29-4,Key 15B29-4,Seminar Rooms,Keys,Home,,,,,,
+10260,richarm4,Key,15C11,3,15C11-3,Key 15C11-3,121C,Keys,Home,,,,,,
+10261,richarm4,Key,15C15,1,15C15-1,Key 15C15-1,Back Storage Kitchen,Keys,Home,,,,,,
+10262,richarm4,Key,15C15,2,15C15-2,Key 15C15-2,Back Storage Kitchen,Keys,Home,,,,,,
+10263,richarm4,Key,15C15,8,15C15-8,Key 15C15-8,Back Storage Kitchen,Keys,Home,,,,,,
+10264,richarm4,Key,15C15,5,15C15-5,Key 15C15-5,Back Storage Kitchen,Keys,Home,,,,,,
+10265,richarm4,Key,15C18,4,15C18-4,Key 15C18-4,121L,Keys,Home,,,,,,
+10266,richarm4,Key,15S21,1,15S21-1,Key 15S21-1,432U,Keys,Home,,,,,,
+10267,richarm4,Key,15S21,5,15S21-5,Key 15S21-5,432U,Keys,Home,,,,,,
+10268,richarm4,Key,15S21,10,15S21-10,Key 15S21-10,432U,Keys,Home,,,,,,
+10269,richarm4,Key,15S21,9,15S21-9,Key 15S21-9,432U,Keys,Home,,,,,,
+10270,richarm4,Key,15S21,2,15S21-2,Key 15S21-2,432U,Keys,Home,,,,,,
+10271,richarm4,Key,15S21,3,15S21-3,Key 15S21-3,432U,Keys,Home,,,,,,
+10272,richarm4,Key,15S21,13,15S21-13,Key 15S21-13,432U,Keys,Home,,,,,,
+10273,richarm4,Key,15S21,12,15S21-12,Key 15S21-12,432U,Keys,Home,,,,,,
+10274,stevent3,Key,15E13,3,15E13-3,Key 15E13-3,202P,Keys,Home,,,,,,
+10275,stevent3,Key,15C18,2,15C18-2,Key 15C18-2,121L,Keys,Home,,,,,,
+10276,stevent3,Key,15C15,3,15C15-3,Key 15C15-3,Back Storage Kitchen,Keys,Home,,,,,,
+10277,stevent3,Key,15C1,2,15C1-2,Key 15C1-2,Kitchen - Textile Labs,Keys,Home,,,,,,
+10278,szolosi,Key,15E18,7,15E18-7,Key 15E18-7,202T,Keys,Home,,,,,,
+10279,szolosi,Key,15E18,6,15E18-6,Key 15E18-6,202T,Keys,Home,,,,,,
+10280,szolosi,Key,15E18,5,15E18-5,Key 15E18-5,202T,Keys,Home,,,,,,
+10281,szolosi,Key,15E22,2,15E22-2,Key 15E22-2,202X,Keys,Home,,,,,,
+10282,szolosi,Key,15E11,1,15E11-1,Key 15E11-1,202Q,Keys,Home,,,,,,
+10283,szolosi,Key,15H40,20,15H40-20,Key 15H40-20,335/335A,Keys,Home,,,,,,
+10284,wardrand,Key,15K18,2,15K18-2,Key 15K18-2,302S,Keys,Home,,,,,,
+10285,wardrand,Key,15K24,2,15K24-2,Key 15K24-2,Stat Lab 434,Keys,Home,,,,,,
+10286,wardrand,Key,15K24,4,15K24-4,Key 15K24-4,Stat Lab 434,Keys,Home,,,,,,
+10287,wardrand,Key,15K24,5,15K24-5,Key 15K24-5,Stat Lab 434,Keys,Home,,,,,,
+10288,wardrand,Key,15K24,9,15K24-9,Key 15K24-9,Stat Lab 434,Keys,Home,,,,,,
+10289,wardrand,Key,15K24,13,15K24-13,Key 15K24-13,Stat Lab 434,Keys,Home,,,,,,
+10290,vanderve,Key,15E8,2,15E8-2,Key 15E8-2,202J,Keys,Home,,,,,,
+10291,vanderve,Key,15E8,2,15E8-2,Key 15E8-2,202J,Keys,Home,,,,,,
+10292,vanderve,Key,15C10,7,15C10-7,Key 15C10-7,121E,Keys,Home,,,,,,
+10293,vanderve,Key,15B29,17,15B29-17,Key 15B29-17,Seminar Rooms,Keys,Home,,,,,,
+10294,vanderve,Key,15H39,4,15H39-4,Key 15H39-4,331/331A,Keys,Home,,,,,,
+10295,willial6,Key,15E22,5,15E22-5,Key 15E22-5,202X,Keys,Home,,,,,,
+10296,willial6,Key,15C1,3,15C1-3,Key 15C1-3,Kitchen - Textile Labs,Keys,Home,,,,,,
+10297,ca239521,Key,15D19,2057,15D19-2057,Key 15D19-2057,103E,Keys,Home,,,,,,
+10298,kbowald,Key,6E1,1,6E1-1,Key 6E1-1,OHIO Classroom,Keys,Home,,,,,,
+10299,kbowald,Key,6E1,1,6E1-1,Key 6E1-1,OHIO Classroom,Keys,Home,,,,,,
+10300,coonm,Key,6E1,2,6E1-2,Key 6E1-2,OHIO Classroom,Keys,Home,,,,,,
+10301,coonm,Key,6E1,3,6E1-3,Key 6E1-3,OHIO Classroom,Keys,Home,,,,,,
+10302,krubl,Key,6E1,2,6E1-2,Key 6E1-2,OHIO Classroom,Keys,Home,,,,,,
+10303,krubl,Key,6E1,8,6E1-8,Key 6E1-8,OHIO Classroom,Keys,Home,,,,,,
+10304,krubl,Key,6E1,10,6E1-10,Key 6E1-10,OHIO Classroom,Keys,Home,,,,,,
+10305,krubl,Key,6E1,1,6E1-1,Key 6E1-1,OHIO Classroom,Keys,Home,,,,,,
+10306,krubl,Key,6E1,1,6E1-1,Key 6E1-1,OHIO Classroom,Keys,Home,,,,,,
+10307,fanning,Key,6E1,1,6E1-1,Key 6E1-1,OHIO Classroom,Keys,Home,,,,,,
+10308,fanning,Key,6E1,3,6E1-3,Key 6E1-3,OHIO Classroom,Keys,Home,,,,,,
+10309,fanning,Key,6E1,1,6E1-1,Key 6E1-1,OHIO Classroom,Keys,Home,,,,,,
+10310,freemac2,Key,6E1,8,6E1-8,Key 6E1-8,OHIO Classroom,Keys,Home,,,,,,
+10311,haskellk,Key,6E1,6,6E1-6,Key 6E1-6,OHIO Classroom,Keys,Home,,,,,,
+10312,haskellk,Key,6E1,1,6E1-1,Key 6E1-1,OHIO Classroom,Keys,Home,,,,,,
+10313,leeg,Key,6E1,1,6E1-1,Key 6E1-1,OHIO Classroom,Keys,Home,,,,,,
+10314,mott,Key,6E1,4,6E1-4,Key 6E1-4,OHIO Classroom,Keys,Home,,,,,,
+10315,mott,Key,6E1,1,6E1-1,Key 6E1-1,OHIO Classroom,Keys,Home,,,,,,
+10316,kn287720,Key,6E1,2,6E1-2,Key 6E1-2,OHIO Classroom,Keys,Home,,,,,,
+10317,parham,Key,6E1,1,6E1-1,Key 6E1-1,OHIO Classroom,Keys,Home,,,,,,
+10318,parham,Key,6E1,3,6E1-3,Key 6E1-3,OHIO Classroom,Keys,Home,,,,,,
+10319,plummer,Key,6E1,3,6E1-3,Key 6E1-3,OHIO Classroom,Keys,Home,,,,,,
+10320,plummer,Key,6E1,,6E1-,Key 6E1-,OHIO Classroom,Keys,Home,,,,,,
+10321,plummer,Key,15B29,3,15B29-3,Key 15B29-3,Seminar Rooms,Keys,Home,,,,,,
+10322,schabel,Key,15D18,1,15D18-1,Key 15D18-1,103F,Keys,Home,,,,,,
+10323,schabel,Key,15D14,1,15D14-1,Key 15D14-1,125C,Keys,Home,,,,,,
+10324,asimpson,Key,15D11,1,15D11-1,Key 15D11-1,103P,Keys,Home,,,,,,
+10325,ha333415,Key,15F8,3,15F8-3,Key 15F8-3,240,Keys,Home,,,,,,
+10326,sp812517,Key,15F18,1,15F18-1,Key 15F18-1,225E,Keys,Home,,,,,,
+10327,weekley,Key,15N,1,15N-1,Key 15N-1,CTOP Annex,Keys,Home,,,,,,
+10328,weekley,Key,15F19,1,15F19-1,Key 15F19-1,225G,Keys,Home,,,,,,
+10329,weekley,Key,15F10,3,15F10-3,Key 15F10-3,Exp Lab,Keys,Home,,,,,,
+10330,weekley,Key,15F,8,15F-8,Key 15F-8,CTOP Suite,Keys,Home,,,,,,
+10331,weekley,Key,15B23,2,15B23-2,Key 15B23-2,Dissertation,Keys,Home,,,,,,
+10332,weekley,Key,15B28,6,15B28-6,Key 15B28-6,324,Keys,Home,,,,,,
+10333,weekley,Key,15C15,2,15C15-2,Key 15C15-2,Back Storage Kitchen,Keys,Home,,,,,,
+10334,weekley,Key,15H2,6,15H2-6,Key 15H2-6,220,Keys,Home,,,,,,
+10335,weekley,Key,15H40,22,15H40-22,Key 15H40-22,335/335A,Keys,Home,,,,,,
+10336,weekley,Key,15H39,13,15H39-13,Key 15H39-13,331/331A,Keys,Home,,,,,,
+10337,weekley,Key,15D,3,15D-3,Key 15D-3,SA Suite,Keys,Home,,,,,,
+10338,weekley,Key,15C,3,15C-3,Key 15C-3,HCS Suite,Keys,Home,,,,,,
+10339,weekley,Key,15E,1,15E-1,Key 15E-1,RSP Suite,Keys,Home,,,,,,
+10340,weekley,Key,15H,5,15H-5,Key 15H-5,TE Suite,Keys,Home,,,,,,
+10341,weekley,Key,15K,2,15K-2,Key 15K-2,ES Suite,Keys,Home,,,,,,
+10342,weekley,Key,15S,3,15S-3,Key 15S-3,CHE Suite,Keys,Home,,,,,,
+10343,weekley,Key,15G,4,15G-4,Key 15G-4,SLC Suite,Keys,Home,,,,,,
+10344,weekley,Key,15T,2,15T-2,Key 15T-2,Hill Center Master,Keys,Home,,,,,,
+10345,weekley,Key,15S1,14,15S1-14,Key 15S1-14,CHE Back Door,Keys,Home,,,,,,
+10346,weekley,Key,15F18,2,15F18-2,Key 15F18-2,225E,Keys,Home,,,,,,
+10347,weekley,Key,6E1,2685,6E1-2685,Key 6E1-2685,OHIO Classroom,Keys,Home,,,,,,
+10348,weekley,Key,15M2,1,15M2-1,Key 15M2-1,WebCast Studio,Keys,Home,,,,,,
+10349,weekley,Key,15M3,2,15M3-2,Key 15M3-2,WebCast Ctrl Rm,Keys,Home,,,,,,
+10350,weekley,Key,15F17,7,15F17-7,Key 15F17-7,225C,Keys,Home,,,,,,
+10351,weekley,Key,15B27,11,15B27-11,Key 15B27-11,Storage 237,Keys,Home,,,,,,
+10352,weekley,Key,15F7,4,15F7-4,Key 15F7-4,242,Keys,Home,,,,,,
+10353,weekley,Key,15B29,14,15B29-14,Key 15B29-14,Seminar Rooms,Keys,Home,,,,,,
+10354,weekley,Key,15B29,1,15B29-1,Key 15B29-1,Seminar Rooms,Keys,Home,,,,,,
+10355,weekley,Key,15F17,4,15F17-4,Key 15F17-4,225C,Keys,Home,,,,,,

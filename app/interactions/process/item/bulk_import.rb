@@ -43,7 +43,7 @@ class Process::Item::BulkImport < ApplicationInteraction
     @locations = []
 
     cleaned_rows
-      .map { _1["location_name"].strip }
+      .map { _1["location_name"]&.strip }
       .compact
       .uniq
       .each { |name| @locations << Location.find_or_create_by!(name:) }
@@ -59,7 +59,7 @@ class Process::Item::BulkImport < ApplicationInteraction
     @groups = []
 
     cleaned_rows
-      .map { _1["group_name"].strip }
+      .map { _1["group_name"]&.strip }
       .compact
       .uniq
       .each { |name| @groups << Group.find_or_create_by!(name:) }
@@ -88,6 +88,7 @@ class Process::Item::BulkImport < ApplicationInteraction
 
   def conform_rows!
     cleaned_rows.each do |row_data|
+      row_data["id"] = row_data.delete("id").presence
       row_data["location"] = location_by_name(row_data.delete("location_name"))
       row_data["group"] = group_by_name(row_data.delete("group_name"))
       row_data["parent"] = item_by_id(row_data.delete("parent_item_id"))
@@ -96,25 +97,27 @@ class Process::Item::BulkImport < ApplicationInteraction
   end
 
   def update_and_create_items!
-    updating_items, new_items = cleaned_rows.partition { _1["id"].present? }
+    saving, errors =
+      cleaned_rows.map do |row_data|
+        item = Item.find_or_initialize_by(id: row_data["id"])
 
-    updating_items.each do |row_data|
-      id = row_data["id"]
+        item.assign_attributes(row_data.without("id"))
 
-      unless (item = item_by_id(id))
-        errors.add(:base, "Item with ID #{id} not found")
-        next
-      end
-      item.update!(row_data)
-      @resulting_items << item
+        item
+      end.partition { _1.valid? }
+
+    errors.each do |error|
+      errors.add(:base, error.errors.full_messages.join(", "))
     end
 
-    new_items.each do |row_data|
-      @resulting_items <<
-        Item.create!(
-          row_data.without("id")
-        )
-    end
+    return if errors.any?
+
+    saving_new, saving_existing = saving.partition { _1.id.blank? }
+
+    saving_existing.each(&:save!)
+    saving_new.each(&:save!)
+
+    @resulting_items = saving
   end
 
   def log_activities!

@@ -46,5 +46,16 @@ RSpec.describe Process::Item::BulkImport, type: :model do
 
       expect(Location.exists?(name: "Another")).to be_truthy
     end
+
+    it "nutso import" do
+      admin_user = create(:admin_user)
+
+      csv_file = File.open("spec/fixtures/files/big-items-import.csv")
+      outcome = described_class.run(csv_file:, imported_by: admin_user)
+
+      expect(outcome).to be_valid
+
+      expect(Item.count).to eq 356
+    end
   end
 end
