@@ -91,6 +91,7 @@ class Process::Item::BulkImport < ApplicationInteraction
       row_data["location"] = location_by_name(row_data.delete("location_name"))
       row_data["group"] = group_by_name(row_data.delete("group_name"))
       row_data["parent"] = item_by_id(row_data.delete("parent_item_id"))
+      row_data["description"] = ConvertMarkdown.run!(text: row_data.delete("description") || "")
     end
   end
 

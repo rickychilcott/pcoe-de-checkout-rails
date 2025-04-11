@@ -56,6 +56,7 @@ RSpec.describe Item, type: :model do
           "id",
           "name",
           "serial_number",
+          "description",
           "location_name",
           "qr_code_identifier",
           "group_name",

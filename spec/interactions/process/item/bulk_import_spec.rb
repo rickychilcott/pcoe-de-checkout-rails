@@ -5,10 +5,9 @@ RSpec.describe Process::Item::BulkImport, type: :model do
     it "can import" do
       admin_user = create(:admin_user)
 
-      create(:item, id: 1, name: "Existing Item")
+      first_item = create(:item, id: 1, name: "Existing Item")
       expect(Location.count).to eq 1
       expect(Group.count).to eq 1
-      first_item = Item.find(1)
       expect(first_item.group.name).not_to eq("Default")
       expect(first_item.location.name).not_to eq("House")
 
@@ -35,6 +34,7 @@ RSpec.describe Process::Item::BulkImport, type: :model do
       expect(first_item.qr_code_identifier).to eq("c1111")
       expect(first_item.group.name).to eq("Default")
       expect(first_item.location.name).to eq("House")
+      expect(first_item.description.to_plain_text).to eq("RSPCS\n\nPatton 202B\n\n3-0812")
 
       # Allows Importing Parented Item
       parented_item = Item.find_by(name: "Parented Item")

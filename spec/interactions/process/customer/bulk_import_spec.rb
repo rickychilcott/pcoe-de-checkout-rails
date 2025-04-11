@@ -20,6 +20,7 @@ RSpec.describe Process::Customer::BulkImport, type: :model do
       expect(existing_customer.role).to eq("student")
       expect(existing_customer.ohio_id).to eq("aa111111")
       expect(existing_customer.pid).to eq("P000000001")
+      expect(existing_customer.notes.to_plain_text).to eq("RSPCS\n\nPatton 202B\n\n3-0812")
 
       # Creates New Customer
       new_customer = Customer.find_by(ohio_id: "bb222222")

@@ -67,10 +67,13 @@ class Item < ApplicationRecord
   def self.importable_column_names
     column_names
       .insert_before("group_id", "group_name")
+      .without("group_id")
       .insert_before("location_id", "location_name")
+      .without("location_id")
+      .insert_before("location_name", "description")
       .insert_before("ancestry", "parent_item_id")
-      .without("group_id", "location_id")
-      .without("created_at", "updated_at", "ancestry")
+      .without("ancestry")
+      .without("created_at", "updated_at")
   end
 
   def qr_code_as_png

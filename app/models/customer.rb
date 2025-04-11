@@ -41,7 +41,7 @@ class Customer < ApplicationRecord
   end
 
   def self.importable_column_names
-    column_names.without("id", "created_at", "updated_at")
+    column_names.without("id", "created_at", "updated_at").append("notes")
   end
 
   def self.ransackable_attributes(auth_object = nil)

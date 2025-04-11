@@ -39,6 +39,8 @@ class Process::Customer::BulkImport < ApplicationInteraction
   def conform_rows!
     cleaned_rows.each do |row_data|
       row_data["role"] = role_by_name(row_data.delete("role"))
+
+      row_data["notes"] = ConvertMarkdown.run!(text: row_data.delete("notes") || "")
     end
   end
 

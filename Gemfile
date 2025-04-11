@@ -11,6 +11,7 @@ gem "avo", ">= 3.16"
 gem "avo-pro", ">= 3.2", source: "https://packager.dev/avo-hq/"
 gem "bootsnap", require: false
 gem "chartkick"
+gem "commonmarker"
 gem "csv"
 gem "devise", "~> 4.9"
 gem "enumerize"
