@@ -43,18 +43,19 @@ class Avo::Resources::Customer < Avo::BaseResource
   end
 
   def fields
-    field :name, as: :text, link_to_record: true
+    field :name, as: :text, link_to_record: true, sortable: true
     field :role, as: :select,
       options: Customer.role.options,
       default: Customer.role.default_value,
       required: true,
-      placeholder: "Select a role"
+      placeholder: "Select a role",
+      sortable: true
 
-    field :ohio_id, as: :text, copyable: true
+    field :ohio_id, as: :text, copyable: true, sortable: true
     field :email, as: :text, copyable: true, as_html: true do
       link_to record.email, "mailto:#{record.email}"
     end
-    field :pid, as: :text, placeholder: "P123456789", copyable: true, visible: -> { authorize current_admin_user, Customer, :show_pid?, raise_exception: false }
+    field :pid, as: :text, placeholder: "P123456789", copyable: true, visible: -> { authorize current_admin_user, Customer, :show_pid?, raise_exception: false }, sortable: true
     field :checked_out_item_count, as: :number, readonly: true
     field :past_due_item_count, as: :number, readonly: true
 

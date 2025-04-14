@@ -47,12 +47,12 @@ class Avo::Resources::Item < Avo::BaseResource
   }
 
   def fields
-    field :name, as: :text, link_to_record: true
+    field :name, as: :text, link_to_record: true, sortable: true
     field :description, as: :trix, always_show: true
 
-    field :location, as: :belongs_to
-    field :group, as: :belongs_to
-    field :status, as: :badge, options: {success: [:available], danger: [:past_due], warning: [:checked_out]}
+    field :location, as: :belongs_to, sortable: true
+    field :group, as: :belongs_to, sortable: true
+    field :status, as: :badge, options: {success: [:available], danger: [:past_due], warning: [:checked_out]}, sortable: true
 
     field :parent_id,
       as: :select,
