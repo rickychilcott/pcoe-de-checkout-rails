@@ -15,13 +15,22 @@ class Avo::Actions::ImportItems < Avo::BaseAction
 
   def fields
     field :csv_file, as: :file
+    field :default_return_date, as: :date, default: -> { 1.month.from_now.to_date }
   end
 
   def handle(query:, fields:, current_user:, resource:, **args)
-    outcome = Process::Item::BulkImport.run(csv_file: fields[:csv_file], imported_by: current_user)
+    outcome =
+      Process::Item::BulkImport
+        .run(
+          csv_file: fields[:csv_file],
+          imported_by: current_user,
+          default_return_date: fields[:default_return_date]
+        )
 
     if outcome.valid?
-      succeed "#{outcome.result.size} items imported successfully"
+      success_message = "#{outcome.resulting_items.size} items imported successfully"
+      success_message += " and #{outcome.resulting_checkouts.size} checkouts created successfully" if outcome.resulting_checkouts.any?
+      succeed success_message
       close_modal
     else
       error "Error: #{outcome.errors.full_messages.join(", ")}"

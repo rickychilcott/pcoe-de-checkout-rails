@@ -8,21 +8,27 @@ class Process::Item::Checkout < ApplicationInteraction
   date :expected_return_on
 
   def execute
+    created = false
+
     checkout =
       Checkout
-        .create!(
+        .find_or_create_by!(
           item:,
-          customer:,
-          checked_out_by:,
-          checked_out_at:,
-          expected_return_on:
-        )
+          customer:
+        ) do |checkout|
+          created = true
+          checkout.checked_out_by = checked_out_by
+          checkout.checked_out_at = checked_out_at
+          checkout.expected_return_on = expected_return_on
+        end
 
-    item.record_activity!(
-      :item_checked_out,
-      actor: customer,
-      facilitator: checked_out_by
-    )
+    if created
+      item.record_activity!(
+        :item_checked_out,
+        actor: customer,
+        facilitator: checked_out_by
+      )
+    end
 
     checkout
   end

@@ -9,11 +9,14 @@ class Process::Item::BulkImport < ApplicationInteraction
 
   file :csv_file
   object :imported_by, class: "AdminUser"
+  date :default_return_date, default: nil
   validates :csv_file, presence: true
 
   def execute
-    @resulting_items = []
+    self.default_return_date ||= 1.month.from_now.to_date
 
+    @resulting_items = []
+    @resulting_checkouts = []
     clean_rows!
     build_locations!
     build_groups!
@@ -21,19 +24,22 @@ class Process::Item::BulkImport < ApplicationInteraction
     conform_rows!
     update_and_create_items!
     log_activities!
-
+    checkout_items!
     resulting_items
   end
 
+  attr_reader :resulting_items, :resulting_checkouts
+
   private
 
-  attr_reader :resulting_items, :existing_items, :cleaned_rows, :locations, :groups
+  attr_reader :existing_items, :cleaned_rows, :locations, :groups
 
   def clean_rows!
     @cleaned_rows = []
 
     CSV.foreach(csv_file, headers: true) do |row|
       row_data = row.to_h.slice(*Item.importable_column_names)
+      row_data["raw_row"] = row.to_h
 
       @cleaned_rows << row_data
     end
@@ -101,8 +107,11 @@ class Process::Item::BulkImport < ApplicationInteraction
       cleaned_rows.map do |row_data|
         item = Item.find_or_initialize_by(id: row_data["id"])
 
-        item.assign_attributes(row_data.without("id"))
+        item.assign_attributes(
+          row_data.without("id", "raw_row")
+        )
 
+        row_data["raw_row"]["item"] = item
         item
       end.partition { _1.valid? }
 
@@ -130,6 +139,28 @@ class Process::Item::BulkImport < ApplicationInteraction
           import_identifier:
         }
       )
+    end
+  end
+
+  def checkout_items!
+    cleaned_rows.each do |row_data|
+      raw_row = row_data["raw_row"] || {}
+      next unless raw_row["checked_out_ohio_id"].present?
+
+      checked_out_ohio_id = raw_row.dig("checked_out_ohio_id").strip
+      customer = Customer.find_by(ohio_id: checked_out_ohio_id)
+      next unless customer.present?
+
+      item = raw_row.dig("item")
+      return_date = raw_row.dig("expected_return_date") || default_return_date
+
+      @resulting_checkouts <<
+        Process::Item::Checkout.run!(
+          item:,
+          customer:,
+          checked_out_by: imported_by,
+          expected_return_on: return_date
+        )
     end
   end
 

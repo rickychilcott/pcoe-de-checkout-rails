@@ -25,4 +25,22 @@ RSpec.describe Process::Item::Checkout, type: :model do
     expect(activity.action).to eq("item_checked_out")
     expect(activity.records).to include(item)
   end
+
+  it "returns the existing checkout if it exists" do
+    group = create(:group)
+    admin_user = create(:admin_user)
+    admin_user.groups << group
+    admin_user.save!
+
+    customer = create(:customer)
+    item = create(:item, group:)
+
+    new_checkout = described_class.run!(item:, customer:, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
+    expect(Activity.count).to eq(1)
+
+    existing_checkout = described_class.run!(item:, customer:, expected_return_on: 3.days.from_now.to_date, checked_out_by: admin_user)
+
+    expect(existing_checkout).to eq(new_checkout)
+    expect(Activity.count).to eq(1)
+  end
 end

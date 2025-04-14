@@ -1,5 +1,5 @@
-id,checked_out_ohio_id,,KeyCode,Key#,serial_number,name,description,group_name,location_name,,,,,Code,Location
-10000,adamsw1 ,Key,15B1,12,15B1-12,Key 15B1-12,DO Back Door,Keys,Home,,,,,15,Master
+id,checked_out_ohio_id,,KeyCode,Key#,serial_number,name,description,group_name,location_name,,,,,Code,Location,expected_return_date
+10000,adamsw1 ,Key,15B1,12,15B1-12,Key 15B1-12,DO Back Door,Keys,Home,,,,,15,Master,2028-05-14
 10001,adamsw1 ,Key,15B8,3,15B8-3,Key 15B8-3,102R,Keys,Home,,,,,15B15,104
 10002,attaway,Key,15F20,1,15F20-1,Key 15F20-1,225F,Keys,Home,,,,,15B1,DO Back Door
 10003,attaway,Key,15F,10,15F-10,Key 15F-10,CTOP Suite,Keys,Home,,,,,15D,SA Suite
@@ -29,7 +29,7 @@ id,checked_out_ohio_id,,KeyCode,Key#,serial_number,name,description,group_name,l
 10027,watsonh,Key,6E1,,6E1-,Key 6E1-,OHIO Classroom,Keys,Home,,,,,15K24,Stat Lab 434
 10028,backese,Key,15F16,3,15F16-3,Key 15F16-3,225B,Keys,Home,,,,,15B29,Seminar Rooms
 10029,backese,Key,15F20,2,15F20-2,Key 15F20-2,225F,Keys,Home,,,,,15M,PDS Master
-10030,backese,Key,15F17,3,15F17-3,Key 15F17-3,225C,Keys,Home,,,,,15L1,CORAS Suite 
+10030,backese,Key,15F17,3,15F17-3,Key 15F17-3,225C,Keys,Home,,,,,15L1,CORAS Suite
 10031,backese,Key,15F21,2,15F21-2,Key 15F21-2,225D,Keys,Home,,,,,15C1,Kitchen - Textile Labs
 10032,backese,Key,15F19,2,15F19-2,Key 15F19-2,225G,Keys,Home,,,,,15B22,102A
 10033,backese,Key,15F18,3,15F18-3,Key 15F18-3,225E,Keys,Home,,,,,15B21,102B -102C
