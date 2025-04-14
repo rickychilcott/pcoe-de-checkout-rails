@@ -23,8 +23,13 @@ class ActivityComponent < ApplicationComponent
   private
 
   delegate :action, :actor, :facilitator, :occurred_at, :records, to: :activity
-  delegate :title, to: :actor, prefix: true
   delegate :name, to: :facilitator, prefix: true
+
+  def actor_title
+    return "N/A" if activity.actor_id.blank?
+
+    actor.title
+  end
 
   def upper(&)
     div(class: "fs-6", &)
