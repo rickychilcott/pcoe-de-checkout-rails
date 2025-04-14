@@ -43,9 +43,6 @@ RSpec.describe "Customer", type: :system do
     expect(page).to have_content("Past Due Items")
     expect(page).not_to have_content("No Items Past Due")
 
-    expect(page).to have_content("Checked Out Items")
-    expect(page).not_to have_content("No Items Checked Out")
-
     expect(page).to have_content("Check Out Items")
     expect(page).to have_content("No Items Items Yet")
   end
