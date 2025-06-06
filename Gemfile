@@ -26,7 +26,7 @@ gem "puma", ">= 5.0"
 gem "pundit", "~> 2.4"
 gem "rails", "~> 7.2"
 gem "ransack", "~> 4.2"
-gem "rqrcode", "~> 2.0"
+gem "rqrcode", "~> 3.0"
 gem "solid_queue", "~> 1.0"
 gem "sprockets-rails"
 gem "sqlite3", "~> 1.4"
@@ -38,7 +38,7 @@ group :development, :test do
   gem "brakeman", "~> 7.0"
   gem "debug", platforms: %i[mri windows]
   gem "letter_opener"
-  gem "rspec-rails", "~> 7.0"
+  gem "rspec-rails", "~> 8.0"
   gem "rspec-retry"
   gem "i18n-tasks"
 end
