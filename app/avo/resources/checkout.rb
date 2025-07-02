@@ -83,6 +83,10 @@ class Avo::Resources::Checkout < Avo::BaseResource
     field :returned_by, as: :belongs_to, readonly: true
   end
 
+  def actions
+    action Avo::Actions::ExportActivities
+  end
+
   def filters
     filter Avo::Filters::CheckoutStatusFilter
   end
