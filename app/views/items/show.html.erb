@@ -49,7 +49,7 @@
       ) %>
     <% else %>
       <%= render AlertComponent.new(
-        label: "Item is checked out",
+        label: "Item is checked out. Due on #{current_checkout.expected_return_on} (#{current_checkout.expected_return_on_text})",
         bg_variant: BsVariant::Danger
       ) %>
 
