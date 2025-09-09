@@ -30,9 +30,9 @@ class Avo::Resources::Item < Avo::BaseResource
     query: -> do
       query
         .ransack(
-          name_cont: params[:q],
-          serial_number_cont: params[:q],
-          qr_code_identifier_cont: params[:q],
+          name_cont: q,
+          serial_number_cont: q,
+          qr_code_identifier_cont: q,
           m: "or"
         )
         .result(distinct: false)

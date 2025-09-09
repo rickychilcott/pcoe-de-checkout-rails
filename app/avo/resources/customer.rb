@@ -22,20 +22,20 @@ class Avo::Resources::Customer < Avo::BaseResource
     query: -> do
       query
         .ransack(
-          name_cont: params[:q],
-          ohio_id_cont: params[:q],
+          name_cont: q,
+          ohio_id_cont: q,
           m: "or"
         )
         .result(distinct: false)
     end,
     item: -> do
-            {
-              title: record.title,
-              description: record.notes.to_plain_text.truncate(130)
-              # image_url: main_app.url_for(record.cover_photo),
-              # image_format: :rounded
-            }
-          end
+      {
+        title: record.title,
+        description: record.notes.to_plain_text.truncate(130)
+        # image_url: main_app.url_for(record.cover_photo),
+        # image_format: :rounded
+      }
+    end
   }
 
   def actions

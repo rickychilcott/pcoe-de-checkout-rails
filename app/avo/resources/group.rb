@@ -14,7 +14,7 @@ class Avo::Resources::Group < Avo::BaseResource
     query: -> do
       query
         .ransack(
-          name_cont: params[:q],
+          name_cont: q,
           m: "or"
         )
         .result(distinct: false)

@@ -34,20 +34,20 @@ class Avo::Resources::Checkout < Avo::BaseResource
     query: -> do
       query
         .ransack(
-          customer_name_cont: params[:q],
-          item_name_cont: params[:q],
+          customer_name_cont: q,
+          item_name_cont: q,
           m: "or"
         )
         .result(distinct: false)
     end,
     item: -> do
-            {
-              title: record.title,
-              description: "Expected Return: #{record.expected_return_on_text}"
-              # image_url: (main_app.url_for(record.cover_photo) if record.cover_photo?),
-              # image_format: :rounded
-            }
-          end
+      {
+        title: record.title,
+        description: "Expected Return: #{record.expected_return_on_text}"
+        # image_url: (main_app.url_for(record.cover_photo) if record.cover_photo?),
+        # image_format: :rounded
+      }
+    end
   }
 
   def fields
@@ -85,5 +85,9 @@ class Avo::Resources::Checkout < Avo::BaseResource
 
   def filters
     filter Avo::Filters::CheckoutStatusFilter
+  end
+
+  def actions
+    action Avo::Actions::CustomCreateNewCheckout, arguments: -> { {record_gid: record.to_gid.to_s} }
   end
 end

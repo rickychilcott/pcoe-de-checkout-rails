@@ -29,20 +29,17 @@ class Avo::Resources::AdminUser < Avo::BaseResource
     query: -> do
       query
         .ransack(
-          name_cont: params[:q],
-          email_cont: params[:q],
+          name_cont: q,
+          email_cont: q,
           m: "or"
         )
         .result(distinct: false)
     end,
     item: -> do
-            {
-              title: record.title
-              # description: ActionView::Base.full_sanitizer.sanitize(record.body).truncate(130),
-              # image_url: main_app.url_for(record.cover_photo),
-              # image_format: :rounded
-            }
-          end
+      {
+        title: record.name
+      }
+    end
   }
 
   def fields
