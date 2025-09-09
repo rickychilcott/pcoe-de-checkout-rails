@@ -18,9 +18,11 @@ class Reminder
       <<~BODY
         Hi #{customer.name},
 
-        We are writing to remind you that you have items that are past due.
+        We are writing to remind you that you have items that are past due:
 
         #{past_due}
+
+        In addition, you have items that are not yet past due:
 
         #{not_past_due}
 
