@@ -26,7 +26,7 @@ class Item::CheckoutableListComponent < ApplicationComponent
           id: "expected_return_on",
           name: "expected_return_on",
           min: 1.day.from_now.to_date.to_s,
-          max: 1.year.from_now.to_date.to_s,
+          max: 5.year.from_now.to_date.to_s,
           required: true
         )
       end
