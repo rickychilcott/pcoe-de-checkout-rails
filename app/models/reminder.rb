@@ -18,13 +18,11 @@ class Reminder
       <<~BODY
         Hi #{customer.name},
 
-        We are writing to remind you that you have items that are past due:
+        We are writing to remind you that you have items that you have some past due items.
 
-        #{past_due}
+        #{past_due_item_info}
 
-        In addition, you have items that are not yet past due:
-
-        #{not_past_due}
+        #{not_past_due_item_info}
 
         Please return the past due items as soon as possible and any items you're not currently using.
 
@@ -39,17 +37,17 @@ class Reminder
     Kramdown::Document.new(body.strip).to_html
   end
 
-  def past_due
+  def past_due_item_info
     return if past_due_checkouts.blank?
 
     <<~PAST_DUE
-      As a reminder, the items you have checked out are:
+      As a reminder, you have some items that are past due:
 
       #{checkouts_list(past_due_checkouts)}
     PAST_DUE
   end
 
-  def not_past_due
+  def not_past_due_item_info
     return if not_past_due_checkouts.blank?
 
     <<~NOT_PAST_DUE
