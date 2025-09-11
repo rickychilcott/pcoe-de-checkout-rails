@@ -73,5 +73,30 @@ RSpec.describe Process::Item::BulkImport, type: :model do
       expect(first_checkout.item.name).to eq("Key 15B8-3")
       expect(first_checkout.expected_return_on).to eq(1.month.from_now.to_date)
     end
+
+    xit "another nutso import" do
+      admin_user = create(:admin_user)
+
+      csv_file = File.open("spec/fixtures/files/big-items-import-2.csv")
+      outcome = described_class.run(csv_file:, imported_by: admin_user, default_return_date: 1.month.from_now.to_date)
+
+      expect(outcome).to be_valid
+
+      expect(outcome.resulting_items.size).to eq 356
+      expect(outcome.resulting_checkouts.size).to eq 2
+
+      expect(Item.count).to eq 113
+      expect(Checkout.count).to eq 0
+
+      last_checkout = Checkout.last
+      expect(last_checkout.customer).to eq(customer)
+      expect(last_checkout.item.name).to eq("Key 15B1-12")
+      expect(last_checkout.expected_return_on.to_date).to eq(Date.parse("2028-05-14"))
+
+      first_checkout = Checkout.first
+      expect(first_checkout.customer).to eq(customer)
+      expect(first_checkout.item.name).to eq("Key 15B8-3")
+      expect(first_checkout.expected_return_on).to eq(1.month.from_now.to_date)
+    end
   end
 end
