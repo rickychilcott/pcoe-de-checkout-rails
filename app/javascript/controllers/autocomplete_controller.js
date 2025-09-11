@@ -58,14 +58,27 @@ export default class extends Controller {
     })
   }
 
-  selectItem(item) {
-    this.inputTarget.value = item.textContent.trim() // Fill input with selected item's text
+  selectItem(item) {    // this.inputTarget.value = item.textContent.trim() // Fill input with selected item's text
+    if (item.querySelector("a")) {
+      item.querySelector("a").click()
+    } else {
+      this.inputTarget.value = item.textContent.trim()
+    }
 
     this.clearInput()
     this.clearResults()
   }
 
   clearResults() {
+    // Don't clear results if focus is on any target or the results themselves
+    const activeElement = document.activeElement
+    const isFocusedOnTarget = this.hasTarget && this.hasTarget(activeElement)
+    const isFocusedOnResults = this.resultsTarget.contains(activeElement)
+
+    if (isFocusedOnTarget || isFocusedOnResults) {
+      return
+    }
+
     this.resultsTarget.innerHTML = ""
   }
 
