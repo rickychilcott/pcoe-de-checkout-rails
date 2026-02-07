@@ -340,7 +340,7 @@ GEM
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
-    phlex (2.3.1)
+    phlex (2.3.2)
       zeitwerk (~> 2.7)
     phlex-icons-bootstrap (2.24.0)
       phlex (>= 1.11)
@@ -596,6 +596,7 @@ DEPENDENCIES
   letter_opener
   literal
   pagy (~> 9.0)
+  phlex (>= 2.3.2)
   phlex-icons-bootstrap
   phlex-rails!
   puma (~> 7.0)
