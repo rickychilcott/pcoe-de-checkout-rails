@@ -31,7 +31,7 @@ gem "ransack", "~> 4.2"
 gem "rqrcode", "~> 3.0"
 gem "solid_queue", "~> 1.0"
 gem "sprockets-rails"
-gem "sqlite3", "~> 1.4"
+gem "sqlite3", "~> 2.0"
 gem "stimulus-rails"
 gem "turbo-rails"
 
