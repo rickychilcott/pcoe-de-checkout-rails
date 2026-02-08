@@ -13,6 +13,7 @@ gem "bootsnap", require: false
 gem "chartkick"
 gem "commonmarker"
 gem "csv"
+gem "ostruct"
 gem "devise", "~> 4.9"
 gem "enumerize"
 gem "dotenv-rails"
