@@ -47,7 +47,7 @@ class Process::Customer::BulkImport < ApplicationInteraction
   def group_by_name(name)
     return unless name.present?
 
-    groups.find { _1.name.strip == name.strip }
+    groups.find { it.name.strip == name.strip }
   end
 
   def update_and_create_customers!

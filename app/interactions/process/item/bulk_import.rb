@@ -49,7 +49,7 @@ class Process::Item::BulkImport < ApplicationInteraction
     @locations = []
 
     cleaned_rows
-      .map { _1["location_name"]&.strip }
+      .map { it["location_name"]&.strip }
       .compact
       .uniq
       .each { |name| @locations << Location.find_or_create_by!(name:) }
@@ -58,14 +58,14 @@ class Process::Item::BulkImport < ApplicationInteraction
   def location_by_name(name)
     return unless name.present?
 
-    locations.find { _1.name.strip == name.strip }
+    locations.find { it.name.strip == name.strip }
   end
 
   def build_groups!
     @groups = []
 
     cleaned_rows
-      .map { _1["group_name"]&.strip }
+      .map { it["group_name"]&.strip }
       .compact
       .uniq
       .each { |name| @groups << Group.find_or_create_by!(name:) }
@@ -74,13 +74,13 @@ class Process::Item::BulkImport < ApplicationInteraction
   def group_by_name(name)
     return unless name.present?
 
-    groups.find { _1.name.strip == name.strip }
+    groups.find { it.name.strip == name.strip }
   end
 
   def find_items!
     ids = [
-      *cleaned_rows.map { _1["id"] },
-      *cleaned_rows.map { _1["parent_item_id"] }
+      *cleaned_rows.map { it["id"] },
+      *cleaned_rows.map { it["parent_item_id"] }
     ].compact.uniq
 
     @existing_items = Item.where(id: ids)
@@ -89,7 +89,7 @@ class Process::Item::BulkImport < ApplicationInteraction
   def item_by_id(id)
     return unless id.present?
 
-    existing_items.find { _1.id == id.to_i }
+    existing_items.find { it.id == id.to_i }
   end
 
   def conform_rows!
@@ -113,7 +113,7 @@ class Process::Item::BulkImport < ApplicationInteraction
 
         row_data["raw_row"]["item"] = item
         item
-      end.partition { _1.valid? }
+      end.partition { it.valid? }
 
     errors.each do |error|
       errors.add(:base, error.errors.full_messages.join(", "))
@@ -121,7 +121,7 @@ class Process::Item::BulkImport < ApplicationInteraction
 
     return if errors.any?
 
-    saving_new, saving_existing = saving.partition { _1.id.blank? }
+    saving_new, saving_existing = saving.partition { it.id.blank? }
 
     saving_existing.each(&:save!)
     saving_new.each(&:save!)

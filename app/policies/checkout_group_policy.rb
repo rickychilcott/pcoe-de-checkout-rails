@@ -18,7 +18,7 @@ class CheckoutGroupPolicy < ApplicationPolicy
   private
 
   def matching_group_ids?
-    record_items_group_ids.all? { _1.in?(user_group_ids) }
+    record_items_group_ids.all? { it.in?(user_group_ids) }
   end
 
   def user_group_ids
