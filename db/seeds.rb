@@ -23,8 +23,8 @@ group = Group.find_or_create_by(name: "Default")
 parent_item =
   Item
     .find_or_initialize_by(name: "Parent Item") do |item|
-    item.location = location
-    item.group = group
+      item.location = location
+      item.group = group
   end
 
 parent_item.save!
@@ -40,7 +40,7 @@ customers = 100.times.map do
   Customer.create! name:, ohio_id:
 end
 
-days = (-14..14).map { Date.today - _1.day }
+days = (-14..14).map { Date.today - it.day }
 
 100.times.map do
   customer = customers.sample

@@ -27,7 +27,7 @@ RSpec.describe "Item Import", type: :system do
       expect(Location.count).to eq 2
       expect(Group.count).to eq 1
       expect(Activity.count).to eq 5
-      import_identifiers = Activity.pluck(:extra).map { _1["import_identifier"] }.compact_blank
+      import_identifiers = Activity.pluck(:extra).map { it["import_identifier"] }.compact_blank
       expect(import_identifiers.size).to eq 5
       expect(import_identifiers.uniq.size).to eq 1
     end

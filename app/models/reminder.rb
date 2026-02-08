@@ -60,9 +60,9 @@ class Reminder
   def checkouts_list(checkouts)
     checkouts
       .map do |checkout|
-      checkout_item = checkout.item
+        checkout_item = checkout.item
 
-      "- #{checkout_item.name} due #{checkout.expected_return_on}"
+        "- #{checkout_item.name} due #{checkout.expected_return_on}"
     end
       .join("\n")
   end

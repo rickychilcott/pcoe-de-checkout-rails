@@ -5,7 +5,7 @@ class Customers::ReturnsController < ApplicationController
     customer = Customer.find(params[:customer_id])
     checkouts = resolved_policy_scope(Checkout).where(id: params[:checkout_ids], customer:)
 
-    checkouts.each { authorize _1, :return? }
+    checkouts.each { authorize it, :return? }
 
     Process::Checkouts::Return.run!(
       customer:,

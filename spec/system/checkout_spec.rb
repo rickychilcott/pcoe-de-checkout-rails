@@ -72,6 +72,8 @@ RSpec.describe "Checkout Equipment", type: :system do
 
   def add_item_to_cart(text)
     find("input[type=text][placeholder='Search items...']", match: :first).set(text)
-    find_link(text: /#{text}/).click
+    find(".autocomplete-item a", text: /#{text}/, match: :first).click
+    expect(page).to have_css("#check-out-available-items-list", text: /#{text}/)
+    page.execute_script("document.querySelector('.autocomplete-results').innerHTML = ''")
   end
 end

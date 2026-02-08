@@ -1,5 +1,6 @@
 class CheckoutComponent < ApplicationComponent
   include Phlex::Rails::Helpers::CheckBoxTag
+
   prop :checkout, Checkout, reader: :private
 
   def view_template

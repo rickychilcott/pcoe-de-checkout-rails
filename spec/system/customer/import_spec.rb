@@ -23,7 +23,7 @@ RSpec.describe "Item Import", type: :system do
       expect(page).to have_content "5 customers imported successfully"
       expect(Customer.count).to eq 5
       expect(Activity.count).to eq 5
-      import_identifiers = Activity.pluck(:extra).map { _1["import_identifier"] }.compact_blank
+      import_identifiers = Activity.pluck(:extra).map { it["import_identifier"] }.compact_blank
       expect(import_identifiers.size).to eq 5
       expect(import_identifiers.uniq.size).to eq 1
     end

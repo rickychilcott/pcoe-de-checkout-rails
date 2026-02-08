@@ -83,6 +83,6 @@ class Activity < ApplicationRecord
   def records=(records)
     self.record_gids =
       records
-        .map { _1.to_global_id.to_s }
+        .map { it.to_global_id.to_s }
   end
 end

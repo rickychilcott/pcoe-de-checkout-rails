@@ -1,5 +1,6 @@
 class ItemComponent < ApplicationComponent
   include Phlex::Rails::Helpers::CheckBoxTag
+
   prop :item, Item, reader: :private
 
   def view_template
