@@ -240,7 +240,9 @@ GEM
       concurrent-ruby (~> 1.1)
       webrick (~> 1.7)
       websocket-driver (~> 0.7)
+    ffi (1.17.3)
     ffi (1.17.3-aarch64-linux-gnu)
+    ffi (1.17.3-aarch64-mingw-ucrt)
     ffi (1.17.3-arm-linux-gnu)
     ffi (1.17.3-arm64-darwin)
     ffi (1.17.3-x86-linux-gnu)
@@ -571,8 +573,10 @@ GEM
 
 PLATFORMS
   aarch64-linux
+  aarch64-mingw-ucrt
   arm-linux
   arm64-darwin
+  ruby
   x86-linux
   x86_64-darwin
   x86_64-linux
