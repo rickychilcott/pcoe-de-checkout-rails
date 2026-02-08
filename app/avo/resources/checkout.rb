@@ -86,8 +86,4 @@ class Avo::Resources::Checkout < Avo::BaseResource
   def filters
     filter Avo::Filters::CheckoutStatusFilter
   end
-
-  def actions
-    action Avo::Actions::CustomCreateNewCheckout, arguments: -> { {record_gid: record.to_gid.to_s} }
-  end
 end
