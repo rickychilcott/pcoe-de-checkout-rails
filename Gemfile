@@ -61,7 +61,7 @@ group :test do
   gem "faker"
 end
 
-gem "phlex-rails", git: "https://github.com/joeldrapper/phlex-rails.git", branch: "main"
+gem "phlex-rails", "~> 2.4"
 
 gem "kramdown", "~> 2.4"
 
