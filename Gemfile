@@ -14,7 +14,7 @@ gem "chartkick"
 gem "commonmarker"
 gem "csv"
 gem "ostruct"
-gem "devise", "~> 4.9"
+gem "devise", "~> 5.0"
 gem "enumerize"
 gem "dotenv-rails"
 gem "image_processing", "~> 1.2"
@@ -26,7 +26,7 @@ gem "phlex-icons-bootstrap"
 gem "puma", "~> 7.0"
 # gem "propshaft", "~> 1.1"
 gem "pundit", "~> 2.4"
-gem "rails", "~> 7.2"
+gem "rails", "~> 8.0"
 gem "ransack", "~> 4.2"
 gem "rqrcode", "~> 3.0"
 gem "solid_queue", "~> 1.0"
@@ -61,7 +61,7 @@ group :test do
   gem "faker"
 end
 
-gem "phlex-rails", git: "https://github.com/joeldrapper/phlex-rails.git", branch: "main"
+gem "phlex-rails", "~> 2.4"
 
 gem "kramdown", "~> 2.4"
 
