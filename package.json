@@ -13,6 +13,14 @@
     "sass": "^1.77.6",
     "trix": "^2.1.16"
   },
+  "resolutions": {
+    "dompurify": "^3.4.0",
+    "immutable": "^4.3.8",
+    "micromatch": "^4.0.8",
+    "minimatch": "^3.1.4",
+    "picomatch": "^2.3.2",
+    "yaml": "^2.8.3"
+  },
   "scripts": {
     "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
     "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
