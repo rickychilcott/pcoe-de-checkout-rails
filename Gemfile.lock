@@ -363,7 +363,7 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    puma (7.0.2)
+    puma (7.2.1)
       nio4r (~> 2.0)
     pundit (2.5.0)
       activesupport (>= 3.0.0)
@@ -617,7 +617,7 @@ DEPENDENCIES
   phlex (>= 2.3.2)
   phlex-icons-bootstrap
   phlex-rails!
-  puma (~> 7.0)
+  puma (~> 7.2)
   pundit (~> 2.4)
   rack-mini-profiler
   rails (~> 7.2)
