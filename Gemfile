@@ -22,7 +22,7 @@ gem "literal" # , "1.0.0.rc1", git: "https://github.com/joeldrapper/literal.git"
 gem "pagy", "~> 9.0" # Avo 3.x pairs with pagy 9; revisit with the Avo 4 migration
 gem "phlex", ">= 2.3.2"
 gem "phlex-icons-bootstrap"
-gem "puma", "~> 7.0"
+gem "puma", "~> 8.0"
 # gem "propshaft", "~> 1.1"
 gem "pundit", "~> 2.4"
 gem "rails", "~> 7.2"

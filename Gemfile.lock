@@ -334,7 +334,7 @@ GEM
     prop_initializer (0.4.0)
       zeitwerk (>= 2.6.18)
     public_suffix (7.0.5)
-    puma (7.2.1)
+    puma (8.0.2)
       nio4r (~> 2.0)
     pundit (2.5.2)
       activesupport (>= 3.0.0)
@@ -573,7 +573,7 @@ DEPENDENCIES
   phlex (>= 2.3.2)
   phlex-icons-bootstrap
   phlex-rails (~> 2.4)
-  puma (~> 7.0)
+  puma (~> 8.0)
   pundit (~> 2.4)
   rack-mini-profiler
   rails (~> 7.2)
@@ -591,7 +591,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 4.0.1p0
+  ruby 4.0.1p0
 
 BUNDLED WITH
-   4.0.16
+  4.0.16
