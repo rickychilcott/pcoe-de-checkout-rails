@@ -5,7 +5,7 @@ ruby file: ".ruby-version"
 gem "active_interaction", "~> 5.3"
 gem "active_interaction-extras"
 gem "active_storage_validations"
-gem "ancestry"
+gem "ancestry", "~> 4.3"
 # Avo 4 is a separate future migration — hold the 3.x line (and avo-pro tracks avo)
 gem "avo", "~> 3.24"
 gem "avo-pro", "~> 3.24", source: "https://packager.dev/avo-hq/"

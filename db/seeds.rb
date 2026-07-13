@@ -23,8 +23,8 @@ group = Group.find_or_create_by(name: "Default")
 parent_item =
   Item
     .find_or_initialize_by(name: "Parent Item") do |item|
-      item.location = location
-      item.group = group
+    item.location = location
+    item.group = group
   end
 
 parent_item.save!
