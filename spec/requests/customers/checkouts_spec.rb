@@ -1,37 +1,34 @@
 require "rails_helper"
 
-RSpec.describe Customers::CheckoutsController, type: :controller do
-  context "when signed in" do
-    describe "POST /create" do
-      it "checks out equipment" do
-        group = create(:group)
-        admin_user = create(:admin_user, groups: [group])
-        sign_in admin_user
+RSpec.describe "Customer Checkouts", type: :request do
+  describe "POST /customers/:customer_id/checkouts" do
+    it "checks out equipment" do
+      group = create(:group)
+      admin_user = create(:admin_user, groups: [group])
+      sign_in admin_user
 
-        item = create(:item, group:)
-        customer = create(:customer)
-        expected_return_on = 1.day.from_now.to_date
+      item = create(:item, group:)
+      customer = create(:customer)
+      expected_return_on = 1.day.from_now.to_date
 
-        post :create, params: {customer_id: customer.id, expected_return_on:, item_ids: [item.id]}
-        expect(response).to have_http_status(:redirect)
-        expect(flash[:notice]).to eq("1 Item checked out to #{customer.title}")
-        expect(response).to redirect_to(customer)
-      end
+      expect {
+        post customer_checkouts_path(customer), params: {expected_return_on:, item_ids: [item.id]}
+      }.to change(Checkout.checked_out, :count).by(1)
+
+      expect(response).to redirect_to(customer_path(customer))
+      expect(response).to have_http_status(:see_other)
+      expect(flash[:notice]).to eq("1 Item checked out to #{customer.title}")
+      expect(item.reload).not_to be_available
     end
-  end
 
-  context "when not signed in" do
-    describe "POST /create" do
-      it "checks out equipment" do
-        group = create(:group)
-        item = create(:item, group:)
-        customer = create(:customer)
-        expected_return_on = 1.day.from_now.to_date
+    it "is not routable when signed out" do
+      customer = create(:customer)
 
-        post :create, params: {customer_id: customer.id, expected_return_on:, item_ids: [item.id]}
+      expect {
+        post customer_checkouts_path(customer), params: {item_ids: []}
+      }.not_to change(Checkout, :count)
 
-        expect(response).to redirect_to(new_admin_user_session_path)
-      end
+      expect(response).to have_http_status(:not_found)
     end
   end
 end
