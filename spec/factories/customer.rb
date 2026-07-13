@@ -26,7 +26,7 @@ FactoryBot.define do
   factory :customer do
     name { Faker::Name.name }
     ohio_id { Faker::Name.initials(number: 2).downcase + Faker::Number.number(digits: 6).to_s }
-    role { Customer.role.values.sample }
+    role { Customer.roles.values.sample }
     pid { "P" + Faker::Number.number(digits: 9).to_s }
   end
 end

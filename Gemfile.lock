@@ -193,8 +193,6 @@ GEM
       railties (>= 6.1)
     drb (2.2.3)
     dumb_delegator (0.8.1)
-    enumerize (2.8.1)
-      activesupport (>= 3.2)
     erb (6.0.1)
     erubi (1.13.1)
     et-orbi (1.2.11)
@@ -559,7 +557,6 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   dotenv-rails
-  enumerize
   factory_bot_rails
   faker
   i18n-tasks

@@ -46,8 +46,8 @@ class Avo::Resources::Customer < Avo::BaseResource
   def fields
     field :name, as: :text, link_to_record: true, sortable: true
     field :role, as: :select,
-      options: Customer.role.options,
-      default: Customer.role.default_value,
+      options: Customer.role_options,
+      default: "student",
       required: true,
       placeholder: "Select a role",
       sortable: true
