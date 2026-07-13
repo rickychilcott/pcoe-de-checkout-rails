@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: groups
+# Database name: primary
 #
 #  id         :integer          not null, primary key
 #  name       :string

@@ -112,9 +112,9 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ancestry (4.3.3)
       activerecord (>= 5.2.6)
-    annotate (3.2.0)
-      activerecord (>= 3.2, < 8.0)
-      rake (>= 10.4, < 14.0)
+    annotaterb (4.23.0)
+      activerecord (>= 6.0.0)
+      activesupport (>= 6.0.0)
     ast (2.4.3)
     avo (3.24.0)
       actionview (>= 6.1)
@@ -548,7 +548,7 @@ DEPENDENCIES
   active_interaction-extras
   active_storage_validations
   ancestry
-  annotate
+  annotaterb
   avo (~> 3.24)
   avo-pro (~> 3.24)!
   axe-core-rspec (~> 4.12)

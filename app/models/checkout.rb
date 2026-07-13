@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: checkouts
+# Database name: primary
 #
 #  id                 :integer          not null, primary key
 #  checked_out_at     :datetime

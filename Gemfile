@@ -36,7 +36,7 @@ gem "stimulus-rails"
 gem "turbo-rails"
 
 group :development, :test do
-  gem "annotate"
+  gem "annotaterb"
   gem "brakeman", "~> 7.0"
   gem "debug", platforms: %i[mri windows]
   gem "letter_opener"

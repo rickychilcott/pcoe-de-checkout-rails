@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: admin_users
+# Database name: primary
 #
 #  id                     :integer          not null, primary key
 #  current_sign_in_at     :datetime

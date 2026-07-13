@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: items
+# Database name: primary
 #
 #  id                 :integer          not null, primary key
 #  ancestry           :string
