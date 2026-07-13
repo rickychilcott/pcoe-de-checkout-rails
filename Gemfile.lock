@@ -110,8 +110,9 @@ GEM
       tzinfo (~> 2.0, >= 2.0.5)
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
-    ancestry (4.3.3)
+    ancestry (5.1.0)
       activerecord (>= 5.2.6)
+      logger
     annotaterb (4.23.0)
       activerecord (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -546,7 +547,7 @@ DEPENDENCIES
   active_interaction (~> 5.3)
   active_interaction-extras
   active_storage_validations
-  ancestry (~> 4.3)
+  ancestry
   annotaterb
   avo (~> 3.24)
   avo-pro (~> 3.24)!
