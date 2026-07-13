@@ -34,7 +34,7 @@ class CustomersController < ApplicationController
     if customer.save
       redirect_to customer_path(customer)
     else
-      render :new, status: :unprocessable_entity, locals: {customer:}
+      render :new, status: :unprocessable_content, locals: {customer:}
     end
   end
 
