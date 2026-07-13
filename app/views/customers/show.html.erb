@@ -2,7 +2,7 @@
 <div class="row" data-masonry='{"percentPosition": true }'>
   <div class="col-md-6 pb-4">
     <%= render CardComponent.new(id: dom_id(customer), title: customer.name) do %>
-      <p><strong>Role:</strong> <%= customer.role_text %></p>
+      <p><strong>Role:</strong> <%= customer.role_label %></p>
       <p><strong>Email:</strong> <%= customer.email %></p>
       <p><strong>Ohio ID:</strong> <%= customer.ohio_id %></p>
       <% if customer.pid? && policy(customer).show_pid? %>

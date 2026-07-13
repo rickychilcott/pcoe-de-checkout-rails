@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: items
+# Database name: primary
 #
 #  id                 :integer          not null, primary key
 #  ancestry           :string
@@ -110,24 +111,4 @@ class Item < ApplicationRecord
   end
 
   def not_available? = !available?
-
-  def self.available_as_tags
-    Item.with_attached_images.not_checked_out.map do |item|
-      {
-        value: item.id,
-        label: item.title,
-        avatar: item.images.first&.url
-      }
-    end
-  end
-
-  def self.not_available_as_tags
-    Item.with_attached_images.checked_out.map do |item|
-      {
-        value: item.id,
-        label: item.title,
-        avatar: item.images.first&.url
-      }
-    end
-  end
 end

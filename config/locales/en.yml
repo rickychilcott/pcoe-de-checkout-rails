@@ -26,11 +26,6 @@ en:
         one: Equipment Location
         other: Equipment Locations
         zero: Equipment Locations
-  enumerize:
-    customer:
-      role:
-        student: "Student"
-        faculty_staff: "Faculty or Staff"
   activerecord:
     models:
       customer: Customers

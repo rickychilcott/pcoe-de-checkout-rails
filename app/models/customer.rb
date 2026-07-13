@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: customers
+# Database name: primary
 #
 #  id         :integer          not null, primary key
 #  name       :string           not null
@@ -16,7 +17,6 @@
 #  index_customers_on_pid      (pid) UNIQUE
 #
 class Customer < ApplicationRecord
-  extend Enumerize
   include ActivityLoggable
 
   PID_REGEX = /\AP\d{9}\z/
@@ -34,7 +34,13 @@ class Customer < ApplicationRecord
 
   has_rich_text :notes
 
-  enumerize :role, in: [:student, :faculty_staff], default: :student, predicates: true
+  enum :role, {student: "student", faculty_staff: "faculty_staff"}, default: :student, validate: {allow_nil: true}
+
+  ROLE_LABELS = {"student" => "Student", "faculty_staff" => "Faculty or Staff"}.freeze
+
+  def self.role_options = ROLE_LABELS.map { |value, label| [label, value] }
+
+  def role_label = ROLE_LABELS.fetch(role)
 
   def all_activities
     acted_activities.or(activities)

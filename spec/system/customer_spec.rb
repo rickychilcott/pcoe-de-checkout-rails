@@ -92,7 +92,7 @@ RSpec.describe "Customer", type: :system do
 
     expect(page).to have_content(customer.name)
     expect(page).to have_content(customer.ohio_id)
-    expect(page).to have_content(customer.role_text)
+    expect(page).to have_content(customer.role_label)
     expect(page).not_to have_content(customer.pid)
 
     expect(Customer.count).to eq(1)

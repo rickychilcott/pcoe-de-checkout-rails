@@ -34,7 +34,7 @@ class Reminder
   private
 
   def markdownify(body)
-    Kramdown::Document.new(body.strip).to_html
+    ConvertMarkdown.run!(text: body.strip)
   end
 
   def past_due_item_info

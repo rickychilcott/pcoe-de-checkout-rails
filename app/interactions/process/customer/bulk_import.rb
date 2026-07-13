@@ -72,8 +72,8 @@ class Process::Customer::BulkImport < ApplicationInteraction
   def role_by_name(name)
     return unless name.present?
 
-    Customer.role.find_value(name.strip) ||
-      Customer.role.options.find { |(text, value)| text.strip == name.strip }&.last
+    Customer.roles.values.find { |value| value == name.strip } ||
+      Customer::ROLE_LABELS.find { |(_value, label)| label.strip == name.strip }&.first
   end
 
   def errors? = errors.any?

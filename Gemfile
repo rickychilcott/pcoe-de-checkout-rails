@@ -5,22 +5,21 @@ ruby file: ".ruby-version"
 gem "active_interaction", "~> 5.3"
 gem "active_interaction-extras"
 gem "active_storage_validations"
-gem "activestorage"
 gem "ancestry"
-gem "avo", ">= 3.16"
-gem "avo-pro", ">= 3.2", source: "https://packager.dev/avo-hq/"
+# Avo 4 is a separate future migration — hold the 3.x line (and avo-pro tracks avo)
+gem "avo", "~> 3.24"
+gem "avo-pro", "~> 3.24", source: "https://packager.dev/avo-hq/"
 gem "bootsnap", require: false
 gem "chartkick"
 gem "commonmarker"
 gem "csv"
 gem "ostruct"
 gem "devise", "~> 4.9"
-gem "enumerize"
 gem "dotenv-rails"
 gem "image_processing", "~> 1.2"
 gem "importmap-rails"
 gem "literal" # , "1.0.0.rc1", git: "https://github.com/joeldrapper/literal.git", branch: "main"
-gem "pagy", "~> 9.0"
+gem "pagy", "~> 9.0" # Avo 3.x pairs with pagy 9; revisit with the Avo 4 migration
 gem "phlex", ">= 2.3.2"
 gem "phlex-icons-bootstrap"
 gem "puma", "~> 7.2"
@@ -36,7 +35,7 @@ gem "stimulus-rails"
 gem "turbo-rails"
 
 group :development, :test do
-  gem "annotate"
+  gem "annotaterb"
   gem "brakeman", "~> 7.0"
   gem "debug", platforms: %i[mri windows]
   gem "letter_opener"
@@ -52,17 +51,13 @@ group :development do
 end
 
 group :test do
-  gem "axe-core-rspec", "4.9.0"
-  gem "axe-core-api", "4.2.0"
-  gem "axe-matchers", "2.6.1"
+  gem "axe-core-rspec", "~> 4.12"
   gem "capybara"
   gem "cuprite"
   gem "factory_bot_rails"
   gem "faker"
 end
 
-gem "phlex-rails", git: "https://github.com/joeldrapper/phlex-rails.git", branch: "main"
-
-gem "kramdown", "~> 2.4"
+gem "phlex-rails", "~> 2.4"
 
 gem "turbo_power", "~> 0.7.0"

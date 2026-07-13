@@ -1,6 +1,7 @@
 # == Schema Information
 #
 # Table name: activities
+# Database name: primary
 #
 #  id             :integer          not null, primary key
 #  action         :string           not null
