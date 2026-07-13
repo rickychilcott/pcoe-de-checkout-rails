@@ -111,5 +111,4 @@ class Item < ApplicationRecord
   end
 
   def not_available? = !available?
-
 end
