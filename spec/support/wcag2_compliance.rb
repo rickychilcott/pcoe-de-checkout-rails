@@ -3,6 +3,7 @@ module Wcag2Compliance
     be_axe_clean
       .according_to(:wcag2a, :wcag2aa)
       .skipping("duplicate-id", "color-contrast", "aria-required-children", "select-name", "aria-allowed-attr")
+      .excluding("a[href$='avohq.io/']") # Avo's own footer attribution link trips link-in-text-block
   end
 end
 
