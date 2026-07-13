@@ -60,4 +60,4 @@ end
 
 gem "phlex-rails", "~> 2.4"
 
-gem "turbo_power", "~> 0.7.0"
+gem "turbo_power", "~> 0.8.0"
