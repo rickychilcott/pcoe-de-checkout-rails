@@ -45,25 +45,6 @@
         915
       ],
       "note": "Role is student or faculty_staff"
-    },
-    {
-      "warning_type": "Unmaintained Dependency",
-      "warning_code": 121,
-      "fingerprint": "98b26f60d776fd41ee6f088c833725145be9aac2d7c5b33780241c273622db42",
-      "check_name": "EOLRails",
-      "message": "Support for Rails 7.2.3 ends on 2026-08-09",
-      "file": "Gemfile.lock",
-      "line": 382,
-      "link": "https://brakemanscanner.org/docs/warning_types/unmaintained_dependency/",
-      "code": null,
-      "render_path": null,
-      "location": null,
-      "user_input": null,
-      "confidence": "Medium",
-      "cwe_id": [
-        1104
-      ],
-      "note": "Rails 8 upgrade in progress (stacked PRs); remove this ignore when the Rails 8.0 PR lands"
     }
   ],
   "brakeman_version": "7.0.0"
