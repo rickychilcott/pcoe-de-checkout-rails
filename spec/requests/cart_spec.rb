@@ -7,7 +7,7 @@ RSpec.describe "Cart", type: :request do
       admin_user = create(:admin_user, groups: [group])
       sign_in admin_user
 
-      item = create(:item, group:)
+      item = create(:item, name: "Laptop", group:)
 
       get cart_add_items_path,
         params: {item_ids: [item.id], replacement_target: "cart-items"},
@@ -26,7 +26,7 @@ RSpec.describe "Cart", type: :request do
       admin_user = create(:admin_user, groups: [group])
       sign_in admin_user
 
-      item = create(:item, group:)
+      item = create(:item, name: "Laptop", group:)
 
       delete cart_remove_items_path,
         params: {item_ids: [item.id], replacement_target: "cart-items"},
