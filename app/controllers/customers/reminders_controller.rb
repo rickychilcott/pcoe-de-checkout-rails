@@ -26,7 +26,7 @@ class Customers::RemindersController < ApplicationController
       # This might involve sending an email, creating a notification, etc.
       redirect_to customer, notice: "Reminder was sent to #{customer.name}."
     else
-      render :new, locals: {customer:, reminder:}
+      render :new, status: :unprocessable_content, locals: {customer:, reminder:}
     end
   end
 
