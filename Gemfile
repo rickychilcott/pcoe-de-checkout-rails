@@ -14,15 +14,15 @@ gem "chartkick"
 gem "commonmarker"
 gem "csv"
 gem "ostruct"
-gem "devise", "~> 4.9"
+gem "devise", "~> 5.0"
 gem "dotenv-rails"
-gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 2.0"
 gem "importmap-rails"
 gem "literal" # , "1.0.0.rc1", git: "https://github.com/joeldrapper/literal.git", branch: "main"
 gem "pagy", "~> 9.0" # Avo 3.x pairs with pagy 9; revisit with the Avo 4 migration
 gem "phlex", ">= 2.3.2"
 gem "phlex-icons-bootstrap"
-gem "puma", "~> 7.2"
+gem "puma", "~> 8.0"
 # gem "propshaft", "~> 1.1"
 gem "pundit", "~> 2.4"
 gem "rails", "~> 7.2"
@@ -36,7 +36,7 @@ gem "turbo-rails"
 
 group :development, :test do
   gem "annotaterb"
-  gem "brakeman", "~> 7.0"
+  gem "brakeman", "~> 8.0"
   gem "debug", platforms: %i[mri windows]
   gem "letter_opener"
   gem "rspec-rails", "~> 8.0"
@@ -60,4 +60,4 @@ end
 
 gem "phlex-rails", "~> 2.4"
 
-gem "turbo_power", "~> 0.7.0"
+gem "turbo_power", "~> 0.8.0"
