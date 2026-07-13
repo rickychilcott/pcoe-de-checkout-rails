@@ -47,8 +47,12 @@ class Avo::Cards::CheckoutsChart < Avo::Cards::ChartkickCard
       past_due_items_data[date.to_s] = 0
     end
 
+    window_start = dates.first
+
     raw_data.each do |checkout|
-      checkout_date = checkout.checked_out_at.to_date
+      # Clamp to the chart window: checkouts older than the selected range
+      # otherwise walk dates the hashes were never initialized for.
+      checkout_date = [checkout.checked_out_at.to_date, window_start].max
       returned_at_date = checkout.returned_at&.to_date || Date.current
 
       (checkout_date..returned_at_date).each { |date| checked_out_item_data[date.to_s] += 1 }
@@ -60,7 +64,7 @@ class Avo::Cards::CheckoutsChart < Avo::Cards::ChartkickCard
 
       next if expected_return_on_date.after?(returned_at_date) || expected_return_on_date.eql?(returned_at_date)
 
-      (expected_return_on_date..returned_at_date).each { |date| past_due_items_data[date.to_s] += 1 }
+      ([expected_return_on_date, window_start].max..returned_at_date).each { |date| past_due_items_data[date.to_s] += 1 }
     end
 
     result [
