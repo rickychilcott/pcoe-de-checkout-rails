@@ -36,8 +36,4 @@ class Bravo::BaseAction
   def error(message)
     @error_message = message
   end
-
-  # No-op: Bravo action dialogs close on submit; kept for Avo API parity.
-  def close_modal
-  end
 end

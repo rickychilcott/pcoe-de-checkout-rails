@@ -23,7 +23,6 @@ class Bravo::Actions::ImportCustomers < Bravo::BaseAction
 
     if outcome.valid?
       succeed "#{outcome.result.size} customers imported successfully"
-      close_modal
     else
       error "Error: #{outcome.errors.full_messages.join(", ")}"
     end

@@ -6,6 +6,7 @@ class Bravo::ResourcesController < Bravo::BaseController
 
   def index
     authorize model_class, :index?
+    @resource = build_resource(:index)
 
     scope = resolved_policy_scope(model_class)
     scope = scope.includes(*resource_class.includes) if resource_class.includes.any?
@@ -13,7 +14,6 @@ class Bravo::ResourcesController < Bravo::BaseController
     scope = apply_filters(scope)
     scope = apply_sort(scope)
 
-    @resource = build_resource(:index)
     @pagy, @records = pagy(scope, limit: PER_PAGE)
   end
 
@@ -95,15 +95,13 @@ class Bravo::ResourcesController < Bravo::BaseController
   end
 
   def apply_filters(scope)
-    resource = build_resource(:index)
-
-    resource.all_filters.each do |filter_class|
+    @resource.all_filters.each do |filter_class|
       filter = filter_class.new
       value = params.dig(:filters, filter_class.key).presence || filter.default
       scope = filter.apply(request, scope, value)
     end
 
-    resource.filterable_fields.each do |field|
+    @resource.filterable_fields.each do |field|
       value = params.dig(:filters, field.id).presence
       next if value.blank?
 
@@ -115,7 +113,7 @@ class Bravo::ResourcesController < Bravo::BaseController
   end
 
   def apply_sort(scope)
-    field = build_resource(:index).all_fields.find { |f| f.sortable? && f.id.to_s == params[:sort] }
+    field = @resource.all_fields.find { |f| f.sortable? && f.id.to_s == params[:sort] }
     return scope.order(id: :desc) unless field
 
     direction = (params[:dir] == "desc") ? :desc : :asc

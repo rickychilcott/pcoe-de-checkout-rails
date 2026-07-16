@@ -35,8 +35,7 @@ module BravoHelper
   BADGE_CLASSES = {
     success: "bg-green-100 text-green-800",
     danger: "bg-red-100 text-red-800",
-    warning: "bg-amber-100 text-amber-800",
-    info: "bg-primary-100 text-primary-700"
+    warning: "bg-amber-100 text-amber-800"
   }.freeze
 
   def bravo_badge_class(field, value)
