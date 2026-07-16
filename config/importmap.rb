@@ -9,8 +9,8 @@ pin "bootstrap", to: "bootstrap.min.js"
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.esm.js"
 
-# Avo custom JS entrypoint
-pin "avo.custom", preload: true
+pin "chartkick", to: "chartkick.js"
+pin "Chart.bundle", to: "Chart.bundle.js"
 pin "turbo_power" # @0.8.0
 # turbo_power 0.8 side-effect-imports "@hotwired/turbo"; resolve it to the
 # copy turbo-rails already serves so Turbo initializes exactly once.

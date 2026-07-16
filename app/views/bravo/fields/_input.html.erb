@@ -1,0 +1,49 @@
+<%# Renders a form input for a field. Locals: f (form builder), field, record %>
+<% input_classes = "w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-primary-400 focus:outline-none" %>
+<% case field.type %>
+<% when :select %>
+  <%= f.select field.id,
+        options_for_select(field.select_options(self), record.public_send(field.id) || field.default_value),
+        {include_blank: field.include_blank? || !field.required?},
+        class: input_classes %>
+<% when :belongs_to %>
+  <% reflection = record.class.reflect_on_association(field.id) %>
+  <%= f.collection_select "#{field.id}_id", resolved_policy_scope(reflection.klass).order(:name), :id, :name,
+        {include_blank: true}, class: input_classes %>
+<% when :boolean %>
+  <%= f.check_box field.id, class: "h-4 w-4 mt-2 rounded border-gray-300 text-primary-500" %>
+<% when :password %>
+  <%= f.password_field field.id, autocomplete: "new-password", class: input_classes %>
+<% when :number %>
+  <%= f.number_field field.id, placeholder: field.placeholder, class: input_classes %>
+<% when :date %>
+  <%= f.date_field field.id, value: record.public_send(field.id) || field.default_value, class: input_classes %>
+<% when :trix %>
+  <%= f.rich_text_area field.id %>
+<% when :checkboxes %>
+  <div class="space-y-1.5 pt-2">
+    <%= f.collection_check_boxes field.id, field.select_options(self), :last, :first do |builder| %>
+      <label class="flex items-center gap-2 text-sm">
+        <%= builder.check_box(class: "h-4 w-4 rounded border-gray-300 text-primary-500") %>
+        <%= builder.text %>
+      </label>
+    <% end %>
+  </div>
+<% when :files %>
+  <% attachments = record.public_send(field.id).attachments %>
+  <% if attachments.any? %>
+    <div class="flex flex-wrap gap-2 mb-2">
+      <% attachments.each do |attachment| %>
+        <div class="relative group">
+          <%= image_tag attachment.variant(resize_to_limit: [150, 150]), class: "h-20 w-20 object-cover rounded-md border border-gray-200" %>
+          <%= link_to "×", bravo_resource_attachment_path(params[:resource_name], record, attachment.id),
+                data: {turbo_method: :delete, turbo_confirm: "Remove this file?"},
+                class: "absolute -top-2 -right-2 hidden group-hover:flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white text-xs" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= f.file_field field.id, multiple: true, accept: field.options[:accept], class: "text-sm text-gray-600" %>
+<% else %>
+  <%= f.text_field field.id, placeholder: field.placeholder, data: field.input_data, class: input_classes %>
+<% end %>

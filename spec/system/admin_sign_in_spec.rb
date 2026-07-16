@@ -10,15 +10,12 @@ RSpec.describe "Admin Sign In", type: :system do
     fill_in "Password", with: "abcd1234"
     click_button "Log in"
 
-    find("#avo-link").click
+    find("#bravo-link").click
 
-    expect(page).to have_content "Avo"
+    expect(page).to have_content "Bravo"
     expect(page).to be_wcag2_accessible
 
-    accept_prompt do
-      find('a[data-control="profile-dots"]').click
-      click_on "Sign out"
-    end
+    click_on "Sign out"
 
     expect(page).to have_content "Log in"
   end
@@ -33,6 +30,6 @@ RSpec.describe "Admin Sign In", type: :system do
     fill_in "Password", with: password.reverse
     click_button "Log in"
 
-    expect(page).not_to have_content "Avo"
+    expect(page).not_to have_content "Bravo"
   end
 end

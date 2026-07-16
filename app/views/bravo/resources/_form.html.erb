@@ -1,0 +1,40 @@
+<% url = @record.persisted? ? bravo_resource_path(params[:resource_name], @record) : bravo_resources_path(params[:resource_name]) %>
+
+<%= form_with model: @record, url:, class: "contents" do |f| %>
+  <div class="rounded-lg bg-white border border-gray-200 shadow-sm">
+    <% if @record.errors.any? %>
+      <div class="m-4 rounded-md bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-800">
+        <p class="font-semibold mb-1"><%= pluralize(@record.errors.count, "error") %> prevented saving:</p>
+        <ul class="list-disc pl-5">
+          <% @record.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="divide-y divide-gray-100">
+      <% @resource.visible_fields.each do |field| %>
+        <div class="grid grid-cols-4 gap-4 px-4 py-3 items-start">
+          <div class="pt-2">
+            <label for="<%= "#{@record.model_name.param_key}_#{field.id}" %>" class="text-[11px] uppercase tracking-wide font-semibold text-gray-500">
+              <%= field.label %><% if field.required? %> <span class="text-red-500">*</span><% end %>
+            </label>
+            <% if field.description %>
+              <p class="text-xs text-gray-500 mt-1 normal-case"><%= field.description %></p>
+            <% end %>
+          </div>
+          <div class="col-span-3 max-w-xl">
+            <%= render "bravo/fields/input", f:, field:, record: @record %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="flex items-center justify-end gap-2 border-t border-gray-200 bg-stone-50 px-4 py-3 rounded-b-lg">
+      <%= link_to "Cancel", @record.persisted? ? bravo_resource_path(params[:resource_name], @record) : bravo_resources_path(params[:resource_name]),
+            class: "rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-600 hover:bg-gray-100" %>
+      <%= f.submit "Save", class: "rounded-md bg-primary-600 text-white px-5 py-2 text-sm font-semibold hover:bg-primary-700 cursor-pointer" %>
+    </div>
+  </div>
+<% end %>

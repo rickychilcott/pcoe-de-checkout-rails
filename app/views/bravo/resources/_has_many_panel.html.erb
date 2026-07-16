@@ -1,0 +1,51 @@
+<% relation = record.public_send(field.id) %>
+<% assoc_resource_class = field.use_resource || Bravo.resource_for_model(relation.klass) %>
+<% scoped = relation.resolved_policy_scope_for(current_admin_user) %>
+<% total = scoped.count %>
+<% assoc_resource = assoc_resource_class.new(view: :index, context: self) %>
+<% columns = assoc_resource.panel_fields %>
+
+<div class="mt-6 rounded-lg bg-white border border-gray-200 shadow-sm">
+  <div class="px-4 py-3 border-b border-gray-200">
+    <span class="font-semibold"><%= field.label %></span>
+    <span class="text-sm text-gray-500 ml-1"><%= total %></span>
+    <% if field.description %>
+      <p class="text-xs text-gray-500 mt-0.5"><%= field.description %></p>
+    <% end %>
+  </div>
+
+  <% records = scoped.order(id: :desc).limit(25).to_a %>
+  <% if records.empty? %>
+    <div class="px-4 py-8 text-center text-sm text-gray-500">Nothing here yet</div>
+  <% else %>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-gray-200 text-left text-[11px] uppercase tracking-wide text-gray-500">
+            <% columns.each do |column| %>
+              <th class="px-4 py-2 font-semibold whitespace-nowrap"><%= column.label %></th>
+            <% end %>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <% records.each do |assoc_record| %>
+            <tr class="hover:bg-stone-50">
+              <% columns.each do |column| %>
+                <td class="px-4 py-2.5 whitespace-nowrap max-w-xs overflow-hidden text-ellipsis">
+                  <%= bravo_field_display(column, assoc_record, compact: true) %>
+                </td>
+              <% end %>
+              <td class="px-4 py-2.5 text-right">
+                <%= link_to "View", bravo_record_path(assoc_record, resource_class: assoc_resource_class), class: "text-primary-600 hover:underline" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <% if total > records.size %>
+      <div class="px-4 py-2 border-t border-gray-100 text-xs text-gray-500">Showing <%= records.size %> of <%= total %></div>
+    <% end %>
+  <% end %>
+</div>

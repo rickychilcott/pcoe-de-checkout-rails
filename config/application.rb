@@ -33,6 +33,3 @@ module PcoeDeCheckout
 end
 
 require Rails.root.join("app/models/concerns/active_record/relation/pundit_policy_helper")
-
-require "avo"
-require Rails.root.join("lib/patches/avo/resources/base")

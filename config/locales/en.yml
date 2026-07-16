@@ -1,34 +1,25 @@
 ---
 en:
-  avo:
-    resource_translations:
+  activerecord:
+    models:
       activity:
         one: Equipment Activity
         other: Equipment Activities
-        zero: Equipment Activities
       admin_user:
         one: Admin
         other: Admins
-        zero: Admins
-      admin_user_group:
-        one: Permitted Admin Group
-        other: Permitted Admin Groups
-        zero: Permitted Admin Groups
+      customer:
+        one: Customer
+        other: Customers
       group:
         one: Equipment Group
         other: Equipment Groups
-        zero: Equipment Groups
       item:
         one: Equipment Item
         other: Equipment Items
-        zero: Equipment Items
       location:
         one: Equipment Location
         other: Equipment Locations
-        zero: Equipment Locations
-  activerecord:
-    models:
-      customer: Customers
     attributes:
       customer:
         pid: PID
