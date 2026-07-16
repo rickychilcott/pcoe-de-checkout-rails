@@ -20,7 +20,7 @@ class AdminLinksComponent < ApplicationComponent
       end
 
       div(class: "col-auto") do
-        link_to(avo_path, id: "avo-link", class: "btn btn-warning") do
+        link_to(bravo_root_path, id: "bravo-link", class: "btn btn-warning") do
           render(PhlexIcons::Bootstrap::Gear.new)
         end
       end

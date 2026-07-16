@@ -9,13 +9,13 @@ RSpec.describe "Item Import", type: :system do
       admin_user = create(:admin_user, super_admin: true)
       sign_in admin_user
 
-      visit avo.resources_items_path
-      click_on "Actions"
+      visit bravo_resources_path("items")
+      open_resource_actions
       click_on "Import Items"
 
       expect(page).to have_content "CSV Template"
 
-      within "turbo-frame#modal_frame" do
+      within "dialog" do
         within "form" do
           attach_file "fields_csv_file", Rails.root.join("spec/fixtures/files/items.csv")
           click_button "Import"
@@ -37,8 +37,8 @@ RSpec.describe "Item Import", type: :system do
     admin_user = create(:admin_user, super_admin: true)
     sign_in admin_user
 
-    visit avo.resources_items_path
-    click_on "Actions"
+    visit bravo_resources_path("items")
+    open_resource_actions
     click_on "Import Items"
 
     expect(page).to have_content "CSV Template"
