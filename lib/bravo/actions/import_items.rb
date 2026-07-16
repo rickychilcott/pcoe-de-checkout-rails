@@ -16,7 +16,7 @@ class Bravo::Actions::ImportItems < Bravo::BaseAction
     field :default_return_date, as: :date, default: -> { 1.month.from_now.to_date }
   end
 
-  def handle(fields:, current_user:, **)
+  def handle(fields:, current_user:)
     outcome =
       Process::Item::BulkImport
         .run(

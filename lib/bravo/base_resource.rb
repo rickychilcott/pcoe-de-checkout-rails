@@ -1,6 +1,6 @@
 class Bravo::BaseResource
   class << self
-    # self.search = {query: -> { ... }, item: -> { ... }}
+    # self.search = {query: -> { ... }, help: "..."}
     attr_accessor :search
 
     # self.includes = [:assoc, ...] for index eager loading

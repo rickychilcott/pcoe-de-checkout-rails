@@ -1,7 +1,7 @@
 class Bravo::Filters::CheckoutStatusFilter < Bravo::SelectFilter
   self.title = "Checkout status"
 
-  def apply(_request, query, value)
+  def apply(query, value)
     case value
     when "current"
       query.checked_out

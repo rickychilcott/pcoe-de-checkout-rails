@@ -1,7 +1,7 @@
 class Bravo::Filters::ItemStatusFilter < Bravo::SelectFilter
   self.title = "Item status"
 
-  def apply(_request, query, value)
+  def apply(query, value)
     case value
     when "available"
       query.not_checked_out

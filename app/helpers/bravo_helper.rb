@@ -13,8 +13,10 @@ module BravoHelper
   end
 
   # Times display in the campus timezone, like Avo did
+  TIME_ZONE = "America/New_York"
+
   def bravo_time(value)
-    value&.in_time_zone("America/New_York")&.strftime("%Y-%m-%d %-l:%M %p")
+    value&.in_time_zone(TIME_ZONE)&.strftime("%Y-%m-%d %-l:%M %p")
   end
 
   def bravo_field_display(field, record, compact: false)

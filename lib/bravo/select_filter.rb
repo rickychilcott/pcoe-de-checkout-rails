@@ -5,8 +5,8 @@ class Bravo::SelectFilter
     def key = name.demodulize.underscore
   end
 
-  # Subclasses override: apply(request, query, value) -> scope, options -> hash
-  def apply(_request, query, _value) = query
+  # Subclasses override: apply(query, value) -> scope, options -> hash
+  def apply(query, _value) = query
 
   def options = {}
 

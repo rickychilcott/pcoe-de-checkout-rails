@@ -32,9 +32,8 @@ class Bravo::ResourcesController < Bravo::BaseController
     authorize model_class, :create?
     @record = model_class.new
     @resource = build_resource(:new, record: @record)
-    @record.assign_attributes(@resource.prepare_params(permitted_attributes))
 
-    if @record.save
+    if save_record
       redirect_to bravo_resource_path(params[:resource_name], @record), notice: "#{resource_class.label_singular} was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -50,7 +49,7 @@ class Bravo::ResourcesController < Bravo::BaseController
     authorize @record, :update?
     @resource = build_resource(:edit, record: @record)
 
-    if @record.update(@resource.prepare_params(permitted_attributes))
+    if save_record
       redirect_to bravo_resource_path(params[:resource_name], @record), notice: "#{resource_class.label_singular} was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -87,6 +86,20 @@ class Bravo::ResourcesController < Bravo::BaseController
     params.require(model_class.model_name.param_key).permit(*@resource.permitted_params)
   end
 
+  # Assigning to has_many_attached replaces existing files; re-include the
+  # current blobs so uploads append (and still run attachment validations).
+  def save_record
+    attrs = permitted_attributes
+
+    @resource.visible_fields.select { |f| f.type == :files }.each do |field|
+      files = Array(attrs.delete(field.id)).compact_blank
+      attrs[field.id] = @record.public_send(field.id).blobs + files if files.any?
+    end
+
+    @record.assign_attributes(@resource.prepare_params(attrs))
+    @record.save
+  end
+
   def apply_search(scope)
     q = params[:q].to_s.strip
     return scope if q.blank? || resource_class.search.nil?
@@ -98,7 +111,7 @@ class Bravo::ResourcesController < Bravo::BaseController
     @resource.all_filters.each do |filter_class|
       filter = filter_class.new
       value = params.dig(:filters, filter_class.key).presence || filter.default
-      scope = filter.apply(request, scope, value)
+      scope = filter.apply(scope, value)
     end
 
     @resource.filterable_fields.each do |field|
