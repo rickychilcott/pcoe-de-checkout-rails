@@ -6,6 +6,7 @@ class Bravo::ResourcesController < Bravo::BaseController
 
   def index
     authorize model_class, :index?
+    @resource = build_resource(:index)
 
     scope = resolved_policy_scope(model_class)
     scope = scope.includes(*resource_class.includes) if resource_class.includes.any?
@@ -13,7 +14,6 @@ class Bravo::ResourcesController < Bravo::BaseController
     scope = apply_filters(scope)
     scope = apply_sort(scope)
 
-    @resource = build_resource(:index)
     @pagy, @records = pagy(scope, limit: PER_PAGE)
   end
 
@@ -32,9 +32,8 @@ class Bravo::ResourcesController < Bravo::BaseController
     authorize model_class, :create?
     @record = model_class.new
     @resource = build_resource(:new, record: @record)
-    @record.assign_attributes(@resource.prepare_params(permitted_attributes))
 
-    if @record.save
+    if save_record
       redirect_to bravo_resource_path(params[:resource_name], @record), notice: "#{resource_class.label_singular} was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -50,7 +49,7 @@ class Bravo::ResourcesController < Bravo::BaseController
     authorize @record, :update?
     @resource = build_resource(:edit, record: @record)
 
-    if @record.update(@resource.prepare_params(permitted_attributes))
+    if save_record
       redirect_to bravo_resource_path(params[:resource_name], @record), notice: "#{resource_class.label_singular} was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -87,6 +86,20 @@ class Bravo::ResourcesController < Bravo::BaseController
     params.require(model_class.model_name.param_key).permit(*@resource.permitted_params)
   end
 
+  # Assigning to has_many_attached replaces existing files; re-include the
+  # current blobs so uploads append (and still run attachment validations).
+  def save_record
+    attrs = permitted_attributes
+
+    @resource.visible_fields.select { |f| f.type == :files }.each do |field|
+      files = Array(attrs.delete(field.id)).compact_blank
+      attrs[field.id] = @record.public_send(field.id).blobs + files if files.any?
+    end
+
+    @record.assign_attributes(@resource.prepare_params(attrs))
+    @record.save
+  end
+
   def apply_search(scope)
     q = params[:q].to_s.strip
     return scope if q.blank? || resource_class.search.nil?
@@ -95,15 +108,13 @@ class Bravo::ResourcesController < Bravo::BaseController
   end
 
   def apply_filters(scope)
-    resource = build_resource(:index)
-
-    resource.all_filters.each do |filter_class|
+    @resource.all_filters.each do |filter_class|
       filter = filter_class.new
       value = params.dig(:filters, filter_class.key).presence || filter.default
-      scope = filter.apply(request, scope, value)
+      scope = filter.apply(scope, value)
     end
 
-    resource.filterable_fields.each do |field|
+    @resource.filterable_fields.each do |field|
       value = params.dig(:filters, field.id).presence
       next if value.blank?
 
@@ -115,7 +126,7 @@ class Bravo::ResourcesController < Bravo::BaseController
   end
 
   def apply_sort(scope)
-    field = build_resource(:index).all_fields.find { |f| f.sortable? && f.id.to_s == params[:sort] }
+    field = @resource.all_fields.find { |f| f.sortable? && f.id.to_s == params[:sort] }
     return scope.order(id: :desc) unless field
 
     direction = (params[:dir] == "desc") ? :desc : :asc

@@ -21,7 +21,7 @@ class Bravo::Cards::CheckoutsChart
     "MTD" => -> { Date.current.beginning_of_month },
     "QTD" => -> { Date.current.beginning_of_quarter },
     "YTD" => -> { Date.current.beginning_of_year },
-    "ALL" => -> { Checkout.minimum(:checked_out_at) || Date.current }
+    "ALL" => ->(scope) { scope.minimum(:checked_out_at) || Date.current }
   }.freeze
 
   attr_reader :current_user, :range
@@ -32,12 +32,13 @@ class Bravo::Cards::CheckoutsChart
   end
 
   def query
-    start_date = START_DATE.fetch(range.to_s).call
+    scoped = Checkout.resolved_policy_scope_for(current_user)
+    start_lambda = START_DATE.fetch(range.to_s)
+    start_date = (start_lambda.arity == 1) ? start_lambda.call(scoped) : start_lambda.call
 
     dates = start_date.to_date..Date.current
     raw_data =
-      Checkout
-        .resolved_policy_scope_for(current_user)
+      scoped
         .order(checked_out_at: :asc)
         .select(:checked_out_at, :expected_return_on, :returned_at)
 

@@ -7,12 +7,7 @@ class Bravo::ResourceActionsController < Bravo::BaseController
     action_class = resource.all_actions.find { |a| a.key == params[:action_key] } or raise ActiveRecord::RecordNotFound
 
     action = action_class.new
-    action.handle(
-      query: nil,
-      resource:,
-      fields: params[:fields] || {},
-      current_user: current_admin_user
-    )
+    action.handle(fields: params[:fields] || {}, current_user: current_admin_user)
 
     if action.error_message
       redirect_to bravo_resources_path(params[:resource_name]), alert: action.error_message

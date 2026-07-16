@@ -13,8 +13,10 @@ module BravoHelper
   end
 
   # Times display in the campus timezone, like Avo did
+  TIME_ZONE = "America/New_York"
+
   def bravo_time(value)
-    value&.in_time_zone("America/New_York")&.strftime("%Y-%m-%d %-l:%M %p")
+    value&.in_time_zone(TIME_ZONE)&.strftime("%Y-%m-%d %-l:%M %p")
   end
 
   def bravo_field_display(field, record, compact: false)
@@ -35,8 +37,7 @@ module BravoHelper
   BADGE_CLASSES = {
     success: "bg-green-100 text-green-800",
     danger: "bg-red-100 text-red-800",
-    warning: "bg-amber-100 text-amber-800",
-    info: "bg-primary-100 text-primary-700"
+    warning: "bg-amber-100 text-amber-800"
   }.freeze
 
   def bravo_badge_class(field, value)

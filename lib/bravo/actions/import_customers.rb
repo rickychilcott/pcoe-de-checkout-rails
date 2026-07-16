@@ -18,12 +18,11 @@ class Bravo::Actions::ImportCustomers < Bravo::BaseAction
     field :csv_file, as: :file
   end
 
-  def handle(fields:, current_user:, **)
+  def handle(fields:, current_user:)
     outcome = Process::Customer::BulkImport.run(csv_file: fields[:csv_file], imported_by: current_user)
 
     if outcome.valid?
       succeed "#{outcome.result.size} customers imported successfully"
-      close_modal
     else
       error "Error: #{outcome.errors.full_messages.join(", ")}"
     end

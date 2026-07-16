@@ -16,7 +16,7 @@ class Bravo::Actions::ImportItems < Bravo::BaseAction
     field :default_return_date, as: :date, default: -> { 1.month.from_now.to_date }
   end
 
-  def handle(fields:, current_user:, **)
+  def handle(fields:, current_user:)
     outcome =
       Process::Item::BulkImport
         .run(
@@ -29,7 +29,6 @@ class Bravo::Actions::ImportItems < Bravo::BaseAction
       success_message = "#{outcome.resulting_items.size} items imported successfully"
       success_message += " and #{outcome.resulting_checkouts.size} checkouts created successfully" if outcome.resulting_checkouts.any?
       succeed success_message
-      close_modal
     else
       error "Error: #{outcome.errors.full_messages.join(", ")}"
     end
