@@ -10,6 +10,14 @@
   --color-primary-700: #075a94;
 }
 
+/* phlex-icons emits class="size-N" from gem code Tailwind never scans */
+@source inline("size-{4,6,8}");
+
+/* Fallback rows (e.g. "No items") hide themselves when real items follow */
+.hide-first-if-multiple:has(:nth-child(2)) > :first-child {
+  display: none;
+}
+
 /* Trix editor chrome inside Bravo forms */
 trix-editor {
   background: white;

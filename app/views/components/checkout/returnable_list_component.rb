@@ -18,7 +18,7 @@ class Checkout::ReturnableListComponent < ApplicationComponent
         end
 
         if checkouts.any?
-          button(class: "btn btn-primary px-4") do
+          button(class: "rounded-md bg-primary-600 text-white px-4 py-2 text-sm font-semibold hover:bg-primary-700 cursor-pointer") do
             plain "Return Items!"
           end
         end
@@ -29,16 +29,6 @@ class Checkout::ReturnableListComponent < ApplicationComponent
   private
 
   def form_row(&)
-    div(class: "row mb-3", &)
-  end
-
-  def inline_label(**kwargs, &)
-    label(**mix(kwargs, class: "col-form-label col-sm-4"), &)
-  end
-
-  def inline_input(**kwargs)
-    div(class: "col-sm-8") do
-      input(**mix(kwargs, class: "form-control"))
-    end
+    div(class: "mb-3", &)
   end
 end

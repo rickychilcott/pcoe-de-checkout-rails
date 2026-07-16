@@ -7,13 +7,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "actiontext", "autocomplete", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
   </head>
 
-  <body>
-    <div class="container">
+  <body class="min-h-screen bg-stone-100 text-gray-800 antialiased">
+    <div class="container mx-auto max-w-6xl px-4 pb-10">
       <%= render AdminLinksComponent.new(admin_user: current_admin_user) %>
       <%= render FlashMessagesComponent.new(flash:) %>
 

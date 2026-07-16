@@ -16,7 +16,7 @@ class ItemComponent < ApplicationComponent
 
   def link
     label(for: checkbox_name) do
-      link_to(item_path(item), data: {turbo_frame: "_top"}, class: "ps-2") do
+      link_to(item_path(item), data: {turbo_frame: "_top"}, class: "pl-2 text-primary-600 hover:underline") do
         plain item_name
       end
     end

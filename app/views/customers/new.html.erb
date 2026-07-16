@@ -1,51 +1,47 @@
-<div class="row">
-  <div class="col-12">
-    <h2>New Customer</h2>
+<h2 class="text-2xl font-bold mb-4">New Customer</h2>
 
-    <%= form_with(model: customer, local: true, class: "mb-3") do |form| %>
-      <%= render ErrorMessagesComponent.new(resource: customer) %>
+<%= form_with(model: customer, local: true, class: "mb-3") do |form| %>
+  <%= render ErrorMessagesComponent.new(resource: customer) %>
 
-      <div class="row mb-3">
-        <div class="col-md-3">
-          <%= render FormFieldComponent.new(form:, field: :name) do %>
-            <%= form.text_field :name, class: "form-control #{'is-invalid' if customer.errors[:name].any?}" %>
-          <% end %>
+  <% input_classes = "w-full rounded-md border bg-white px-3 py-2 text-sm focus:border-primary-400 focus:outline-none" %>
+
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+    <div>
+      <%= render FormFieldComponent.new(form:, field: :name) do %>
+        <%= form.text_field :name, class: "#{input_classes} #{customer.errors[:name].any? ? "border-red-400" : "border-gray-300"}" %>
+      <% end %>
+    </div>
+
+    <div>
+      <%= render FormFieldComponent.new(form:, field: :role, name: "Role") do %>
+        <%= form.select :role, Customer.role_options, {}, class: "#{input_classes} #{customer.errors[:role].any? ? "border-red-400" : "border-gray-300"}" %>
+      <% end %>
+    </div>
+
+    <div>
+      <%= render FormFieldComponent.new(form:, field: :ohio_id, name: "Ohio ID") do %>
+        <div class="flex">
+          <%= form.text_field :ohio_id, class: "#{input_classes} rounded-r-none #{customer.errors[:ohio_id].any? ? "border-red-400" : "border-gray-300"}" %>
+          <span class="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">@ohio.edu</span>
         </div>
+      <% end %>
+    </div>
 
-        <div class="col-md-3">
-          <%= render FormFieldComponent.new(form:, field: :role, name: "Role") do %>
-            <%= form.select :role, Customer.role_options, {}, class: "form-select #{'is-invalid' if customer.errors[:role].any?}" %>
-          <% end %>
-        </div>
+    <div>
+      <%= render FormFieldComponent.new(form:, field: :pid, name: "PID") do %>
+        <%= form.text_field :pid, pattern: Customer.pid_regex.source, class: "#{input_classes} #{customer.errors[:pid].any? ? "border-red-400" : "border-gray-300"}" %>
+      <% end %>
+    </div>
+  </div>
 
-        <div class="col-md-3">
-          <%= render FormFieldComponent.new(form:, field: :ohio_id, name: "Ohio ID") do %>
-            <div class="input-group <%= 'has-validation' if customer.errors[:ohio_id].any? %>">
-              <%= form.text_field :ohio_id, class: "form-control #{'is-invalid' if customer.errors[:ohio_id].any?}" %>
-              <span class="input-group-text">@ohio.edu</span>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="col-md-3">
-          <%= render FormFieldComponent.new(form:, field: :pid, name: "PID") do %>
-            <div class="input-group <%= 'has-validation' if customer.errors[:ohio_id].any? %>">
-              <%= form.text_field :pid, pattern: Customer.pid_regex.source, class: "form-control #{'is-invalid' if customer.errors[:pid].any?}" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <%= render FormFieldComponent.new(form:, field: :notes) do %>
-          <%= form.rich_text_area :notes, class: "form-control" %>
-        <% end %>
-      </div>
-
-      <div class="mb-3">
-        <%= form.submit class: "btn btn-primary" %>
-        <%= link_to "Cancel", root_path, class: "btn btn-secondary" %>
-      </div>
+  <div class="mb-4">
+    <%= render FormFieldComponent.new(form:, field: :notes) do %>
+      <%= form.rich_text_area :notes %>
     <% end %>
   </div>
-</div>
+
+  <div class="flex gap-2">
+    <%= form.submit class: "rounded-md bg-primary-600 text-white px-4 py-2 text-sm font-semibold hover:bg-primary-700 cursor-pointer" %>
+    <%= link_to "Cancel", root_path, class: "rounded-md border border-gray-300 bg-white px-4 py-2 text-sm text-gray-600 hover:bg-gray-50" %>
+  </div>
+<% end %>

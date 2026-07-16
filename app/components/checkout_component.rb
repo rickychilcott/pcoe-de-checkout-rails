@@ -16,7 +16,7 @@ class CheckoutComponent < ApplicationComponent
 
   def link
     label(for: checkout_id) do
-      link_to(item_path(item), id: dom_id(checkout, :return), data: {turbo_frame: "_top"}, class: "ps-2") do
+      link_to(item_path(item), id: dom_id(checkout, :return), data: {turbo_frame: "_top"}, class: "pl-2 text-primary-600 hover:underline") do
         plain "#{item_name} [#{customer_name}] due #{expected_return_on_phrase}"
       end
     end

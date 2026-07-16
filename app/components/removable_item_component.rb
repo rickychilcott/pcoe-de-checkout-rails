@@ -18,13 +18,13 @@ class RemovableItemComponent < ApplicationComponent
   end
 
   def add_link
-    link_to(item_path(item), data: {turbo_frame: "_top"}, class: "ps-2") do
+    link_to(item_path(item), data: {turbo_frame: "_top"}, class: "pl-2 text-primary-600 hover:underline") do
       plain item_name
     end
   end
 
   def remove_link
-    link_to(remove_url, method: :delete, data: {turbo_method: :delete}, class: "ps-2") do
+    link_to(remove_url, method: :delete, data: {turbo_method: :delete}, class: "pl-2 text-primary-600 hover:underline") do
       render PhlexIcons::Bootstrap::TrashFill.new
     end
   end

@@ -9,23 +9,17 @@ class FlashMessagesComponent < ApplicationComponent
     FLASH_TYPES.each do |type|
       next unless (message = flash[type])
 
-      div(class: "mt-4 alert alert-#{BOOTSTRAP_CLASSES[type]} alert-dismissible fade show", role: "alert") do
+      div(class: "mt-4 rounded-md border px-4 py-3 text-sm font-medium #{CLASSES[type]}", role: "alert") do
         plain message
-        button(
-          type: "button",
-          class: "btn-close",
-          data_bs_dismiss: "alert",
-          aria_label: "Close"
-        )
       end
     end
   end
 
   FLASH_TYPES = Set[:alert, :notice, :error, :success].freeze
-  BOOTSTRAP_CLASSES = {
-    alert: "warning",
-    notice: "info",
-    error: "danger",
-    success: "success"
+  CLASSES = {
+    alert: "bg-amber-50 text-amber-800 border-amber-200",
+    notice: "bg-primary-50 text-primary-700 border-primary-200",
+    error: "bg-red-50 text-red-800 border-red-200",
+    success: "bg-green-50 text-green-800 border-green-200"
   }.freeze
 end

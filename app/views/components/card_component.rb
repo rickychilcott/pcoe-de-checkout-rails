@@ -3,9 +3,9 @@ class CardComponent < ApplicationComponent
   prop :title, String, reader: :private
 
   def view_template(&block)
-    div(class: "card", id:) do
-      div(class: "card-body") do
-        h2(class: "card-title") { title }
+    div(class: "rounded-lg bg-white border border-gray-200 shadow-sm", id:) do
+      div(class: "p-4") do
+        h2(class: "text-lg font-bold mb-3") { title }
         div(&block) if block
       end
     end
