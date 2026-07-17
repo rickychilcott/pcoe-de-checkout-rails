@@ -17,21 +17,24 @@ class Item::CheckoutableListComponent < ApplicationComponent
       end
 
       form_row do
-        inline_label(for: "expected_return_on", class: "pe-2") do
-          plain "Expected Return"
-        end
+        div(class: "flex items-center gap-3") do
+          label(for: "expected_return_on", class: "text-sm font-medium text-gray-700 whitespace-nowrap") do
+            plain "Expected Return"
+          end
 
-        inline_input(
-          type: :date,
-          id: "expected_return_on",
-          name: "expected_return_on",
-          min: 1.day.from_now.to_date.to_s,
-          max: 5.year.from_now.to_date.to_s,
-          required: true
-        )
+          input(
+            type: :date,
+            id: "expected_return_on",
+            name: "expected_return_on",
+            min: 1.day.from_now.to_date.to_s,
+            max: 5.year.from_now.to_date.to_s,
+            required: true,
+            class: "flex-1 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-primary-400 focus:outline-none"
+          )
+        end
       end
 
-      button(class: "btn btn-primary px-4") do
+      button(class: "rounded-md bg-primary-600 text-white px-4 py-2 text-sm font-semibold hover:bg-primary-700 cursor-pointer") do
         plain "Check Out Items!"
       end
     end
@@ -40,16 +43,6 @@ class Item::CheckoutableListComponent < ApplicationComponent
   private
 
   def form_row(**, &)
-    div(**mix(**, class: "row mb-2"), &)
-  end
-
-  def inline_label(**, &)
-    label(**mix(**, class: "col-form-label col-sm-4"), &)
-  end
-
-  def inline_input(**)
-    div(class: "col-sm-8") do
-      input(**mix(**, class: "form-control"))
-    end
+    div(**mix(**, class: "mb-3"), &)
   end
 end

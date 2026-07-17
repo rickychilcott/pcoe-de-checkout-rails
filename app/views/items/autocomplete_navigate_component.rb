@@ -5,7 +5,7 @@ class Items::AutocompleteNavigateComponent < ApplicationComponent
 
   def view_template
     div(class: "autocomplete-item", data: {id: item.id}) do
-      link_to item_path(item), id: link_id, class: "w-100 h-100 d-block", data: {turbo_frame: "_top"} do
+      link_to item_path(item), id: link_id, class: "block w-full h-full", data: {turbo_frame: "_top"} do
         plain item.title
       end
     end

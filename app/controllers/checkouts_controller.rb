@@ -2,7 +2,7 @@ class CheckoutsController < ApplicationController
   def index
     checkouts =
       resolved_policy_scope(Checkout)
-        .includes(:checked_out_by, :item)
+        .includes(:checked_out_by, :item, :customer)
         .order(expected_return_on: :asc)
 
     checkouts =
@@ -12,7 +12,15 @@ class CheckoutsController < ApplicationController
         checkouts.checked_out
       end
 
-    render :index, locals: {checkouts:}
+    # one query for every row's "N items out" badge
+    items_out_counts =
+      resolved_policy_scope(Checkout)
+        .checked_out
+        .where(customer_id: checkouts.map(&:customer_id).uniq)
+        .group(:customer_id)
+        .count
+
+    render :index, locals: {checkouts:, items_out_counts:}
   end
 
   def show
