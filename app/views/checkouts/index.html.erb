@@ -1,6 +1,24 @@
 <%= turbo_frame_tag :checkouts do %>
   <%= render ListComponent.new(items: checkouts, fallback: "No checkouts") do |checkout| %>
-    <%= render ItemComponent.new(item: checkout.item) %>
-    <%= render Checkouts::ReminderComponent.new(customer: checkout.customer) %>
+    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+      <div class="flex flex-wrap items-baseline gap-x-2">
+        <%= link_to checkout.item.name, item_path(checkout.item), data: {turbo_frame: "_top"}, class: "font-medium text-primary-600 hover:underline" %>
+        <span class="text-xs <%= checkout.past_due? ? "text-red-600 font-medium" : "text-gray-500" %>">
+          due <%= checkout.expected_return_on %> (<%= time_ago_in_words(checkout.expected_return_on) %> <%= checkout.past_due? ? "ago" : "from now" %>)
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <%= link_to customer_path(checkout.customer), data: {turbo_frame: "_top"}, class: "text-sm text-gray-600 hover:text-primary-600 hover:underline" do %>
+          <%= checkout.customer.name %>
+        <% end %>
+
+        <% if (count = items_out_counts.fetch(checkout.customer_id, 1)) > 1 %>
+          <span class="rounded-full bg-amber-100 text-amber-800 px-2 py-0.5 text-xs font-semibold whitespace-nowrap"><%= count %> items out</span>
+        <% end %>
+
+        <%= render Checkouts::ReminderComponent.new(customer: checkout.customer) %>
+      </div>
+    </div>
   <% end %>
 <% end %>
