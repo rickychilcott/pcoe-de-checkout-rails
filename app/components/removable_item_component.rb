@@ -24,8 +24,8 @@ class RemovableItemComponent < ApplicationComponent
   end
 
   def remove_link
-    link_to(remove_url, method: :delete, data: {turbo_method: :delete}, class: "pl-2 text-primary-600 hover:underline") do
-      render PhlexIcons::Bootstrap::TrashFill.new
+    link_to(remove_url, method: :delete, title: "Remove from cart", data: {turbo_method: :delete}, class: "pl-2 text-red-600 hover:text-red-700") do
+      render PhlexIcons::Bootstrap::TrashFill.new(class: "size-4")
     end
   end
 

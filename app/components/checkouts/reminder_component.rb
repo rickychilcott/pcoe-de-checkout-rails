@@ -2,8 +2,8 @@ class Checkouts::ReminderComponent < ApplicationComponent
   prop :customer, Customer, reader: :private
 
   def view_template
-    link_to(new_customer_reminder_path(customer), id: dom_id(customer, :remind), class: "pl-2 text-primary-600 hover:underline", data: {turbo_frame: "_top"}) do
-      render PhlexIcons::Bootstrap::BellFill.new
+    link_to(new_customer_reminder_path(customer), id: dom_id(customer, :remind), title: "Send reminder", class: "pl-2 text-primary-600 hover:text-primary-700", data: {turbo_frame: "_top"}) do
+      render PhlexIcons::Bootstrap::BellFill.new(class: "size-4")
     end
   end
 end
