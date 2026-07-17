@@ -51,7 +51,7 @@ class Customer < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    super + %w[name ohio_id]
+    super + %w[name ohio_id pid]
   end
 
   def checked_out_item_count

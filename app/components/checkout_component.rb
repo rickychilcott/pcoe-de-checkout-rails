@@ -14,7 +14,7 @@ class CheckoutComponent < ApplicationComponent
   private
 
   def checkbox
-    check_box_tag("checkout_ids[]", checkout.id, false, id: checkout_id, class: "h-4 w-4 shrink-0 rounded border-gray-300 cursor-pointer")
+    check_box_tag("checkout_ids[]", checkout.id, false, id: checkout_id, class: "h-4 w-4 shrink-0 rounded border-gray-300 cursor-pointer", data: {check_all_target: "checkbox"})
   end
 
   # Clicking the text toggles the checkbox; navigation lives on the separate arrow link

@@ -9,7 +9,7 @@ class FlashMessagesComponent < ApplicationComponent
     FLASH_TYPES.each do |type|
       next unless (message = flash[type])
 
-      div(class: "mt-4 rounded-md border px-4 py-3 text-sm font-medium #{CLASSES[type]}", role: "alert") do
+      div(class: "rounded-md border px-4 py-3 text-sm font-medium #{CLASSES[type]}", role: "alert") do
         plain message
       end
     end

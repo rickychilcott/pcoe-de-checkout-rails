@@ -3,13 +3,16 @@ class Checkout::ReturnableListComponent < ApplicationComponent
   prop :customer, Customer, reader: :private
   prop :checkouts, _Enumerable(Checkout), reader: :private
   prop :fallback, String, reader: :private
+  prop :title, _Nilable(String), reader: :private
 
   include Phlex::Rails::Helpers::FormWith
 
   def view_template
     turbo_frame_tag("#{id}-returnable-checkouts") do
-      form_with(url: customer_returns_url(customer), data: {turbo_confirm: "Are you sure you want to return these item(s)?"}) do
+      form_with(url: customer_returns_url(customer), data: {turbo_confirm: "Are you sure you want to return these item(s)?", controller: "check-all"}) do
         input(type: :hidden, name: "customer_id", value: customer.id)
+
+        header if title
 
         form_row do
           render ::ListComponent.new(id:, items: checkouts, fallback:) do |checkout|
@@ -27,6 +30,19 @@ class Checkout::ReturnableListComponent < ApplicationComponent
   end
 
   private
+
+  def header
+    div(class: "flex items-baseline justify-between pt-4 pb-2") do
+      h5(class: "font-semibold") { title }
+
+      if checkouts.any?
+        button(type: "button", data: {action: "check-all#toggle"},
+          class: "text-xs font-semibold text-primary-600 hover:underline cursor-pointer") do
+          plain "Select all"
+        end
+      end
+    end
+  end
 
   def form_row(&)
     div(class: "mb-3", &)

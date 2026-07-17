@@ -5,14 +5,12 @@ class CustomersController < ApplicationController
   def index
     query = params[:q]
 
+    conditions = {name_cont: query, ohio_id_cont: query, m: "or"}
+    conditions[:pid_cont] = query if policy(Customer).show_pid?
+
     autocomplete_for(Customers::AutocompleteComponent) do
       resolved_policy_scope(Customer)
-        .ransack(
-          name_cont: query,
-          ohio_id_cont: query,
-          pid_cont: query,
-          m: "or"
-        )
+        .ransack(conditions)
         .result(distinct: false)
         .then do |customers|
           customers.to_a.concat([

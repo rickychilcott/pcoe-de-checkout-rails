@@ -43,11 +43,9 @@
         ) %>
       </div>
 
-      <h5 id="past-due-items" class="font-semibold pt-4 pb-2">Past Due Items</h5>
-      <%= render Checkout::ReturnableListComponent.new(id: "past-due-items-list", customer:, checkouts: customer.checkouts.past_due, fallback: "No Items Past Due") %>
+      <%= render Checkout::ReturnableListComponent.new(id: "past-due-items-list", title: "Past Due Items", customer:, checkouts: customer.checkouts.past_due, fallback: "No Items Past Due") %>
 
-      <h5 id="checked-out-items" class="font-semibold pt-4 pb-2">Checked Out Items</h5>
-      <%= render Checkout::ReturnableListComponent.new(id: "checked-out-items-list", customer:, checkouts: customer.checkouts.checked_out, fallback: "No Items Checked Out") %>
+      <%= render Checkout::ReturnableListComponent.new(id: "checked-out-items-list", title: "Checked Out Items", customer:, checkouts: customer.checkouts.checked_out, fallback: "No Items Checked Out") %>
 
       <h5 class="font-semibold pt-4 pb-2">Check Out Items</h5>
       <%= tag.div(data: { controller: "autocomplete value-stripper",

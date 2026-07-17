@@ -5,7 +5,7 @@ class AdminLinksComponent < ApplicationComponent
   def render? = admin_user.present?
 
   def view_template
-    div(class: "flex items-stretch gap-2 my-4") do
+    div(class: "flex items-stretch gap-2") do
       link_to(root_path, class: "flex items-center rounded-md bg-primary-600 text-white px-3 hover:bg-primary-700") do
         render(PhlexIcons::Bootstrap::HouseFill.new)
       end
