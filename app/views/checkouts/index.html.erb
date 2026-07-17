@@ -28,8 +28,7 @@
             <% customer_checkouts.each do |checkout| %>
               <li class="text-sm flex flex-wrap items-baseline gap-x-2">
                 <%= link_to checkout.item.name, item_path(checkout.item), data: {turbo_frame: "_top"}, class: "text-primary-600 hover:underline" %>
-                <span class="text-xs font-medium text-red-600"><%= time_ago_in_words(checkout.expected_return_on) %> overdue</span>
-                <span class="text-xs text-gray-500">due <%= checkout.expected_return_on.strftime("%b %-d, %Y") %></span>
+                <span class="text-xs font-medium text-red-600" title="due <%= checkout.expected_return_on.strftime("%b %-d, %Y") %>"><%= time_ago_in_words(checkout.expected_return_on) %> overdue</span>
               </li>
             <% end %>
           </ul>
