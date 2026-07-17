@@ -1,24 +1,40 @@
 <%= turbo_frame_tag :checkouts do %>
-  <%= render ListComponent.new(items: checkouts, fallback: "No checkouts") do |checkout| %>
-    <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-      <div class="flex flex-wrap items-baseline gap-x-2">
-        <%= link_to checkout.item.name, item_path(checkout.item), data: {turbo_frame: "_top"}, class: "font-medium text-primary-600 hover:underline" %>
-        <span class="text-xs <%= checkout.past_due? ? "text-red-600 font-medium" : "text-gray-500" %>">
-          due <%= checkout.expected_return_on %> (<%= time_ago_in_words(checkout.expected_return_on) %> <%= checkout.past_due? ? "ago" : "from now" %>)
-        </span>
-      </div>
+  <% grouped = checkouts.group_by(&:customer) %>
+  <% if grouped.empty? %>
+    <div class="rounded-md border border-gray-200 bg-white px-4 py-6 text-center text-sm text-gray-500">No checkouts</div>
+  <% else %>
+    <ul class="rounded-md border border-gray-200 divide-y divide-gray-100 bg-white overflow-hidden">
+      <% grouped.each do |customer, customer_checkouts| %>
+        <li class="border-l-2 border-l-red-300 px-4 py-3 hover:bg-stone-50 transition-colors">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-2">
+              <%= link_to customer.name, customer_path(customer), data: {turbo_frame: "_top"}, class: "font-semibold text-gray-900 hover:text-primary-600 hover:underline" %>
 
-      <div class="flex items-center gap-3">
-        <%= link_to customer_path(checkout.customer), data: {turbo_frame: "_top"}, class: "text-sm text-gray-600 hover:text-primary-600 hover:underline" do %>
-          <%= checkout.customer.name %>
-        <% end %>
+              <span class="rounded-full bg-red-100 text-red-800 px-2 py-0.5 text-xs font-semibold whitespace-nowrap">
+                <%= pluralize(customer_checkouts.size, "item") %> overdue
+              </span>
 
-        <% if (count = items_out_counts.fetch(checkout.customer_id, 1)) > 1 %>
-          <span class="rounded-full bg-amber-100 text-amber-800 px-2 py-0.5 text-xs font-semibold whitespace-nowrap"><%= count %> items out</span>
-        <% end %>
+              <% if (other = items_out_counts.fetch(customer.id, 0) - customer_checkouts.size) > 0 %>
+                <span class="rounded-full bg-amber-100 text-amber-800 px-2 py-0.5 text-xs font-semibold whitespace-nowrap">
+                  <%= other %> other <%= "item".pluralize(other) %> out
+                </span>
+              <% end %>
+            </div>
 
-        <%= render Checkouts::ReminderComponent.new(customer: checkout.customer) %>
-      </div>
-    </div>
+            <%= render Checkouts::ReminderComponent.new(customer:) %>
+          </div>
+
+          <ul class="mt-2 space-y-1">
+            <% customer_checkouts.each do |checkout| %>
+              <li class="text-sm flex flex-wrap items-baseline gap-x-2">
+                <%= link_to checkout.item.name, item_path(checkout.item), data: {turbo_frame: "_top"}, class: "text-primary-600 hover:underline" %>
+                <span class="text-xs font-medium text-red-600"><%= time_ago_in_words(checkout.expected_return_on) %> overdue</span>
+                <span class="text-xs text-gray-500">due <%= checkout.expected_return_on.strftime("%b %-d, %Y") %></span>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 <% end %>

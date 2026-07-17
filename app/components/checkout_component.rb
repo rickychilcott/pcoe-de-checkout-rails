@@ -4,21 +4,29 @@ class CheckoutComponent < ApplicationComponent
   prop :checkout, Checkout, reader: :private
 
   def view_template
-    checkbox
-    link
+    div(class: "flex items-center gap-2.5") do
+      checkbox
+      toggle_label
+      item_link
+    end
   end
 
   private
 
   def checkbox
-    check_box_tag("checkout_ids[]", checkout.id, false, id: checkout_id)
+    check_box_tag("checkout_ids[]", checkout.id, false, id: checkout_id, class: "h-4 w-4 shrink-0 rounded border-gray-300 cursor-pointer")
   end
 
-  def link
-    label(for: checkout_id) do
-      link_to(item_path(item), id: dom_id(checkout, :return), data: {turbo_frame: "_top"}, class: "pl-2 text-primary-600 hover:underline") do
-        plain "#{item_name} [#{customer_name}] due #{expected_return_on_phrase}"
-      end
+  # Clicking the text toggles the checkbox; navigation lives on the separate arrow link
+  def toggle_label
+    label(for: checkout_id, class: "cursor-pointer select-none") do
+      plain "#{item_name} [#{customer_name}] due #{expected_return_on_phrase}"
+    end
+  end
+
+  def item_link
+    link_to(item_path(item), id: dom_id(checkout, :return), title: "View item", data: {turbo_frame: "_top"}, class: "text-primary-600 hover:underline text-xs font-semibold whitespace-nowrap") do
+      plain "View →"
     end
   end
 

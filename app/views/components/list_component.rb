@@ -23,7 +23,7 @@ class ListComponent < ApplicationComponent
   private
 
   def list_item
-    li(class: "px-3 py-2 text-sm") do
+    li(class: "px-3 py-2 text-sm hover:bg-stone-50 transition-colors") do
       yield
     end
   end
