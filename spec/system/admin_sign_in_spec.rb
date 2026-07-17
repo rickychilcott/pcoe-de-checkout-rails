@@ -12,7 +12,7 @@ RSpec.describe "Admin Sign In", type: :system do
 
     find("#bravo-link").click
 
-    expect(page).to have_content "Dashboards"
+    expect(page).to have_content "Documentation"
     expect(page).to be_wcag2_accessible
 
     click_on "Sign out"
@@ -30,6 +30,6 @@ RSpec.describe "Admin Sign In", type: :system do
     fill_in "Password", with: password.reverse
     click_button "Log in"
 
-    expect(page).not_to have_content "Dashboards"
+    expect(page).not_to have_content "Documentation"
   end
 end
