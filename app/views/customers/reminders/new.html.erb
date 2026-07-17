@@ -1,34 +1,33 @@
-<div class="max-w-2xl mx-auto p-6">
-  <h1 class="text-2xl font-bold mb-6">New Reminder for <%= customer.name %></h1>
+<div class="max-w-2xl mx-auto py-6">
+  <h1 class="text-2xl font-bold mb-4">New Reminder for <%= customer.name %></h1>
 
   <%= form_with(model: [customer, reminder], local: true) do |form| %>
     <%= render(ErrorMessagesComponent.new(resource: reminder)) %>
 
-    <% input_classes = "w-full rounded-md border border-gray-300 px-3 py-2 text-sm disabled:bg-gray-100 disabled:text-gray-500" %>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-      <div>
-        <%= render FormFieldComponent.new(form:, field: :from) do %>
-          <%= form.text_field :from, class: input_classes, disabled: true %>
-        <% end %>
+    <div class="rounded-lg bg-white border border-gray-200 shadow-sm overflow-hidden">
+      <div class="border-b border-gray-200 bg-stone-50 px-4 py-2.5 text-sm font-semibold text-gray-600">
+        ✉️ New message
       </div>
 
-      <div>
-        <%= render FormFieldComponent.new(form:, field: :to) do %>
-          <%= form.text_field :to, class: input_classes, disabled: true %>
-        <% end %>
+      <div class="divide-y divide-gray-100 text-sm">
+        <div class="flex items-baseline gap-3 px-4 py-2.5">
+          <span class="w-14 shrink-0 text-gray-500">From</span>
+          <span class="text-gray-800"><%= reminder.from %></span>
+        </div>
+        <div class="flex items-baseline gap-3 px-4 py-2.5">
+          <span class="w-14 shrink-0 text-gray-500">To</span>
+          <span class="rounded-full bg-primary-50 border border-primary-100 px-2.5 py-0.5 text-primary-700"><%= reminder.to %></span>
+        </div>
       </div>
-    </div>
 
-    <div class="mb-4">
-      <%= render FormFieldComponent.new(form:, field: :body) do %>
+      <div class="border-t border-gray-200 px-4 py-3 [&_trix-editor]:border-0 [&_trix-editor]:p-0 [&_trix-editor]:min-h-64 [&_trix-toolbar]:mb-3">
         <%= form.rich_text_area :body %>
-      <% end %>
-    </div>
+      </div>
 
-    <div class="flex gap-2">
-      <%= form.submit "Send Reminder", class: "rounded-md bg-primary-600 text-white px-4 py-2 text-sm font-semibold hover:bg-primary-700 cursor-pointer" %>
-      <%= link_to "Cancel", root_path, class: "rounded-md border border-gray-300 bg-white px-4 py-2 text-sm text-gray-600 hover:bg-gray-50" %>
+      <div class="flex items-center gap-2 border-t border-gray-200 bg-stone-50 px-4 py-3">
+        <%= form.submit "Send Reminder", class: "rounded-md bg-primary-600 text-white px-5 py-2 text-sm font-semibold hover:bg-primary-700 cursor-pointer" %>
+        <%= link_to "Cancel", customer_path(customer), class: "rounded-md border border-gray-300 bg-white px-4 py-2 text-sm text-gray-600 hover:bg-gray-50" %>
+      </div>
     </div>
   <% end %>
 </div>
