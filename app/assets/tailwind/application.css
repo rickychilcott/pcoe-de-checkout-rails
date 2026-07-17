@@ -33,11 +33,9 @@ trix-editor {
   padding: 0.5rem 0.75rem;
 }
 
-/* Breathing room between blocks, in the editor and in rendered rich text */
-trix-editor > div:not(:last-child),
-trix-editor > ul:not(:last-child),
-.trix-content p:not(:last-child),
-.trix-content ul:not(:last-child) {
+/* Breathing room for <p>-based rich text (trix's own div blocks carry
+   their spacing as trailing <br>s, so no margins inside the editor) */
+.trix-content p:not(:last-child) {
   margin-bottom: 0.75rem;
 }
 
@@ -45,4 +43,5 @@ trix-editor > ul,
 .trix-content ul {
   list-style: disc;
   padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
 }
