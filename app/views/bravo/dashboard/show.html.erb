@@ -1,0 +1,35 @@
+<% content_for(:title, "Home") %>
+
+<h1 class="text-2xl font-bold mb-4">Home</h1>
+
+<div class="grid grid-cols-1 xl:grid-cols-4 gap-4">
+  <div class="xl:col-span-4 rounded-lg bg-white border border-gray-200 shadow-sm">
+    <div class="px-4 py-3 border-b border-gray-200 font-semibold">Documentation</div>
+    <%= render "bravo/dashboard/documentation" %>
+  </div>
+
+  <div class="xl:col-span-3 rounded-lg bg-white border border-gray-200 shadow-sm">
+    <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+      <div>
+        <span class="font-semibold"><%= Bravo::Cards::CheckoutsChart::LABEL %></span>
+        <p class="text-xs text-gray-500"><%= Bravo::Cards::CheckoutsChart::DESCRIPTION %></p>
+      </div>
+      <div class="flex flex-wrap gap-1 text-xs">
+        <% Bravo::Cards::CheckoutsChart::RANGES.each do |label, value| %>
+          <%= link_to label, bravo_dashboard_path(range: value),
+                class: "rounded-full px-2.5 py-1 #{(@checkouts_chart.range == value) ? "bg-primary-600 text-white font-semibold" : "text-gray-500 hover:bg-primary-50"}" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="p-4">
+      <%= area_chart @checkouts_chart.query, height: "280px", colors: ["#0B8AE2", "#34C683"] %>
+    </div>
+  </div>
+
+  <div class="rounded-lg bg-white border border-gray-200 shadow-sm">
+    <div class="px-4 py-3 border-b border-gray-200 font-semibold"><%= Bravo::Cards::AvailableItemsChart::LABEL %></div>
+    <div class="p-4">
+      <%= pie_chart @available_items_chart.query, height: "280px", colors: ["#34C683", "#0B8AE2"] %>
+    </div>
+  </div>
+</div>

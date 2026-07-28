@@ -1,0 +1,37 @@
+<% content_for(:title, bravo_record_title(@record)) %>
+
+<nav class="text-sm text-gray-500 mb-2">
+  <%= link_to "Home", bravo_root_path, class: "hover:text-gray-600" %> ›
+  <%= link_to resource_class.label, bravo_resources_path(params[:resource_name]), class: "hover:text-gray-600" %> ›
+  <span class="text-gray-600">Details</span>
+</nav>
+
+<div class="flex items-center justify-between mb-4">
+  <h1 class="text-2xl font-bold"><%= bravo_record_title(@record) %></h1>
+
+  <div class="flex items-center gap-2">
+    <%= link_to "← Go back", bravo_resources_path(params[:resource_name]), class: "px-3 py-2 text-sm text-gray-500 hover:text-gray-800" %>
+    <% if policy(@record).destroy? %>
+      <%= button_to "Delete", bravo_resource_path(params[:resource_name], @record), method: :delete,
+            form: {data: {turbo_confirm: "Are you sure?"}},
+            class: "rounded-md border border-red-300 text-red-600 px-4 py-2 text-sm font-semibold hover:bg-red-50 cursor-pointer" %>
+    <% end %>
+    <% if policy(@record).update? %>
+      <%= link_to "Edit", bravo_edit_resource_path(params[:resource_name], @record),
+            class: "rounded-md bg-primary-600 text-white px-4 py-2 text-sm font-semibold hover:bg-primary-700" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="rounded-lg bg-white border border-gray-200 shadow-sm divide-y divide-gray-100">
+  <% @resource.panel_fields.each do |field| %>
+    <div class="grid grid-cols-4 gap-4 px-4 py-3 items-start">
+      <div class="text-[11px] uppercase tracking-wide font-semibold text-gray-500 pt-0.5"><%= field.label %></div>
+      <div class="col-span-3 text-sm"><%= bravo_field_display(field, @record) %></div>
+    </div>
+  <% end %>
+</div>
+
+<% @resource.has_many_fields.each do |field| %>
+  <%= render "bravo/resources/has_many_panel", field:, record: @record %>
+<% end %>

@@ -1,0 +1,31 @@
+<%# An Avo-style action modal. Locals: action_class. Must render inside a data-controller="dialog" scope. %>
+<dialog data-dialog-target="dialog" class="m-auto w-full max-w-lg rounded-lg p-0 shadow-xl backdrop:bg-black/40">
+  <%= form_with url: bravo_resource_action_path(params[:resource_name], action_class.key), method: :post, multipart: true do %>
+    <div class="px-6 pt-5 pb-4">
+      <h2 class="text-lg font-bold mb-3"><%= action_class.title %></h2>
+
+      <% if action_class.message %>
+        <div class="text-sm text-gray-600 mb-4 [&_a]:text-primary-600 [&_a]:underline"><%= instance_exec(&action_class.message) %></div>
+      <% end %>
+
+      <% action_class.new.all_fields.each do |field| %>
+        <div class="mb-3">
+          <label class="block text-[11px] uppercase tracking-wide font-semibold text-gray-500 mb-1"><%= field.label %></label>
+          <% case field.type %>
+          <% when :file %>
+            <%= file_field_tag "fields[#{field.id}]", class: "text-sm text-gray-600" %>
+          <% when :date %>
+            <%= date_field_tag "fields[#{field.id}]", field.default_value, class: "w-full rounded-md border border-gray-300 px-3 py-2 text-sm" %>
+          <% else %>
+            <%= text_field_tag "fields[#{field.id}]", field.default_value, class: "w-full rounded-md border border-gray-300 px-3 py-2 text-sm" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="flex justify-end gap-2 bg-stone-50 px-6 py-3 rounded-b-lg">
+      <button type="button" data-action="dialog#close" class="rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer">Cancel</button>
+      <%= submit_tag action_class.confirm_button_label || "Run", class: "rounded-md bg-green-500 text-white px-5 py-2 text-sm font-semibold hover:bg-green-600 cursor-pointer" %>
+    </div>
+  <% end %>
+</dialog>

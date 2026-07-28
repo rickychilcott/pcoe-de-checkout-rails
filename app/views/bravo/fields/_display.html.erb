@@ -1,0 +1,73 @@
+<%# Renders a field's value for index cells (compact: true) and show rows %>
+<% value = field.formatted_value(record, self) %>
+<% case field.type %>
+<% when :badge %>
+  <% if value.present? %>
+    <span class="inline-block rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase <%= bravo_badge_class(field, value) %>"><%= value.to_s.humanize %></span>
+  <% else %>
+    <span class="text-gray-500">—</span>
+  <% end %>
+<% when :boolean %>
+  <% if value %>
+    <span class="text-green-600 font-bold">✓</span>
+  <% else %>
+    <span class="text-gray-500">✗</span>
+  <% end %>
+<% when :belongs_to %>
+  <% assoc = record.public_send(field.id) %>
+  <% if assoc %>
+    <%= bravo_record_link(assoc) %>
+  <% else %>
+    <span class="text-gray-500">—</span>
+  <% end %>
+<% when :date_time %>
+  <%= bravo_time(value) || tag.span("—", class: "text-gray-500") %>
+<% when :select %>
+  <%= value.present? ? bravo_select_label(field, value) : tag.span("—", class: "text-gray-500") %>
+<% when :trix %>
+  <div class="prose prose-sm max-w-none [&_a]:text-primary-600"><%= value %></div>
+<% when :key_value %>
+  <% if value.present? %>
+    <table class="text-xs border border-gray-200 rounded">
+      <% value.each do |key, val| %>
+        <tr class="border-b border-gray-100 last:border-0">
+          <td class="px-2 py-1 font-semibold text-gray-500 bg-stone-50"><%= key %></td>
+          <td class="px-2 py-1"><%= val %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <span class="text-gray-500">—</span>
+  <% end %>
+<% when :files %>
+  <% attachments = record.public_send(field.id).attachments %>
+  <% if attachments.any? %>
+    <div class="flex flex-wrap gap-2">
+      <% attachments.each do |attachment| %>
+        <%= link_to url_for(attachment), target: "_blank" do %>
+          <%= image_tag attachment.variant(resize_to_limit: [150, 150]), class: "h-20 w-20 object-cover rounded-md border border-gray-200" %>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <span class="text-gray-500">—</span>
+  <% end %>
+<% when :external_image %>
+  <% if value.present? %>
+    <% image = image_tag(value, class: compact ? "h-10" : "h-40") %>
+    <%= field.link_to_record? ? link_to(image, bravo_record_path(record)) : image %>
+  <% else %>
+    <span class="text-gray-500">—</span>
+  <% end %>
+<% else %>
+  <% if value.blank? %>
+    <span class="text-gray-500">—</span>
+  <% else %>
+    <% rendered = (field.link_to_record? && field.block.nil?) ? link_to(value, bravo_record_path(record), class: "text-primary-600 hover:underline font-medium") : value %>
+    <%= rendered %>
+    <% if field.copyable? %>
+      <button type="button" data-controller="clipboard" data-clipboard-text-value="<%= record.public_send(field.id) %>" data-action="clipboard#copy"
+              class="ml-1 text-gray-500 hover:text-primary-500 cursor-pointer align-middle" title="Copy to clipboard">⧉</button>
+    <% end %>
+  <% end %>
+<% end %>

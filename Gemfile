@@ -6,9 +6,7 @@ gem "active_interaction", "~> 5.3"
 gem "active_interaction-extras"
 gem "active_storage_validations"
 gem "ancestry"
-# Avo 4 is a separate future migration — hold the 3.x line (and avo-pro tracks avo)
-gem "avo", "~> 3.24"
-gem "avo-pro", "~> 3.24", source: "https://packager.dev/avo-hq/"
+gem "tailwindcss-rails", "~> 4.0"
 gem "bootsnap", require: false
 gem "chartkick"
 gem "commonmarker"

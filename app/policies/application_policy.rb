@@ -62,12 +62,17 @@ class ApplicationPolicy
   end
 
   def in_group?
+    # Class-level check ("can they create/act on some record?") — any group counts
+    return in_any_group? unless record.is_a?(ApplicationRecord)
+
     raise ArgumentError, "#{record.class} does not implement #group" unless record.respond_to?(:group)
 
     record.group.in?(user.groups)
   end
 
   def in_items_group?
+    return in_any_group? unless record.is_a?(ApplicationRecord)
+
     raise ArgumentError, "#{record.class} does not implement #item" unless record.respond_to?(:item)
 
     record.item.group.in?(user.groups)

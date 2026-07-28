@@ -16,4 +16,8 @@ class Location < ApplicationRecord
   def item_count
     items.count
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    super + %w[name]
+  end
 end

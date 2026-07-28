@@ -9,10 +9,6 @@ jobs:
   scan_ruby:
     runs-on: ubuntu-latest
 
-    env:
-      AVO_LICENSE_KEY: ${{ secrets.AVO_LICENSE_KEY }}
-      BUNDLE_PACKAGER__DEV: ${{secrets.BUNDLE_PACKAGER__DEV}}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,10 +25,6 @@ jobs:
   scan_js:
     runs-on: ubuntu-latest
 
-    env:
-      AVO_LICENSE_KEY: ${{ secrets.AVO_LICENSE_KEY }}
-      BUNDLE_PACKAGER__DEV: ${{secrets.BUNDLE_PACKAGER__DEV}}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -48,9 +40,6 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-
-    env:
-      BUNDLE_PACKAGER__DEV: ${{secrets.BUNDLE_PACKAGER__DEV}}
 
     steps:
       - name: Checkout code
@@ -69,8 +58,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-       AVO_LICENSE_KEY: ${{ secrets.AVO_LICENSE_KEY }}
-       BUNDLE_PACKAGER__DEV: ${{secrets.BUNDLE_PACKAGER__DEV}}
        RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
     steps:
@@ -97,6 +84,7 @@ jobs:
       - name: Compile assets
         run: |
           yarn build:css
+          bin/rails tailwindcss:build
           bin/rails assets:precompile
 
       - name: Run tests

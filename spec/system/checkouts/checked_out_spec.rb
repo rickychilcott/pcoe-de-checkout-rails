@@ -27,7 +27,7 @@ RSpec.describe "Checked Out", type: :system do
 
     sign_in admin_user
 
-    visit avo.resources_items_path
+    visit bravo_resources_path("items")
     click_on "Checkouts"
     expect(page).to have_content "Checkouts"
 
