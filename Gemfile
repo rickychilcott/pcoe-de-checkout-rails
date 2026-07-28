@@ -34,6 +34,7 @@ gem "turbo-rails"
 group :development, :test do
   gem "annotaterb"
   gem "brakeman", "~> 8.0"
+  gem "bundler-audit", require: false
   gem "debug", platforms: %i[mri windows]
   gem "letter_opener"
   gem "rspec-rails", "~> 8.0"

@@ -19,6 +19,9 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Scan for vulnerable Ruby dependencies (bundler-audit)
+        run: bundle exec bundle-audit check --update
+
       - name: Scan for security vulnerabilities in Ruby dependencies
         run: bin/brakeman --no-pager
 
@@ -37,6 +40,12 @@ jobs:
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
+
+      - name: Set up NPM
+        run: yarn install --pure-lockfile
+
+      - name: Scan for vulnerable yarn dependencies (yarn audit)
+        run: yarn audit
 
   lint:
     runs-on: ubuntu-latest
