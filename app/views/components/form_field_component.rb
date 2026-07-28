@@ -14,11 +14,11 @@ class FormFieldComponent < ApplicationComponent
   private
 
   def render_label
-    raw form.label(field, name, class: "form-label")
+    raw form.label(field, name, class: "block text-sm font-medium text-gray-700 mb-1")
   end
 
   def render_errors
-    div(class: "invalid-feedback") do
+    div(class: "mt-1 text-sm text-red-600") do
       plain form.object.errors[field].join(", ")
     end
   end
