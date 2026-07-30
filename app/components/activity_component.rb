@@ -32,15 +32,15 @@ class ActivityComponent < ApplicationComponent
   end
 
   def upper(&)
-    div(class: "fs-6", &)
+    div(class: "text-sm", &)
   end
 
   def middle(&)
-    div(class: "text-muted fs-6", &)
+    div(class: "text-sm text-gray-500", &)
   end
 
   def lower(&)
-    div(class: "text-muted fs-7", &)
+    div(class: "text-xs text-gray-500", &)
   end
 
   def action_label

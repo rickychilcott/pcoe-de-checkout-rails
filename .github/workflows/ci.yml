@@ -29,6 +29,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install packages
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libvips-dev
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -40,12 +43,6 @@ jobs:
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
-
-      - name: Set up NPM
-        run: yarn install --pure-lockfile
-
-      - name: Scan for vulnerable yarn dependencies (yarn audit)
-        run: yarn audit
 
   lint:
     runs-on: ubuntu-latest
@@ -71,7 +68,7 @@ jobs:
 
     steps:
       - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable libvips-dev
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -82,17 +79,12 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Set up NPM
-        run: |
-          yarn install --pure-lockfile
-
       - name: Setup db
         run: |
           bin/rails db:test:prepare
 
       - name: Compile assets
         run: |
-          yarn build:css
           bin/rails tailwindcss:build
           bin/rails assets:precompile
 

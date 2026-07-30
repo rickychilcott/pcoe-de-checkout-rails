@@ -1,11 +1,12 @@
 <%= render CardComponent.new(id: "search-for-item", title: "Search for Item") do %>
-  <div data-controller="autocomplete value-stripper" data-autocomplete-url-value="/items" data-value-stripper-replacements-value='<%= ValueStripper.all_replacements.to_json %>'>
+  <div class="relative" data-controller="autocomplete value-stripper" data-autocomplete-url-value="/items" data-value-stripper-replacements-value='<%= ValueStripper.all_replacements.to_json %>'>
     <input
       type="text"
       data-autocomplete-target="input"
       placeholder="Search items..."
       data-action="keyup->value-stripper#update paste->value-stripper#update change->value-stripper#update"
       data-value-stripper-target="input"
+      class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-primary-400 focus:outline-none"
     >
     <div data-autocomplete-target="results" class="autocomplete-results"></div>
   </div>

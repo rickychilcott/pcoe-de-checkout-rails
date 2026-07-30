@@ -1,15 +1,8 @@
-<div class="row">
-  <div class="col-md-6">
-    <%= render partial: "search_for_item" %>
-  </div>
-
-  <div class="col-md-6">
-    <%= render partial: "search_for_customer" %>
-  </div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <%= render partial: "search_for_item" %>
+  <%= render partial: "search_for_customer" %>
 </div>
 
-<div class="row pt-4">
-  <div class="col-md-12">
-    <%= render partial: "past_due_checkouts" %>
-  </div>
+<div>
+  <%= render partial: "past_due_checkouts" %>
 </div>

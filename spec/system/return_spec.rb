@@ -96,7 +96,7 @@ RSpec.describe "Return Equipment", type: :system do
   private
 
   def check_item(name)
-    find("li.list-group-item", text: name)
+    find("li", text: name)
       .find("input[type='checkbox']")
       .set(true)
   end

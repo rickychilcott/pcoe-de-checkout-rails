@@ -1,16 +1,11 @@
 class CustomerMailer < ApplicationMailer
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.customer_mailer.reminder_email.subject
-  #
   def reminder_email(admin_user:, customer:, body:)
+    @body = body
+
     mail(
       to: email_address_with_name(customer.email, customer.name),
       reply_to: email_address_with_name(admin_user.email, admin_user.name),
-      subject: "Reminder: #{customer.name}",
-      body:,
-      content_type: "text/html"
+      subject: "Reminder: #{customer.name}"
     )
   end
 end
