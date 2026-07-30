@@ -1,5 +1,6 @@
 class Bravo::Resources::Checkout < Bravo::BaseResource
-  self.includes = [:customer, :item, :checked_out_by, :returned_by]
+  self.includes = [:customer, :checked_out_by, :returned_by, item: [:group, :location]]
+  self.csv_export = true
 
   self.search = {
     query: -> do
@@ -19,6 +20,8 @@ class Bravo::Resources::Checkout < Bravo::BaseResource
       label: "Item Name",
       query_attributes: [:item_name]
     }
+    field :group, as: :belongs_to, readonly: true
+    field :location, as: :belongs_to, readonly: true
     field :customer, as: :belongs_to, readonly: true, filterable: {
       label: "Customer Name",
       query_attributes: [:customer_name]
@@ -46,5 +49,9 @@ class Bravo::Resources::Checkout < Bravo::BaseResource
 
   def filters
     filter Bravo::Filters::CheckoutStatusFilter
+    filter Bravo::Filters::CheckedOutDateRangeFilter
+    filter Bravo::Filters::CheckoutGroupFilter
+    filter Bravo::Filters::CheckoutLocationFilter
+    filter Bravo::Filters::CheckoutCustomerFilter
   end
 end

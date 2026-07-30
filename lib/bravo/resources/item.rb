@@ -16,7 +16,10 @@ class Bravo::Resources::Item < Bravo::BaseResource
   }
 
   def fields
-    field :name, as: :text, link_to_record: true, sortable: true
+    field :name, as: :text, link_to_record: true, sortable: true, filterable: {
+      label: "Name",
+      query_attributes: [:name]
+    }
     field :description, as: :trix
 
     field :location, as: :belongs_to, sortable: true
@@ -35,7 +38,10 @@ class Bravo::Resources::Item < Bravo::BaseResource
     end
 
     field :serial_number, as: :text
-    field :qr_code_identifier, as: :text, html: {
+    field :qr_code_identifier, as: :text, filterable: {
+      label: "QR Code Identifier",
+      query_attributes: [:qr_code_identifier]
+    }, html: {
       edit: {
         input: {
           data: {
@@ -72,5 +78,8 @@ class Bravo::Resources::Item < Bravo::BaseResource
 
   def filters
     filter Bravo::Filters::ItemStatusFilter
+    filter Bravo::Filters::ItemLocationFilter
+    filter Bravo::Filters::ItemGroupFilter
+    filter Bravo::Filters::ItemParentFilter
   end
 end

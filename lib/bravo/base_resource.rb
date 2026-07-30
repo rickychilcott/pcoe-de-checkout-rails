@@ -8,6 +8,9 @@ class Bravo::BaseResource
 
     def includes = @includes || []
 
+    # self.csv_export = true to show an "Export CSV" button on the index page
+    attr_accessor :csv_export
+
     def model_class = @model_class ||= name.demodulize.constantize
 
     def route_key = model_class.model_name.route_key

@@ -14,7 +14,14 @@ class Bravo::ResourcesController < Bravo::BaseController
     scope = apply_filters(scope)
     scope = apply_sort(scope)
 
-    @pagy, @records = pagy(scope, limit: PER_PAGE)
+    respond_to do |format|
+      format.html { @pagy, @records = pagy(scope, limit: PER_PAGE) }
+      format.csv do
+        next head :not_found unless resource_class.csv_export
+
+        send_data resource_csv(scope), filename: "#{resource_class.route_key}-#{Date.today}.csv"
+      end
+    end
   end
 
   def show
@@ -110,8 +117,22 @@ class Bravo::ResourcesController < Bravo::BaseController
   def apply_filters(scope)
     @resource.all_filters.each do |filter_class|
       filter = filter_class.new
-      value = params.dig(:filters, filter_class.key).presence || filter.default
-      scope = filter.apply(scope, value)
+
+      scope =
+        if filter_class < Bravo::DateRangeFilter
+          from = parse_filter_date(params.dig(:filters, "#{filter_class.key}_from")) || filter.default_from
+          to = parse_filter_date(params.dig(:filters, "#{filter_class.key}_to")) || filter.default_to
+          filter.apply(scope, from, to)
+        elsif filter_class < Bravo::NumberRangeFilter
+          min = parse_filter_integer(params.dig(:filters, "#{filter_class.key}_min"))
+          max = parse_filter_integer(params.dig(:filters, "#{filter_class.key}_max"))
+          filter.apply(scope, min, max)
+        elsif filter_class < Bravo::TextFilter
+          filter.apply(scope, params.dig(:filters, filter_class.key).presence)
+        else
+          value = params.dig(:filters, filter_class.key).presence || filter.default
+          filter.apply(scope, value)
+        end
     end
 
     @resource.filterable_fields.each do |field|
@@ -138,6 +159,40 @@ class Bravo::ResourcesController < Bravo::BaseController
       scope.order(field.id => direction)
     else
       scope
+    end
+  end
+
+  def parse_filter_date(value)
+    Date.parse(value) if value.present?
+  rescue ArgumentError
+    nil
+  end
+
+  def parse_filter_integer(value)
+    Integer(value) if value.present?
+  rescue ArgumentError
+    nil
+  end
+
+  def resource_csv(scope)
+    fields = @resource.panel_fields
+
+    CSV.generate do |csv|
+      csv << fields.map(&:label)
+      scope.each { |record| csv << fields.map { |field| csv_field_value(field, record) } }
+    end
+  end
+
+  def csv_field_value(field, record)
+    value = field.value_for(record, view_context)
+
+    case field.type
+    when :belongs_to
+      value&.title
+    when :date_time
+      helpers.bravo_time(value)
+    else
+      value
     end
   end
 end

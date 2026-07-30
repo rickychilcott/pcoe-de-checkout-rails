@@ -4,6 +4,11 @@
   <h1 class="text-2xl font-bold"><%= resource_class.label %></h1>
 
   <div class="flex items-center gap-2">
+    <% if resource_class.csv_export %>
+      <%= link_to "⬇ Export CSV", url_for(request.query_parameters.merge(format: :csv)),
+            class: "rounded-md border border-primary-500 text-primary-600 bg-white px-4 py-2 text-sm font-semibold hover:bg-primary-50" %>
+    <% end %>
+
     <% if @resource.all_actions.any? && policy(model_class).act_on? %>
       <details class="relative">
         <summary class="cursor-pointer select-none rounded-md border border-primary-500 text-primary-600 bg-white px-4 py-2 text-sm font-semibold hover:bg-primary-50">Actions</summary>
@@ -44,7 +49,7 @@
     <% if @resource.all_filters.any? || @resource.filterable_fields.any? %>
       <details class="relative">
         <summary class="cursor-pointer select-none rounded-md border border-primary-500 text-primary-600 px-4 py-1.5 text-sm font-semibold hover:bg-primary-50"><% applied_filters = params[:filters]&.values&.count(&:present?).to_i %>⚙ Filters<% if applied_filters > 0 %> (<%= applied_filters %> applied)<% end %></summary>
-        <div class="absolute right-0 z-20 mt-1 w-72 rounded-md border border-gray-200 bg-white shadow-lg p-4">
+        <div class="absolute right-0 z-20 mt-1 w-96 rounded-md border border-gray-200 bg-white shadow-lg p-4">
           <%= form_with url: bravo_resources_path(params[:resource_name]), method: :get do |f| %>
             <%= hidden_field_tag :q, params[:q] if params[:q].present? %>
             <%= hidden_field_tag :sort, params[:sort] if params[:sort].present? %>
@@ -52,10 +57,29 @@
 
             <% @resource.all_filters.each do |filter_class| %>
               <label class="block text-xs font-semibold text-gray-500 mb-1"><%= filter_class.title %></label>
-              <%= select_tag "filters[#{filter_class.key}]",
-                    options_for_select(filter_class.new.options.map { |value, label| [label, value] }, bravo_current_filter_value(filter_class)),
-                    data: {filter_name: filter_class.title},
-                    class: "w-full mb-3 rounded-md border border-gray-300 px-2 py-1.5 text-sm" %>
+              <% if filter_class < Bravo::DateRangeFilter %>
+                <div class="flex items-center gap-2 mb-3">
+                  <%= date_field_tag "filters[#{filter_class.key}_from]", params.dig(:filters, "#{filter_class.key}_from"),
+                        class: "w-1/2 rounded-md border border-gray-300 px-2 py-1.5 text-sm" %>
+                  <%= date_field_tag "filters[#{filter_class.key}_to]", params.dig(:filters, "#{filter_class.key}_to"),
+                        class: "w-1/2 rounded-md border border-gray-300 px-2 py-1.5 text-sm" %>
+                </div>
+              <% elsif filter_class < Bravo::NumberRangeFilter %>
+                <div class="flex items-center gap-2 mb-3">
+                  <%= number_field_tag "filters[#{filter_class.key}_min]", params.dig(:filters, "#{filter_class.key}_min"),
+                        placeholder: "Min", class: "w-1/2 rounded-md border border-gray-300 px-2 py-1.5 text-sm" %>
+                  <%= number_field_tag "filters[#{filter_class.key}_max]", params.dig(:filters, "#{filter_class.key}_max"),
+                        placeholder: "Max", class: "w-1/2 rounded-md border border-gray-300 px-2 py-1.5 text-sm" %>
+                </div>
+              <% elsif filter_class < Bravo::TextFilter %>
+                <%= text_field_tag "filters[#{filter_class.key}]", params.dig(:filters, filter_class.key),
+                      class: "w-full mb-3 rounded-md border border-gray-300 px-2 py-1.5 text-sm" %>
+              <% else %>
+                <%= select_tag "filters[#{filter_class.key}]",
+                      options_for_select(filter_class.new.options.map { |value, label| [label, value] }, bravo_current_filter_value(filter_class)),
+                      data: {filter_name: filter_class.title},
+                      class: "w-full mb-3 rounded-md border border-gray-300 px-2 py-1.5 text-sm" %>
+              <% end %>
             <% end %>
 
             <% @resource.filterable_fields.each do |field| %>

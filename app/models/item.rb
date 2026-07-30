@@ -49,6 +49,7 @@ class Item < ApplicationRecord
 
   scope :not_checked_out, -> { where.not(id: Checkout.checked_out.select(:item_id)) }
   scope :checked_out, -> { where(id: Checkout.checked_out.select(:item_id)) }
+  scope :past_due, -> { where(id: Checkout.past_due.select(:item_id)) }
 
   validates :name, presence: true
   validates :qr_code_identifier, uniqueness: true, allow_blank: true

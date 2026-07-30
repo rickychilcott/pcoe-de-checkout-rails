@@ -7,6 +7,8 @@ class Bravo::Filters::ItemStatusFilter < Bravo::SelectFilter
       query.not_checked_out
     when "checked_out"
       query.checked_out
+    when "past_due"
+      query.past_due
     else
       query
     end
@@ -16,7 +18,8 @@ class Bravo::Filters::ItemStatusFilter < Bravo::SelectFilter
     {
       all: "All",
       available: "Available",
-      checked_out: "Checked Out"
+      checked_out: "Checked Out",
+      past_due: "Past Due"
     }
   end
 
