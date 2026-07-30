@@ -21,7 +21,7 @@ class Customers::AutocompleteComponent < ApplicationComponent
 
   def wide_link
     {
-      class: "w-100 h-100 d-block",
+      class: "block w-full h-full",
       data: {
         turbo_frame: :_top
       }

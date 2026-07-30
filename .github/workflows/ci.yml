@@ -41,12 +41,6 @@ jobs:
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
 
-      - name: Set up NPM
-        run: yarn install --pure-lockfile
-
-      - name: Scan for vulnerable yarn dependencies (yarn audit)
-        run: yarn audit
-
   lint:
     runs-on: ubuntu-latest
 
@@ -82,17 +76,12 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Set up NPM
-        run: |
-          yarn install --pure-lockfile
-
       - name: Setup db
         run: |
           bin/rails db:test:prepare
 
       - name: Compile assets
         run: |
-          yarn build:css
           bin/rails tailwindcss:build
           bin/rails assets:precompile
 

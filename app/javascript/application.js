@@ -5,7 +5,6 @@ import TurboPower from "turbo_power"
 TurboPower.initialize(Turbo.StreamActions)
 
 import "controllers"
-import * as bootstrap from "bootstrap"
 
 import "trix"
 import "@rails/actiontext"

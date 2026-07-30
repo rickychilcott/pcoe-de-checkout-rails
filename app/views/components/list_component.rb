@@ -6,7 +6,7 @@ class ListComponent < ApplicationComponent
   prop :fallback, String, reader: :private
 
   def view_template
-    ul(id:, class: "list-group ms-2 pe-3 hide-first-if-multiple") do
+    ul(id:, class: "hide-first-if-multiple rounded-md border border-gray-200 divide-y divide-gray-100 bg-white") do
       # will be hidden via CSS if there are multiple items
       list_item do
         fallback
@@ -23,7 +23,7 @@ class ListComponent < ApplicationComponent
   private
 
   def list_item
-    li(class: "list-group-item") do
+    li(class: "px-3 py-2 text-sm hover:bg-stone-50 transition-colors") do
       yield
     end
   end
