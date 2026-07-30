@@ -29,6 +29,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install packages
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libvips-dev
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -65,7 +68,7 @@ jobs:
 
     steps:
       - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable libvips-dev
 
       - name: Checkout code
         uses: actions/checkout@v4
