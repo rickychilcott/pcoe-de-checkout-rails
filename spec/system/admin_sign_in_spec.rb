@@ -20,6 +20,21 @@ RSpec.describe "Admin Sign In", type: :system do
     expect(page).to have_content "Log in"
   end
 
+  it "can log out from the homepage" do
+    admin_user = create(:admin_user, password: "abcd1234")
+    visit new_admin_user_session_path
+
+    fill_in "Email", with: admin_user.email
+    fill_in "Password", with: "abcd1234"
+    click_button "Log in"
+
+    accept_confirm do
+      click_on "Sign out as #{admin_user.name}"
+    end
+
+    expect(page).to have_content "Log in"
+  end
+
   it "fails to log in" do
     password = "abcd1234"
     admin_user = create(:admin_user, password:)
