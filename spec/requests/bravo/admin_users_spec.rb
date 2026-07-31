@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Bravo AdminUsers", type: :request do
   let(:super_admin) { create(:admin_user, :super_admin) }
-  let(:admin) { create(:admin_user) }
+  let(:admin) { create(:admin_user, name: "Robin Fields") }
 
   describe "authentication" do
     it "hides the admin from signed-out visitors" do
