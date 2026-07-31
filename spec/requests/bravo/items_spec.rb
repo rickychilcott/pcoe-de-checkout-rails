@@ -47,10 +47,10 @@ RSpec.describe "Bravo Items", type: :request do
     it "filters by status, including past due" do
       sign_in create(:admin_user, :super_admin)
 
-      past_due_item = create(:item)
+      past_due_item = create(:item, name: "Past Due Projector")
       create(:checkout, item: past_due_item, expected_return_on: 3.days.ago.to_date)
 
-      available_item = create(:item)
+      available_item = create(:item, name: "Available Microphone")
 
       get bravo_resources_path("items", filters: {item_status_filter: "past_due"})
 
