@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/rickychilcott/solid_errors.git
+  revision: 5a7a829df397ae5fb488fd4d8f9f01ef03fb4a7f
+  specs:
+    solid_errors (0.7.0)
+      actionpack (>= 7.0)
+      actionview (>= 7.0)
+      activerecord (>= 7.0)
+      activesupport (>= 7.0)
+      railties (>= 7.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -413,12 +424,6 @@ GEM
       logger
     securerandom (0.4.1)
     simplecov (1.0.3)
-    solid_errors (0.7.0)
-      actionpack (>= 7.0)
-      actionview (>= 7.0)
-      activerecord (>= 7.0)
-      activesupport (>= 7.0)
-      railties (>= 7.0)
     solid_queue (1.4.0)
       activejob (>= 7.1)
       activerecord (>= 7.1)
@@ -546,7 +551,7 @@ DEPENDENCIES
   rspec-retry
   ruby-vips (~> 2.0)
   simplecov
-  solid_errors (~> 0.7.0)
+  solid_errors!
   solid_queue (~> 1.0)
   sqlite3 (~> 2.0)
   standardrb

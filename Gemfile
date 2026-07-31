@@ -62,4 +62,4 @@ gem "phlex-rails", "~> 2.4"
 
 gem "turbo_power", "~> 0.8.0"
 
-gem "solid_errors", "~> 0.7.0"
+gem "solid_errors", github: "rickychilcott/solid_errors"
