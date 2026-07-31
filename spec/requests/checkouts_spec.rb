@@ -5,8 +5,9 @@ RSpec.describe "Checkouts", type: :request do
     it "lists checked out items, and only past due ones when asked" do
       sign_in create(:admin_user, :super_admin)
 
-      past_due = create(:checkout, expected_return_on: 3.days.ago.to_date)
-      on_time = create(:checkout, expected_return_on: 3.days.from_now.to_date)
+      # Explicit names -- Faker's item names repeat often enough to collide.
+      past_due = create(:checkout, item: create(:item, name: "Past Due Camera"), expected_return_on: 3.days.ago.to_date)
+      on_time = create(:checkout, item: create(:item, name: "On Time Tripod"), expected_return_on: 3.days.from_now.to_date)
 
       get checkouts_path
       expect(response.body).to include(past_due.item.name, on_time.item.name)

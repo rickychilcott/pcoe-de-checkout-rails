@@ -61,9 +61,9 @@ RSpec.describe "Bravo Items", type: :request do
     it "filters by available and checked out status" do
       sign_in create(:admin_user, :super_admin)
 
-      checked_out_item = create(:item)
+      checked_out_item = create(:item, name: "Checked Out Camera")
       create(:checkout, item: checked_out_item)
-      available_item = create(:item)
+      available_item = create(:item, name: "Available Tripod")
 
       get bravo_resources_path("items", filters: {item_status_filter: "available"})
       expect(results_table_text).to include(available_item.name)

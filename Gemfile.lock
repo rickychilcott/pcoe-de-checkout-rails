@@ -413,6 +413,12 @@ GEM
       logger
     securerandom (0.4.1)
     simplecov (1.0.3)
+    solid_errors (0.7.0)
+      actionpack (>= 7.0)
+      actionview (>= 7.0)
+      activerecord (>= 7.0)
+      activesupport (>= 7.0)
+      railties (>= 7.0)
     solid_queue (1.4.0)
       activejob (>= 7.1)
       activerecord (>= 7.1)
@@ -540,6 +546,7 @@ DEPENDENCIES
   rspec-retry
   ruby-vips (~> 2.0)
   simplecov
+  solid_errors (~> 0.7.0)
   solid_queue (~> 1.0)
   sqlite3 (~> 2.0)
   standardrb

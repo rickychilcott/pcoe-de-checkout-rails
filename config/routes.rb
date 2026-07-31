@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", :as => :rails_health_check
 
   constraints(AdminConstraint) do
+    mount SolidErrors::Engine, at: "/admin/errors"
+
     namespace :bravo, path: "admin" do
       root to: "dashboard#show"
       get "dashboards/home", to: "dashboard#show", as: :dashboard
