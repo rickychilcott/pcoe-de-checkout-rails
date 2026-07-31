@@ -1,7 +1,13 @@
 <%= turbo_frame_tag :checkouts do %>
   <% grouped = checkouts.group_by(&:customer) %>
   <% if grouped.empty? %>
-    <div class="rounded-md border border-gray-200 bg-white px-4 py-6 text-center text-sm text-gray-500">No checkouts</div>
+    <div class="rounded-md border border-gray-200 bg-white px-4 py-8 text-center">
+      <svg class="mx-auto size-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+      <p class="mt-2 text-sm font-semibold text-gray-900"><%= only_past_due? ? "No items past due" : "No items checked out" %></p>
+      <p class="mt-0.5 text-xs text-gray-500"><%= only_past_due? ? "Everything is back on time." : "Nothing is out right now." %></p>
+    </div>
   <% else %>
     <ul class="rounded-md border border-gray-200 divide-y divide-gray-100 bg-white overflow-hidden">
       <% grouped.each do |customer, customer_checkouts| %>

@@ -3,6 +3,7 @@
 class ApplicationComponent < Phlex::HTML
   include ActionView::RecordIdentifier
   include Phlex::Helpers
+  include Phlex::Rails::Helpers::ButtonTo
   include Phlex::Rails::Helpers::LinkTo
   include Phlex::Rails::Helpers::Pluralize
   include Phlex::Rails::Helpers::Routes

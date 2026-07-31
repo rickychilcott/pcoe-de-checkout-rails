@@ -56,7 +56,10 @@ class Bravo::BaseResource
     @collected_actions << klass
   end
 
-  def filter(klass)
+  # field: anchors the filter to an index column so the filters panel can be
+  # ordered top-to-bottom the same way the index reads left-to-right.
+  def filter(klass, field: nil)
+    @filter_fields[klass] = field&.to_s
     @collected_filters << klass
   end
 
@@ -90,6 +93,15 @@ class Bravo::BaseResource
     all_fields.select(&:filterable)
   end
 
+  # Filters and field-filters interleaved to match index column order: left-to-right
+  # on the index reads top-to-bottom in the panel. Filters with no anchoring column
+  # (derived ones like Status) come first. Yields filter classes and Fields mixed.
+  def ordered_filters
+    by_field = all_filters.group_by { |klass| @filter_fields[klass] }
+    ordered = all_fields.flat_map { |f| by_field.delete(f.id.to_s).to_a + (f.filterable ? [f] : []) }
+    by_field.values.flatten + ordered
+  end
+
   def permitted_params
     visible_fields.reject(&:readonly?).map(&:param_key)
   end
@@ -97,6 +109,7 @@ class Bravo::BaseResource
   private
 
   def collect(kind)
+    @filter_fields ||= {}
     @collected_fields = []
     @collected_actions = []
     @collected_filters = []

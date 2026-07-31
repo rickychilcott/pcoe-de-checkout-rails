@@ -55,7 +55,13 @@
             <%= hidden_field_tag :sort, params[:sort] if params[:sort].present? %>
             <%= hidden_field_tag :dir, params[:dir] if params[:dir].present? %>
 
-            <% @resource.all_filters.each do |filter_class| %>
+            <% @resource.ordered_filters.each do |filter_class| %>
+              <% if filter_class.is_a?(Bravo::Field) %>
+                <% field = filter_class %>
+                <label class="block text-xs font-semibold text-gray-500 mb-1"><%= field.filterable[:label] %></label>
+                <%= text_field_tag "filters[#{field.id}]", params.dig(:filters, field.id),
+                      class: "w-full mb-3 rounded-md border border-gray-300 px-2 py-1.5 text-sm" %>
+              <% else %>
               <label class="block text-xs font-semibold text-gray-500 mb-1"><%= filter_class.title %></label>
               <% if filter_class < Bravo::DateRangeFilter %>
                 <div class="flex items-center gap-2 mb-3">
@@ -80,12 +86,7 @@
                       data: {filter_name: filter_class.title},
                       class: "w-full mb-3 rounded-md border border-gray-300 px-2 py-1.5 text-sm" %>
               <% end %>
-            <% end %>
-
-            <% @resource.filterable_fields.each do |field| %>
-              <label class="block text-xs font-semibold text-gray-500 mb-1"><%= field.filterable[:label] %></label>
-              <%= text_field_tag "filters[#{field.id}]", params.dig(:filters, field.id),
-                    class: "w-full mb-3 rounded-md border border-gray-300 px-2 py-1.5 text-sm" %>
+              <% end %>
             <% end %>
 
             <div class="flex gap-2">

@@ -77,9 +77,9 @@ class Bravo::Resources::Item < Bravo::BaseResource
   end
 
   def filters
-    filter Bravo::Filters::ItemStatusFilter
-    filter Bravo::Filters::ItemLocationFilter
-    filter Bravo::Filters::ItemGroupFilter
-    filter Bravo::Filters::ItemParentFilter
+    filter Bravo::Filters::ItemLocationFilter, field: :location
+    filter Bravo::Filters::ItemGroupFilter, field: :group
+    filter Bravo::Filters::ItemStatusFilter, field: :status
+    filter Bravo::Filters::ItemParentFilter, field: :parent
   end
 end
