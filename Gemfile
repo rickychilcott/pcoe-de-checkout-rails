@@ -55,6 +55,7 @@ group :test do
   gem "cuprite"
   gem "factory_bot_rails"
   gem "faker"
+  gem "simplecov", require: false
 end
 
 gem "phlex-rails", "~> 2.4"
