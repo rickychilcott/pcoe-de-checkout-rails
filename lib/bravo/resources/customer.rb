@@ -53,9 +53,9 @@ class Bravo::Resources::Customer < Bravo::BaseResource
   end
 
   def filters
-    filter Bravo::Filters::CustomerRoleFilter
-    filter Bravo::Filters::CustomerEmailFilter
-    filter Bravo::Filters::CustomerCheckedOutCountFilter
-    filter Bravo::Filters::CustomerPastDueCountFilter
+    filter Bravo::Filters::CustomerRoleFilter, field: :role
+    filter Bravo::Filters::CustomerEmailFilter, field: :email
+    filter Bravo::Filters::CustomerCheckedOutCountFilter, field: :checked_out_item_count
+    filter Bravo::Filters::CustomerPastDueCountFilter, field: :past_due_item_count
   end
 end

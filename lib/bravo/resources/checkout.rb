@@ -49,9 +49,8 @@ class Bravo::Resources::Checkout < Bravo::BaseResource
 
   def filters
     filter Bravo::Filters::CheckoutStatusFilter
-    filter Bravo::Filters::CheckedOutDateRangeFilter
-    filter Bravo::Filters::CheckoutGroupFilter
-    filter Bravo::Filters::CheckoutLocationFilter
-    filter Bravo::Filters::CheckoutCustomerFilter
+    filter Bravo::Filters::CheckoutGroupFilter, field: :group
+    filter Bravo::Filters::CheckoutLocationFilter, field: :location
+    filter Bravo::Filters::CheckedOutDateRangeFilter, field: :checked_out_at
   end
 end
