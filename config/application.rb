@@ -29,6 +29,8 @@ module PcoeDeCheckout
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.action_view.field_error_proc = proc { |html_tag, instance| html_tag }
+
+    config.solid_errors.connects_to = {database: {writing: :errors}}
   end
 end
 

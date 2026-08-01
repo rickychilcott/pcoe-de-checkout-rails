@@ -113,7 +113,4 @@ Rails.application.configure do
   # }
   config.action_mailer.default_url_options = {host: ENV["HOST"] || "webserver.coe.ohio.edu"}
   Rails.application.routes.default_url_options = config.action_mailer.default_url_options
-  # Configure Solid Errors -- the dashboard is already behind AdminConstraint,
-  # so no extra basic auth. Email notifications left off.
-  config.solid_errors.connects_to = {database: {writing: :errors}}
 end
