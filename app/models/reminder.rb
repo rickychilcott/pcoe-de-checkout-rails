@@ -16,17 +16,23 @@ class Reminder
   def body
     @body ||= markdownify(
       <<~BODY
-        Hi #{customer.name},
+        Dear #{customer.name},
 
-        We are writing to remind you that you have some past due items.
+        Our records indicate that technology equipment checked out through the Center for Technology and Online Programs (CTOP) is currently past due for return.
 
         #{past_due_item_info}
 
         #{not_past_due_item_info}
 
-        Please return the past due items as soon as possible and any items you're not currently using.
+        Please return the equipment to CTOP as soon as possible. If you believe the equipment has already been returned, please contact us so we can double check our records.
 
-        Thank you,
+        Failure to return university-owned equipment may result in a hold being placed on your record until the equipment is returned or other arrangements have been made.
+
+        If you have questions or need assistance coordinating the return, please contact us at ctop@ohio.edu.
+
+        Thank you for your prompt attention to this matter.
+
+        Center for Technology and Online Programs
       BODY
     )
   end
@@ -41,7 +47,7 @@ class Reminder
     return if past_due_checkouts.blank?
 
     <<~PAST_DUE
-      As a reminder, you have some items that are past due:
+      Past due items:
 
       #{checkouts_list(past_due_checkouts)}
     PAST_DUE
@@ -51,7 +57,7 @@ class Reminder
     return if not_past_due_checkouts.blank?
 
     <<~NOT_PAST_DUE
-      Additionally, you have other checkouts that are still out but are not yet past due:
+      Additionally, the following items are still checked out but not yet past due:
 
       #{checkouts_list(not_past_due_checkouts)}
     NOT_PAST_DUE

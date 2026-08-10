@@ -9,7 +9,7 @@ RSpec.describe CustomerMailer do
 
       mail = described_class.reminder_email(admin_user:, customer:, body:)
 
-      expect(mail.subject).to eq("Reminder: Sally Smith")
+      expect(mail.subject).to eq("CTOP Equipment Return Reminder")
       expect(mail.to).to eq([customer.email])
       expect(mail.reply_to).to eq(["admin@example.com"])
 
