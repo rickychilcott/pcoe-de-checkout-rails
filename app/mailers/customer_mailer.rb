@@ -5,7 +5,7 @@ class CustomerMailer < ApplicationMailer
     mail(
       to: email_address_with_name(customer.email, customer.name),
       reply_to: email_address_with_name(admin_user.email, admin_user.name),
-      subject: "Reminder: #{customer.name}"
+      subject: "CTOP Equipment Return Reminder"
     )
   end
 end

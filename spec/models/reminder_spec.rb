@@ -9,7 +9,7 @@ RSpec.describe Reminder do
 
     body = described_class.new(customer:, admin_user:).body
 
-    expect(body).to include("<p>Hi Sally Smith,")
+    expect(body).to include("<p>Dear Sally Smith,")
     expect(body).to include("past due")
     expect(body).to include("<li>#{past_due.item.name} due #{past_due.expected_return_on}</li>")
     expect(body).to include("<li>#{current.item.name} due #{current.expected_return_on}</li>")
@@ -21,7 +21,7 @@ RSpec.describe Reminder do
 
     body = described_class.new(customer:, admin_user:).body
 
-    expect(body).to include("<p>Hi Sally Smith,")
+    expect(body).to include("<p>Dear Sally Smith,")
     expect(body).not_to include("<li>")
   end
 end
