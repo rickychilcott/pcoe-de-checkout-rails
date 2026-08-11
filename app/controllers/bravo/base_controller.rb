@@ -1,5 +1,5 @@
 class Bravo::BaseController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   layout "bravo"
 
