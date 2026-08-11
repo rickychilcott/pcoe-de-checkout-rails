@@ -18,7 +18,7 @@ gem "image_processing", "~> 2.0"
 gem "ruby-vips", "~> 2.0"
 gem "importmap-rails"
 gem "literal" # , "1.0.0.rc1", git: "https://github.com/joeldrapper/literal.git", branch: "main"
-gem "pagy", "~> 9.0" # Avo 3.x pairs with pagy 9; revisit with the Avo 4 migration
+gem "pagy", "~> 43.0"
 gem "phlex", ">= 2.3.2"
 gem "phlex-icons-bootstrap"
 gem "puma", "~> 8.0"

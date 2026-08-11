@@ -77,5 +77,15 @@ RSpec.describe Item, type: :model do
       item.images.attach(io: image, filename: "image.jpg", content_type: "image/jpg")
       expect(item.images).not_to be_empty
     end
+
+    it "rejects non-image attachments" do
+      item = create(:item)
+      csv = File.open(Rails.root.join("spec", "fixtures", "files", "items.csv"))
+
+      item.images.attach(io: csv, filename: "items.csv", content_type: "text/csv")
+
+      expect(item).not_to be_valid
+      expect(item.errors[:images]).to be_present
+    end
   end
 end
